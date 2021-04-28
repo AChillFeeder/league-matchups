@@ -1,4 +1,4 @@
-import {Link} from 'react-router-dom';
+import {Link, useHistory} from 'react-router-dom';
 import {ReactSession} from 'react-client-session';
 
 const Navbar = () => {

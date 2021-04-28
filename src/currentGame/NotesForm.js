@@ -33,13 +33,24 @@ const NotesForm = ({championChoice, playerChampion}) => {
 
     return ( 
         <div className="notes-form">
-            <h3>Your champion: {playerChampion}</h3>
-            <ChampionPortrait championName={playerChampion}/>
-            <h3>Opponent champion: {championChoice}</h3>
-            <ChampionPortrait championName={championChoice}/>
+            <div className="champion-card">
+                <ChampionPortrait championName={playerChampion}/>
+                <h3>{playerChampion}</h3>
+            </div>
 
             <form onSubmit={manageSubmit}>
-                <h3>Add notes: </h3>
+                <h2>Add notes: </h2>
+
+                <button 
+                    onClick={(event) => {
+                        event.preventDefault();
+                        // setInput is needed for the component to update and show new inputs
+                        setInputs(inputs.concat([inputs.length])); 
+                    }}
+                    className="add-note"
+                >
+                    New note
+                </button>
                 
                 {inputs.map((input)=>(
                     <input 
@@ -53,14 +64,6 @@ const NotesForm = ({championChoice, playerChampion}) => {
                     />
                 ))}
 
-                <button onClick={(event) => {
-                    event.preventDefault();
-                    // setInput is needed for the component to update and show new inputs
-                    setInputs(inputs.concat([inputs.length])); 
-                }}>
-                    New note
-                </button>
-
                 <label htmlFor="victory">Victory: </label>
                 <input 
                     type="checkbox" 
@@ -69,8 +72,14 @@ const NotesForm = ({championChoice, playerChampion}) => {
                     defaultChecked={false}
                     onChange={() => setCheck(!check)}
                 />
-                <button>Submit</button>
+                <button className="submit">Submit</button>
             </form>
+
+            <div className="champion-card">
+                <ChampionPortrait championName={championChoice}/>    
+                <h3>{championChoice}</h3>
+            </div>
+
         </div>
      );
 }

@@ -56,14 +56,14 @@ body{
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    align-content: flex-start;
+    align-content: space-around;
 }
 
 .previous-games .game{
     border: 1px solid var(--secondary-color);
     border-radius: 25px 0;
     padding: 20px;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-bottom: 20px;
 }
 .previous-games .game:hover{
@@ -90,16 +90,20 @@ body{
     padding: 30px;
 }
 
-.game-details content{
-    padding: 20px;
+.game-details .content, .new-game .notes-form{
+    padding: 5%;
     border: 1px solid var(--secondary-color);
     border-radius: 25px 0;
-    width: 80%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center;
 }
 
 .game-details .champion-portrait{
     width: fit-content;
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 .game-details img{
@@ -107,3 +111,90 @@ body{
     margin-left: 3px;
 }
 
+.game-details .notes p{
+    font-size: 1.5em;
+}
+
+
+
+/* NEW GAME => CHOICE */
+.opponents-choice{
+    padding: 5%;
+    border-radius: 25px 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+}
+
+
+.opponents-choice::before, .opponents-choice::after{
+    content: "";
+    border: 1px solid var(--secondary-color);
+    width: 50px;
+}
+
+
+.opponents-choice img{
+    height: 300px;
+}
+
+
+.opponent-choice:hover{
+    cursor: pointer;
+}
+
+.opponent-choice h3{
+    margin-top: 10px;
+    font-size: 1.5em;
+    letter-spacing: 0.200em;
+}
+.opponent-choice h3::first-letter{
+    color: var(--secondary-color);
+    text-transform: capitalize;
+}
+
+
+
+
+.new-game .notes-form{
+    border: none;
+}
+.new-game h3{
+    margin-top: 10px;
+    font-size: 1.5em;
+    letter-spacing: 0.200em;
+}
+.new-game .notes-form h3::first-letter{
+    color: var(--secondary-color);
+    text-transform: capitalize;
+}
+.new-game .notes-form img{
+    height: 300px;
+    border-radius: 10% 0;
+    border: 1px solid var(--secondary-color);
+    padding: 5px;
+}
+.new-game .notes-form form{
+    align-self: flex-start;
+    margin-top: 0%;
+}
+.new-game .notes-form form h2{
+    font-size: 1.7em;
+    letter-spacing: 0.1em;
+    color: var(--secondary-color);
+}
+.new-game .notes-form form .add-note{
+    border: 1px solid var(--main-color);
+    background: none;
+    padding: 10px;
+    width: 150px;
+    display: block;
+}
+
+/* how to style dynamically generated elements */
+.new-game .notes-form form input[type=text]{
+    display: block;
+    background: none;
+}
