@@ -54,7 +54,7 @@ def new_game(summoner_name):
         Game = Summoner(summoner_name)
         return f"{Game.useful_data()}"
     except Exception as exc:
-        return {"error": "Player isn't in a game or API expired - Error code: " + str(exc)}
+        return {"error": "Player isn't in a game or API key expired - Error code: " + str(exc)}
 
 
 

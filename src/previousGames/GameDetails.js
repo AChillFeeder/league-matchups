@@ -11,16 +11,16 @@ const GameDetails = () => {
                 {/* Your champion */}
                 <ChampionPortrait championName={game["player-champion"]}/>
                 
-                <h3
+                {/* <h3
                     style={{color: game['win'] ? 'green' : 'red'}}
                     >
                     {game["win"] ? 'Victory' : 'Defeat'}
-                </h3>
+                </h3> */}
 
                 <div className="notes">
                     {
                         game["notes"].map((note)=>(
-                            <p>{note}</p>
+                            <p key={Math.ceil(Math.random()*100)}>- {note}</p>
                             ))
                         }
                 </div>

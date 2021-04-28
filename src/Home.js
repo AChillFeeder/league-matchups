@@ -7,7 +7,7 @@ const Home = () => {
 
     // don't forget to change region
     
-    window.patch = "11.8";
+    window.patch = "11.9";
     var summonerName = ReactSession.get("summonerName");
 
     let history = useHistory();

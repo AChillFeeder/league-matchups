@@ -2,43 +2,43 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 
-
 :root{
     --main-color: #333;
-    --secondary-color: #f1356d;
+    --secondary-color: #392cad;
     --background-color: #fff;
 
     /* reverse main and background for dark mode */
 }
-
 * {
     margin: 0;
     padding: 0;
     font-family: "Quicksand";
     color: var(--main-color);
 }
-
 body{
     background-color: var(--background-color);
+    height: 100%;
 }
+button:hover{
+    cursor: pointer;
+}
+
 
 .nav-bar{
     padding: 20px;
     display: flex;
     align-items: center;
-    max-width: 600px;
+    /* max-width: 600px; */
+    width: 80%;
     margin: 0 auto 10px;
     border-bottom: 1px solid var(--secondary-color);
 }
-
 .nav-bar h1{
     color: var(--secondary-color);
 }
-
 .nav-bar ul{
     margin-left: auto;
 }
-
 .nav-bar a{
     margin-left: 16px;
     text-decoration: none;
@@ -50,36 +50,31 @@ body{
 
 
 /* HOME */
-
 .previous-games{
     padding: 20px;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
-    align-content: flex-start;
+    align-content: space-around;
 }
-
 .previous-games .game{
-    border: 1px solid var(--secondary-color);
+    border: 1px solid var(--main-color);
     border-radius: 25px 0;
     padding: 20px;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-bottom: 20px;
 }
 .previous-games .game:hover{
     cursor: pointer;
 }
-
 .previous-games .champion-portrait{
     width: fit-content;
     display: inline-block;
 }
-
 .previous-games img{
-    height: 250px;
+    height: 100px;
     margin-left: 3px;
 }
-
 .previous-games h3{
     margin-top: 30px;
 }
@@ -89,21 +84,164 @@ body{
 .game-details{
     padding: 30px;
 }
-
-.game-details content{
-    padding: 20px;
+.game-details .content, .new-game .notes-form{
+    padding: 5%;
     border: 1px solid var(--secondary-color);
     border-radius: 25px 0;
-    width: 80%;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    align-items: center;
 }
-
 .game-details .champion-portrait{
     width: fit-content;
-    display: inline-block;
 }
-
 .game-details img{
     height: 250px;
     margin-left: 3px;
 }
+.game-details .notes{
+    text-align: left;
+    width: 50%;
+}
+.game-details .notes p{
+    font-size: 1.5em;
+}
+
+
+
+/* NEW GAME => CHOICE */
+.opponents-choice{
+    padding: 5%;
+    border-radius: 25px 0;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: row wrap;
+}
+.opponents-choice::before, .opponents-choice::after{
+    content: "";
+    border: 1px solid var(--secondary-color);
+    width: 50px;
+}
+.opponents-choice img{
+    height: 300px;
+}
+.opponent-choice:hover{
+    cursor: pointer;
+}
+.opponent-choice h3{
+    margin-top: 10px;
+    font-size: 1.5em;
+    letter-spacing: 0.200em;
+}
+.opponent-choice h3::first-letter{
+    color: var(--secondary-color);
+    text-transform: capitalize;
+}
+
+
+
+
+.new-game .notes-form{
+    border: none;
+}
+.new-game h3{
+    margin-top: 10px;
+    font-size: 1.5em;
+    letter-spacing: 0.200em;
+}
+.new-game .notes-form h3::first-letter{
+    color: var(--secondary-color);
+    text-transform: capitalize;
+}
+.new-game .notes-form img{
+    height: 300px;
+    border-radius: 10% 0;
+    border: 1px solid var(--secondary-color);
+    padding: 5px;
+}
+.new-game .notes-form form{
+    align-self: flex-start;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+.new-game .notes-form form *{
+    margin-top: 20px;
+    align-self: center;
+}
+.new-game .notes-form form h2{
+    font-size: 1.7em;
+    letter-spacing: 0.1em;
+    color: var(--secondary-color);
+}
+.new-game .notes-form form .add-note{
+    border: 1px solid var(--main-color);
+    background: none;
+    padding: 10px;
+    width: 150px;   
+}
+.new-game .notes-form form label{
+    font-size: 1.5em;
+}
+.new-game .notes-form form input[type=checkbox]{
+    margin-top: 5px;
+}
+.new-game .notes-form form .submit{
+    background: var(--main-color);
+    border: 1px solid var(--main-color);
+    color: var(--background-color);
+    padding: 10px;
+    width: 200px;
+    transition: 0.5s;
+    transition-property: background-color color;
+}
+.new-game .notes-form form .submit:hover{
+    background-color: var(--background-color);
+    border-color: var(--main-color);
+    color: var(--main-color);
+}
+
+
+
+/* Login form */
+.content .login form, .content .register form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 10%;
+}
+.content .login form *, .content .register form *{
+    margin-top: 10px;
+    align-self: center;
+}
+.content .login form label, .content .register form label{
+    font-size: 0.8em;
+}
+
+.content .login form input, .content .register form input{
+    margin-top: 5px;
+    margin-bottom: 3%;
+    border: none;
+    border-bottom: 2px solid var(--main-color);
+    width: 18%;
+    padding: 5px 10px;
+}
+
+.content .login button, .content .register button{
+    background: none;
+    border: 2px solid var(--main-color);
+    padding: 10px;
+    width: 150px;
+    transition: 0.3s;
+    transition-property: background-color color;
+}
+.content .login button:hover, .content .register button:hover{
+    background-color: var(--main-color);
+    color: var(--background-color);
+}
+
 
