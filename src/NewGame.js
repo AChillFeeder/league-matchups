@@ -16,13 +16,15 @@ const NewGame = () => {
     console.log('current game summoner name: ' + summonerName);
 
     const {data: current_game, isLoading, fetch_error} = useFetch(`http://192.168.1.150:8000/${summonerName}/current-game`)
+
     const [isChoosing, setIsChoosing] = useState(true);
     const [championChoice, setChampionChoice] = useState(null);
 
     return ( 
         <div className="new-game">
             {
-                current_game && // Current_game data should NOT be null
+                (current_game && !("error" in current_game)) 
+                && // Current_game data should NOT be null AND there should be no errors
                 ( 
                     isChoosing ? 
                         <OpponentsChoice // if isChoosing => Opponent choice 
@@ -43,7 +45,7 @@ const NewGame = () => {
                 isLoading && <p>Loading...</p>
             }
             {
-                ((current_game && 'error' in current_game) || fetch_error) && <p>Error: {current_game['error'] || fetch_error}</p>
+                ((current_game && current_game["error"]) || fetch_error) && <p>Error: {current_game["error"] || fetch_error}</p>
             }
         </div>
      );

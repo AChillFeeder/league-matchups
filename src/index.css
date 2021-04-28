@@ -1,13 +1,109 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+
+
+:root{
+    --main-color: #333;
+    --secondary-color: #f1356d;
+    --background-color: #fff;
+
+    /* reverse main and background for dark mode */
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Quicksand";
+    color: var(--main-color);
 }
+
+body{
+    background-color: var(--background-color);
+}
+
+.nav-bar{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    max-width: 600px;
+    margin: 0 auto 10px;
+    border-bottom: 1px solid var(--secondary-color);
+}
+
+.nav-bar h1{
+    color: var(--secondary-color);
+}
+
+.nav-bar ul{
+    margin-left: auto;
+}
+
+.nav-bar a{
+    margin-left: 16px;
+    text-decoration: none;
+    padding: 6px;
+}
+.nav-bar a:hover{
+    color: var(--secondary-color);
+}
+
+
+/* HOME */
+
+.previous-games{
+    padding: 20px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.previous-games .game{
+    border: 1px solid var(--secondary-color);
+    border-radius: 25px 0;
+    padding: 20px;
+    margin-left: 15px;
+    margin-bottom: 20px;
+}
+.previous-games .game:hover{
+    cursor: pointer;
+}
+
+.previous-games .champion-portrait{
+    width: fit-content;
+    display: inline-block;
+}
+
+.previous-games img{
+    height: 250px;
+    margin-left: 3px;
+}
+
+.previous-games h3{
+    margin-top: 30px;
+}
+
+
+/* GAME DETAILS */
+.game-details{
+    padding: 30px;
+}
+
+.game-details content{
+    padding: 20px;
+    border: 1px solid var(--secondary-color);
+    border-radius: 25px 0;
+    width: 80%;
+}
+
+.game-details .champion-portrait{
+    width: fit-content;
+    display: inline-block;
+}
+
+.game-details img{
+    height: 250px;
+    margin-left: 3px;
+}
+

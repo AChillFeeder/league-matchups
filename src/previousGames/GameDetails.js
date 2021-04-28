@@ -6,23 +6,28 @@ const GameDetails = () => {
     const game = state.game
     return (
         <div className="game-details">
-            {/* Your champion */}
-            <ChampionPortrait championName={game["player-champion"]}/>
-            
-            {/* Enemy champion */}
-            <ChampionPortrait championName={game["lane-opponent"]}/>
-            <h3> Outcome: {game["win"] ? 'Victory' : 'Defeat'} </h3>
+            <div className="content">
 
-            <p>Number of notes: {game["notes"].length}</p>    
+                {/* Your champion */}
+                <ChampionPortrait championName={game["player-champion"]}/>
+                
+                <h3
+                    style={{color: game['win'] ? 'green' : 'red'}}
+                    >
+                    {game["win"] ? 'Victory' : 'Defeat'}
+                </h3>
 
-            <div className="notes">
-                {
-                    game["notes"].map((note)=>(
-                        <p>{note}</p>
-                    ))
-                }
+                <div className="notes">
+                    {
+                        game["notes"].map((note)=>(
+                            <p>{note}</p>
+                            ))
+                        }
+                </div>
+
+                {/* Enemy champion */}
+                <ChampionPortrait championName={game["lane-opponent"]}/>
             </div>
-
         </div>
      );
 }

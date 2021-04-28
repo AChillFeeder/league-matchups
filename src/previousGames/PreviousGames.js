@@ -8,7 +8,6 @@ const PreviousGames = ({games}) => {
 
     return ( 
         <div className="previous-games">
-            Here is the preview of your past few games.
             {
                 games.map((game) => (
                     <div 
@@ -25,7 +24,11 @@ const PreviousGames = ({games}) => {
                         {/* Enemy champion */}
                         <ChampionPortrait championName={game["lane-opponent"]}/>
                         
-                        <h3>Outcome: {game["win"] ? 'victory' : 'defeat'}</h3>
+                        <h3
+                           style={{color: game['win'] ? 'green' : 'red'}}
+                        >
+                            {game["win"] ? 'Victory' : 'Defeat'}
+                        </h3>
 
                         <p>Number of notes: {game["notes"].length}</p>
                                 
