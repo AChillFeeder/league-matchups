@@ -29,11 +29,14 @@ const ChampionPortrait = ({championName}) => {
             additive = '.lillia'
             break
     }
+
     return ( 
+
         <div className="champion-portrait">
             <img src={`https://raw.communitydragon.org/${window.patch}/game/assets/characters/${championName}/skins/base/${championName}loadscreen${additive}.png`} alt=""/>
-        </div>
-     );
+        </div> 
+
+    );
 }
  
 export default ChampionPortrait;

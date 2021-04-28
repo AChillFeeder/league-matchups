@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Redirect } from 'react-router';
-import ChampionPortrait from '../usables/ChampionPortrait.js';
+import ChampionThumbnail from '../usables/ChampionThumbnail.js';
 
 const PreviousGames = ({games}) => {
     
@@ -11,6 +11,9 @@ const PreviousGames = ({games}) => {
             {
                 games.map((game) => (
                     <div 
+                    style={{
+                        backgroundColor: game['win'] ? 'rgba(49, 190, 73, 0.100)' : 'rgba(184, 68, 68, 0.100)'
+                    }}
                     className="game" 
                     key={game["id"]}
                     onClick={() => {
@@ -19,10 +22,10 @@ const PreviousGames = ({games}) => {
                     }}
                     >
                         {/* Your champion */}
-                        <ChampionPortrait championName={game["player-champion"]}/>
+                        <ChampionThumbnail championName={game["player-champion"]}/>
                         
                         {/* Enemy champion */}
-                        <ChampionPortrait championName={game["lane-opponent"]}/>
+                        <ChampionThumbnail championName={game["lane-opponent"]}/>
                         
                         <h3
                            style={{color: game['win'] ? 'green' : 'red'}}

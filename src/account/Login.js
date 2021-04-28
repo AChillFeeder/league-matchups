@@ -36,10 +36,10 @@ const Login = () => {
         <div className="login">
             {error && <p>error: {error}</p>}
             <form onSubmit={(event) => handleSubmit(event)}>
-                <label htmlFor="username">Username:</label>
-                <input type="text" name="username" onChange={(e) => setUsername(e.target.value)} className="form-input"/>
-                <label htmlFor="password">Password:</label>
-                <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} className="form-input"/>
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)} className="form-input"/>
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} className="form-input"/>
                 <button>Log in</button>
                 <Link to='/register'>Make a new account</Link>
             </form>

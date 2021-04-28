@@ -36,11 +36,11 @@ const Register = () => {
             {error && <p>error: {error}</p>}
             <form onSubmit={(event) => handleSubmit(event)}>
                 <label htmlFor="username">Username:</label>
-                <input type="text" name="username" onChange={(e) => setUsername(e.target.value)} className="form-input"/>
+                <input type="text" name="username" placeholder="Enter your username" onChange={(e) => setUsername(e.target.value)} className="form-input"/>
                 <label htmlFor="password">Password:</label>
-                <input type="password" name="password" onChange={(e) => setPassword(e.target.value)} className="form-input"/>
+                <input type="password" name="password" placeholder="Enter your password" onChange={(e) => setPassword(e.target.value)} className="form-input"/>
                 <label htmlFor="summoner-name">Summoner-name:</label>
-                <input type="text" name="summoner-name" onChange={(e) => setSummoner(e.target.value)} className="form-input"/>
+                <input type="text" name="summoner-name" placeholder="Enter your summoner name" onChange={(e) => setSummoner(e.target.value)} className="form-input"/>
                 <button>Register</button>
                 <Link to='/'>Already have an account?</Link>
             </form>
