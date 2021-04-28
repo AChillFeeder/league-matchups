@@ -8,6 +8,8 @@ const Navbar = () => {
             <ul>
                 <Link to='/home'>Home</Link>
                 <Link to='/new-game'>New game</Link>
+                <Link to='/home'>Stats</Link>
+                <Link to='/home'>Settings</Link>
                 <Link to='/' onClick={() => ReactSession.set("summonerName", null)}>log out</Link>
             </ul>
         </div>

@@ -4,13 +4,16 @@ import {ReactSession} from 'react-client-session';
 
 const NotesForm = ({championChoice, playerChampion}) => {
 
-    let [inputs, setInputs] = useState([])
+    let [inputs, setInputs] = useState([]) // manages number of inputs
     let [check, setCheck] = useState(false)
-    let inputsValue = [];
+    
     var summonerName = ReactSession.get("summonerName");
 
     function manageSubmit(event){
         event.preventDefault()
+
+        let inputsValue = [];
+        inputs.map((input) => ( inputsValue.push(document.getElementById(String(input)).value)) )
 
         let request = {
             "player-champion": playerChampion,
@@ -25,10 +28,23 @@ const NotesForm = ({championChoice, playerChampion}) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(request)
         }).then(() => {
+            
             console.log('Game has been submitted');
-        })
+        }).then(() => event.target.reset())
 
-        event.target.reset()
+    }
+
+    function inputStyle(options) {
+        return {
+            borderRadius: 2,
+            background: "none",
+            border: "0",
+            outline: "0",
+            borderBottom: "1px solid var(--secondary-color)",
+            padding: "5px",
+            width: "80%",
+            alignSelf: "center",
+        }
     }
 
     return ( 
@@ -58,9 +74,12 @@ const NotesForm = ({championChoice, playerChampion}) => {
                         id={input} 
                         className="notes"
                         autoComplete="off"
-                        onChange={(event) => {
-                            inputsValue[input] = event.target.value;
-                        }}
+                        placeholder="Your note..."
+                        style={inputStyle()}
+                        // value={inputsValue[input]}
+                        // onChange={(event) => {
+                        //     inputsValue[input] = event.target.value;
+                        // }}
                     />
                 ))}
 

@@ -21,6 +21,13 @@ const ChampionPortrait = ({championName}) => {
             break
         case 'rell':
             additive = '.darksupport'
+            break
+        case 'sett':
+            additive = '.sett'
+            break
+        case 'lillia':
+            additive = '.lillia'
+            break
     }
     return ( 
         <div className="champion-portrait">

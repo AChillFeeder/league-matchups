@@ -9,11 +9,11 @@ import json
 class Summoner:
     def __init__(self, summoner_name, region='na1') -> None:
         # General information
-        self.api_key = "RGAPI-950674ae-c246-4056-aaab-a5543446a61c"
+        self.api_key = "RGAPI-456e8e78-aa2c-4efd-a676-c128986caa39"
         self.summoner_name = summoner_name.lower()
-        self.region = region
+        self.region = region # don't forget to change it
         self.in_game = True
-        self.patch = "11.8.1"
+        self.patch = "11.9.1"
         self.error = ""
 
         # Summoner and champion ID<=>Name conversions

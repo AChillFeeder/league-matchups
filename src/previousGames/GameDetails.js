@@ -20,7 +20,7 @@ const GameDetails = () => {
                 <div className="notes">
                     {
                         game["notes"].map((note)=>(
-                            <p>{note}</p>
+                            <p key={Math.ceil(Math.random()*100)}>- {note}</p>
                             ))
                         }
                 </div>
