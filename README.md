@@ -1,3 +1,4 @@
+# Only make the app public when you hide the API key
 # Next features:
 
 
