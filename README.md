@@ -3,10 +3,10 @@
 
 
 ## Tags:
-- [ ] Using @ or # (or settings), allow the user to dynamically add tags.
-- [ ] Users can choose tags for notes from a dropdown menu to save time.
+- [x] Using @ or # (or settings), allow the user to dynamically add tags.
+- [ ] (scraped) Users can choose tags for notes from a dropdown menu to save time. 
 
-## Theme:
+## Settings:
 - [ ] Allow the user to set his theme in the settings
 
 ## Stats:
