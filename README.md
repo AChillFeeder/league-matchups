@@ -25,8 +25,3 @@ Search bar in home screen to filter through previous games, filter by:
 - [ ] champion name
 - [ ] note
 - [ ] tag
-<<<<<<< HEAD
-
-
-=======
->>>>>>> cb52decbee60999a67545c0a7c2f7db7527090ef
