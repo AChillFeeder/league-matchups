@@ -5,7 +5,7 @@
 :root{
     --main-color: #333;
     --background-color: #fff;
-    --secondary-color: #3393a1;
+    --secondary-color: #000000;
     
     /* reverse main and background for dark mode */
     /* --main-color: #fff;

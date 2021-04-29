@@ -104,5 +104,18 @@ def connect():
     
     return json.dumps({'connected': False, 'summoner-name': ''})
 
+
+@app.route('/<summoner_name>/stats', methods=["GET"])
+def stats(summoner_name):
+    database = open_database()
+    all_games = database[summoner_name]["games"]
+    player_data = {
+        "player-winrate": 0,
+        "champion-winrate": {
+            "champion": 0
+        },
+    }
+
+
 app.run('0.0.0.0', 8000, True)
 
