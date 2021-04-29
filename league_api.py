@@ -9,7 +9,11 @@ import json
 class Summoner:
     def __init__(self, summoner_name, region='na1') -> None:
         # General information
-        self.api_key = "RGAPI-1c74f9f4-025b-4b2d-b9c5-562af6f610cd"
+        try:
+            with open("api_key.txt", "r") as file:
+                self.api_key = file.read()
+        except Exception:
+            raise(NameError, "You need an api_key.txt file with your API key")
         self.summoner_name = summoner_name.lower()
         self.region = region # don't forget to change it
         self.in_game = True

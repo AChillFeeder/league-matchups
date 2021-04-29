@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 # Only make the app public when you hide the API key
 # Next features:
 
@@ -29,4 +27,3 @@ Search bar in home screen to filter through previous games, filter by:
 - [ ] tag
 
 
->>>>>>> d4a040dae1d53ca57c76c5e417a4bdc75f90b6d0
