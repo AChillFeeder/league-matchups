@@ -111,6 +111,17 @@ button:hover{
     font-size: 1.5em;
     margin-bottom: 20px;
 }
+.game-details .notes span{
+    color: var(--secondary-color);
+    font-size: 0.9em;
+}
+.game-details .tags h3{
+    text-decoration: underline;
+    color: var(--secondary-color);
+}
+.game-details .tags p{
+    font-weight: 100;
+}
 
 
 

@@ -9,9 +9,12 @@ const ChampionThumbnail = ({championName}) => {
     }
     
     let _0 = 
-        ['darius', 'jax', 'leblanc',
-        'twistedfate', 'vladimir', 'renekton',
-        'singed', 'masteryi', 'irelia', 'nunu']
+        [
+            'darius', 'jax', 'leblanc',
+            'twistedfate', 'vladimir', 'renekton',
+            'singed', 'masteryi', 'irelia', 'nunu',
+            'kassadin'
+        ]
     if(_0.includes(championName)){
         additive = '_0'
     }
