@@ -24,3 +24,6 @@ yarn-error.log*
 
 # Hide API
 api_key.txt
+
+# Python things
+/__pycache__
