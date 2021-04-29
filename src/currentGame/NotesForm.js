@@ -84,24 +84,29 @@ const NotesForm = ({championChoice, playerChampion}) => {
                             autoComplete="off"
                             placeholder="Your note..."
                             style={inputStyle()}
-                            // onChange={(event) => {
-                            //     let text = event.target.value;
-                            //     let words = text.split(" ");
-                            //     words.map((word) => {
-                            //         if(word[0] === "@" && !tags.includes(word)){
-                            //             setTags(tags.push(word))
-                            //         }
-                            //     })
-                            // }}
+                            onBlur={(event) => {
+                                let text = event.target.value;
+                                let words = text.split(" ");
+                                words.forEach((word) => {
+                                    if(word[0] === "@" && !tags.includes(word)){
+                                        tags.push(word)
+                                    }
+                                })
+                                // setTags only refreshes components when it receives a new value
+                                // using null is a workaround
+                                setTags([...tags, null])
+                                console.log(tags)
+                            }}
+                            
                         />
-                        {/* <div className="tags">
-                            {tags && tags.map((tag) => (
-                                <p className="tag">{tag}</p>
-                            ))}
-                            {console.log(tags)}
-                        </div> */}
                     </div>
                 ))}
+                <h4>tags</h4>
+                <div className="tags">
+                    {tags && tags.map((tag) => (
+                        tag && <p className="tag">{tag}</p>
+                    ))}
+                </div>
 
                 <label htmlFor="victory">Victory: </label>
                 <input 

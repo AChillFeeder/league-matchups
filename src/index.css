@@ -147,7 +147,7 @@ button:hover{
 
 
 
-
+/* NEW GAME => NOTES */
 .new-game .notes-form{
     border: none;
 }
@@ -211,7 +211,26 @@ button:hover{
     border-color: var(--main-color);
     color: var(--main-color);
 }
+.new-game .notes-form form .tags{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
 
+    margin-top: 0;
+    width: 50%;
+    padding: 10px;
+
+    border: 1px solid var(--main-color);
+    border-radius: 10px 0;
+}
+.new-game .notes-form form .tags h4{
+    margin-bottom: 10px;
+    font-size: 0.8em;
+}
+.new-game .notes-form form .tags *{
+    color: var(--secondary-color);
+    margin: 0 10px;
+}
 
 
 /* Login form */
@@ -227,7 +246,6 @@ button:hover{
 .content .login form label, .content .register form label{
     font-size: 0.8em;
 }
-
 .content .login form input, .content .register form input{
     margin-top: 5px;
     margin-bottom: 3%;
@@ -237,7 +255,6 @@ button:hover{
     padding: 5px 10px;
     color: var(--main-color);
 }
-
 .content .login button, .content .register button{
     background: transparent;
     border: 2px solid var(--main-color);

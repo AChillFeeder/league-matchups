@@ -36,7 +36,14 @@ def player(summoner_name):
 
         tags = set()
         for note in content["notes"]:
-            [tags.add(word) if word[0] == '@' else None for word in note.split(' ')]
+            # [tags.add(word) if word[0] == '@' else None for word in note.split(' ')]
+
+            for word in note.split(' '):
+                try:
+                    if word[0] == '@':
+                        tags.add(word)
+                except IndexError:
+                    continue
 
         content["tags"] = list(tags)
 

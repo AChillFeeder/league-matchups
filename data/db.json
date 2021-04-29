@@ -1,1 +1,97 @@
-{"art": {"games": [{"player-champion": "galio", "lane-opponent": "lucian", "win": false, "summoner-name": "qube", "notes": ["Note #1: Galio vs Lucian matchup", "Note #2: Galio vs Lucian matchup"], "id": 1}, {"player-champion": "leblanc", "lane-opponent": "akali", "win": true, "summoner-name": "meslo", "notes": ["Note#1 about Leblanc vs Akali", "Apparently everything is working fine, I should start on the tags feature", "Maybe start on keyboard shortcuts too"], "id": 2}, {"player-champion": "rakan", "lane-opponent": "leona", "win": true, "summoner-name": "asyc", "notes": ["Note#1 as Rakan against Leona", "Note#2 as a placeholder for notes against Leona", "Note#3 It kinda seems like a hard matchup...", "Now trying to overload the interface with inputs", "How many can it take before it breaks?", "The 6th note still looks good", "Even though every new input pulls the champion images down a bit", "How about a long multi line note? It's not supposed to be that way since users don't have a lot of time to type mid-game, but it seems like the interface handles it seamlessly.", "We're at the 9th note now, the interface still looks nice and nothing broke, yet :3", "10th note, would be awesome if the cursor moved automatically to any new input", "Now the light mode is kinda straining my eyes, maybe dark mode should be the default", "11th note, interface still looking good, there's no need to add more not, it doesn't seem like the site will break no matter how many notes I add", "I still have to try it with small screens though, I didn't work with responsive design in mind anyways, bar the flexbox of course."], "id": 3}, {"player-champion": "twistedfate", "lane-opponent": "vladimir", "win": false, "summoner-name": "art", "notes": ["Note#1 in Twisted Fate vs Vladimir match-up", "Note#2 in TF vs Vlad mid"], "id": 4}, {"player-champion": "thresh", "lane-opponent": "senna", "win": true, "summoner-name": "hild", "notes": ["Thresh vs Senna matchup tip 1", "And another one", "and another one :3"], "id": 5}, {"player-champion": "camille", "lane-opponent": "renekton", "win": false, "summoner-name": "eastan", "notes": ["@death lvl 3 elise + renek dive", "@kill Abused renek cooldowns and shield + ignite advantage", "@failed_roam tp failed, two plates for renek"], "id": 6}, {"player-champion": "camille", "lane-opponent": "singed", "win": false, "summoner-name": "eastan", "notes": ["@test testing tags", "and another @test_"], "id": 7}, {"player-champion": "camille", "lane-opponent": "vayne", "win": false, "summoner-name": "eastan", "notes": ["@test testing tags again", "mid sentence @tag_test"], "id": 8}, {"player-champion": "camille", "lane-opponent": "elise", "win": false, "summoner-name": "eastan", "notes": ["@test", "mid sentence @test hehe", "end of sentence @test"], "id": 9}, {"player-champion": "monkeyking", "lane-opponent": "sion", "win": false, "summoner-name": "chimp", "notes": ["@test1 multiple tags test @test2", "all types of @tests @test3 @test2"], "id": 10}, {"player-champion": "kaisa", "lane-opponent": "masteryi", "win": true, "summoner-name": "art", "notes": ["Doing stuff and stuff", "Testing to see if things are alright", "Nothing seems out of place, everything is working seamlessly"], "id": 11, "tags": []}], "settings": {"username": "random1", "password": "password1"}}, "a chill feeder": {"games": [{"player-champion": "illaoi", "lane-opponent": "darius", "win": true, "summoner-name": "A chill feeder", "notes": ["farm safely till 6", "look for long range e's with tentacles nearby", "stay close to the wave and look to freeze", "play agressive at 6 and keep your w for his q"], "id": 1}, {"player-champion": "illaoi", "lane-opponent": "urgot", "win": false, "summoner-name": "A chill feeder", "notes": ["doran shield", "farm with q's and look to push if possible", "stay far back lvl and care about his e/flash cheese"], "id": 2}, {"player-champion": "volibear", "lane-opponent": "jax", "win": true, "summoner-name": "A chill feeder", "notes": ["poke with w", "wait his e out and then go ham", "slow push + dive to push advantages", "look for a lvl 6 dive after baiting his E"], "id": 3}, {"player-champion": "aatrox", "lane-opponent": "kled", "win": true, "summoner-name": "a chill feeder", "notes": ["care for lvl 2-3 cheese", "if they have ignite play safe and push tp advantage", "poke with Q1-e and Q2 if you have w on them and they can't dash out"], "id": 4}], "settings": {"username": "a_chill_feeder", "password": "123456789"}}}
+{
+    "very bad luck": {
+        "games": [
+            {
+                "player-champion": "katarina",
+                "lane-opponent": "irelia",
+                "win": false,
+                "summoner-name": "xopa",
+                "notes": [
+                    "Issue submitting if there are @tags",
+                    "Trying to fix the issue with different @tests now"
+                ],
+                "id": 1,
+                "tags": [
+                    "@tags",
+                    "@tests"
+                ]
+            },
+            {
+                "player-champion": "nunu",
+                "lane-opponent": "leesin",
+                "win": false,
+                "summoner-name": "very bad luck",
+                "notes": [
+                    "Lee's @thumbnail and server @test"
+                ],
+                "id": 2,
+                "tags": [
+                    "@thumbnail",
+                    "@test"
+                ]
+            }
+        ],
+        "settings": {
+            "username": "random1",
+            "password": "password1"
+        }
+    },
+    "a chill feeder": {
+        "games": [
+            {
+                "player-champion": "illaoi",
+                "lane-opponent": "darius",
+                "win": true,
+                "summoner-name": "A chill feeder",
+                "notes": [
+                    "farm safely till 6",
+                    "look for long range e's with tentacles nearby",
+                    "stay close to the wave and look to freeze",
+                    "play agressive at 6 and keep your w for his q"
+                ],
+                "id": 1
+            },
+            {
+                "player-champion": "illaoi",
+                "lane-opponent": "urgot",
+                "win": false,
+                "summoner-name": "A chill feeder",
+                "notes": [
+                    "doran shield",
+                    "farm with q's and look to push if possible",
+                    "stay far back lvl and care about his e/flash cheese"
+                ],
+                "id": 2
+            },
+            {
+                "player-champion": "volibear",
+                "lane-opponent": "jax",
+                "win": true,
+                "summoner-name": "A chill feeder",
+                "notes": [
+                    "poke with w",
+                    "wait his e out and then go ham",
+                    "slow push + dive to push advantages",
+                    "look for a lvl 6 dive after baiting his E"
+                ],
+                "id": 3
+            },
+            {
+                "player-champion": "aatrox",
+                "lane-opponent": "kled",
+                "win": true,
+                "summoner-name": "a chill feeder",
+                "notes": [
+                    "care for lvl 2-3 cheese",
+                    "if they have ignite play safe and push tp advantage",
+                    "poke with Q1-e and Q2 if you have w on them and they can't dash out"
+                ],
+                "id": 4
+            }
+        ],
+        "settings": {
+            "username": "a_chill_feeder",
+            "password": "123456789"
+        }
+    }
+}
