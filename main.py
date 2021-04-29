@@ -34,6 +34,12 @@ def player(summoner_name):
         # otherwise it's 1
         content["id"] = database[summoner_name]["games"][-1]['id'] + 1 if database[summoner_name]["games"] else 1
 
+        tags = set()
+        for note in content["notes"]:
+            [tags.add(word) if word[0] == '@' else None for word in note.split(' ')]
+
+        content["tags"] = list(tags)
+
         database[summoner_name]['games'].append(content) # add new data to the database
         
         save_to_database(database) # update the database

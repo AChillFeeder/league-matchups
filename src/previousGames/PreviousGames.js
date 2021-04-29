@@ -12,7 +12,7 @@ const PreviousGames = ({games}) => {
                 games.map((game) => (
                     <div 
                     style={{
-                        backgroundColor: game['win'] ? 'rgba(49, 190, 73, 0.100)' : 'rgba(184, 68, 68, 0.100)'
+                        backgroundColor: game['win'] ? 'rgba(49, 190, 73, 0.240)' : 'rgba(184, 68, 68, 0.240)'
                     }}
                     className="game" 
                     key={game["id"]}

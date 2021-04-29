@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import ChampionPortrait from '../usables/ChampionPortrait.js';
 import {ReactSession} from 'react-client-session';
+import {useHistory} from 'react-router-dom';
 
 const NotesForm = ({championChoice, playerChampion}) => {
 
     let [inputs, setInputs] = useState([]) // manages number of inputs
     let [check, setCheck] = useState(false)
+    let [tags, setTags] = useState([])
     
     var summonerName = ReactSession.get("summonerName");
+
+    let history = useHistory();
 
     function manageSubmit(event){
         event.preventDefault()
@@ -30,7 +34,10 @@ const NotesForm = ({championChoice, playerChampion}) => {
         }).then(() => {
             
             console.log('Game has been submitted');
-        }).then(() => event.target.reset())
+        }).then(() => {
+            event.target.reset()
+            history.push('/home')
+        })
 
     }
 
@@ -69,18 +76,31 @@ const NotesForm = ({championChoice, playerChampion}) => {
                 </button>
                 
                 {inputs.map((input)=>(
-                    <input 
-                        key={input} 
-                        id={input} 
-                        className="notes"
-                        autoComplete="off"
-                        placeholder="Your note..."
-                        style={inputStyle()}
-                        // value={inputsValue[input]}
-                        // onChange={(event) => {
-                        //     inputsValue[input] = event.target.value;
-                        // }}
-                    />
+                    <div className="input">
+                        <input 
+                            key={input} 
+                            id={input} 
+                            className="notes"
+                            autoComplete="off"
+                            placeholder="Your note..."
+                            style={inputStyle()}
+                            // onChange={(event) => {
+                            //     let text = event.target.value;
+                            //     let words = text.split(" ");
+                            //     words.map((word) => {
+                            //         if(word[0] === "@" && !tags.includes(word)){
+                            //             setTags(tags.push(word))
+                            //         }
+                            //     })
+                            // }}
+                        />
+                        {/* <div className="tags">
+                            {tags && tags.map((tag) => (
+                                <p className="tag">{tag}</p>
+                            ))}
+                            {console.log(tags)}
+                        </div> */}
+                    </div>
                 ))}
 
                 <label htmlFor="victory">Victory: </label>

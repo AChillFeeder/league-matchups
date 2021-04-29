@@ -4,10 +4,12 @@
 
 :root{
     --main-color: #333;
-    --secondary-color: #392cad;
     --background-color: #fff;
-
+    --secondary-color: #3393a1;
+    
     /* reverse main and background for dark mode */
+    /* --main-color: #fff;
+    --background-color: #333; */
 }
 * {
     margin: 0;
@@ -107,6 +109,7 @@ button:hover{
 }
 .game-details .notes p{
     font-size: 1.5em;
+    margin-bottom: 20px;
 }
 
 
@@ -179,6 +182,9 @@ button:hover{
     letter-spacing: 0.1em;
     color: var(--secondary-color);
 }
+.new-game .notes-form form .input{
+    width: 100%;
+}
 .new-game .notes-form form .add-note{
     border: 1px solid var(--main-color);
     background: none;
@@ -229,10 +235,11 @@ button:hover{
     border-bottom: 2px solid var(--main-color);
     width: 18%;
     padding: 5px 10px;
+    color: var(--main-color);
 }
 
 .content .login button, .content .register button{
-    background: none;
+    background: transparent;
     border: 2px solid var(--main-color);
     padding: 10px;
     width: 150px;

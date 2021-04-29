@@ -11,16 +11,11 @@ const GameDetails = () => {
                 {/* Your champion */}
                 <ChampionPortrait championName={game["player-champion"]}/>
                 
-                {/* <h3
-                    style={{color: game['win'] ? 'green' : 'red'}}
-                    >
-                    {game["win"] ? 'Victory' : 'Defeat'}
-                </h3> */}
 
                 <div className="notes">
                     {
                         game["notes"].map((note)=>(
-                            <p key={Math.ceil(Math.random()*100)}>- {note}</p>
+                            <p key={Math.ceil(Math.random()*100)}>-Note#{game["notes"].indexOf(note) + 1}: {note}</p>
                             ))
                         }
                 </div>
