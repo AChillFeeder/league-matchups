@@ -34,6 +34,19 @@ def player(summoner_name):
         # otherwise it's 1
         content["id"] = database[summoner_name]["games"][-1]['id'] + 1 if database[summoner_name]["games"] else 1
 
+        tags = set()
+        for note in content["notes"]:
+            # [tags.add(word) if word[0] == '@' else None for word in note.split(' ')]
+
+            for word in note.split(' '):
+                try:
+                    if word[0] == '@':
+                        tags.add(word)
+                except IndexError:
+                    continue
+
+        content["tags"] = list(tags)
+
         database[summoner_name]['games'].append(content) # add new data to the database
         
         save_to_database(database) # update the database
@@ -54,7 +67,7 @@ def new_game(summoner_name):
         Game = Summoner(summoner_name)
         return f"{Game.useful_data()}"
     except Exception as exc:
-        return {"error": "Player isn't in a game or API expired - Error code: " + str(exc)}
+        return {"error": "Player isn't in a game or API key expired - Error code: " + str(exc)}
 
 
 

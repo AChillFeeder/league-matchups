@@ -1,16 +1,23 @@
 import { useState } from 'react';
 import ChampionPortrait from '../usables/ChampionPortrait.js';
 import {ReactSession} from 'react-client-session';
+import {useHistory} from 'react-router-dom';
 
 const NotesForm = ({championChoice, playerChampion}) => {
 
-    let [inputs, setInputs] = useState([])
+    let [inputs, setInputs] = useState([]) // manages number of inputs
     let [check, setCheck] = useState(false)
-    let inputsValue = [];
+    let [tags, setTags] = useState([])
+    
     var summonerName = ReactSession.get("summonerName");
+
+    let history = useHistory();
 
     function manageSubmit(event){
         event.preventDefault()
+
+        let inputsValue = [];
+        inputs.map((input) => ( inputsValue.push(document.getElementById(String(input)).value)) )
 
         let request = {
             "player-champion": playerChampion,
@@ -25,41 +32,81 @@ const NotesForm = ({championChoice, playerChampion}) => {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(request)
         }).then(() => {
+            
             console.log('Game has been submitted');
+        }).then(() => {
+            event.target.reset()
+            history.push('/home')
         })
 
-        event.target.reset()
+    }
+
+    function inputStyle(options) {
+        return {
+            borderRadius: 2,
+            background: "none",
+            border: "0",
+            outline: "0",
+            borderBottom: "1px solid var(--secondary-color)",
+            padding: "5px",
+            width: "80%",
+            alignSelf: "center",
+        }
     }
 
     return ( 
         <div className="notes-form">
-            <h3>Your champion: {playerChampion}</h3>
-            <ChampionPortrait championName={playerChampion}/>
-            <h3>Opponent champion: {championChoice}</h3>
-            <ChampionPortrait championName={championChoice}/>
+            <div className="champion-card">
+                <ChampionPortrait championName={playerChampion}/>
+                <h3>{playerChampion}</h3>
+            </div>
 
             <form onSubmit={manageSubmit}>
-                <h3>Add notes: </h3>
-                
-                {inputs.map((input)=>(
-                    <input 
-                        key={input} 
-                        id={input} 
-                        className="notes"
-                        autoComplete="off"
-                        onChange={(event) => {
-                            inputsValue[input] = event.target.value;
-                        }}
-                    />
-                ))}
+                <h2>Add notes: </h2>
 
-                <button onClick={(event) => {
-                    event.preventDefault();
-                    // setInput is needed for the component to update and show new inputs
-                    setInputs(inputs.concat([inputs.length])); 
-                }}>
+                <button 
+                    onClick={(event) => {
+                        event.preventDefault();
+                        // setInput is needed for the component to update and show new inputs
+                        setInputs(inputs.concat([inputs.length])); 
+                    }}
+                    className="add-note"
+                >
                     New note
                 </button>
+                
+                {inputs.map((input)=>(
+                    <div className="input">
+                        <input 
+                            key={input} 
+                            id={input} 
+                            className="notes"
+                            autoComplete="off"
+                            placeholder="Your note..."
+                            style={inputStyle()}
+                            onBlur={(event) => {
+                                let text = event.target.value;
+                                let words = text.split(" ");
+                                words.forEach((word) => {
+                                    if(word[0] === "@" && !tags.includes(word)){
+                                        tags.push(word)
+                                    }
+                                })
+                                // setTags only refreshes components when it receives a new value
+                                // using null is a workaround
+                                setTags([...tags, null])
+                                console.log(tags)
+                            }}
+                            
+                        />
+                    </div>
+                ))}
+                <h4>tags</h4>
+                <div className="tags">
+                    {tags && tags.map((tag) => (
+                        tag && <p className="tag">{tag}</p>
+                    ))}
+                </div>
 
                 <label htmlFor="victory">Victory: </label>
                 <input 
@@ -69,8 +116,14 @@ const NotesForm = ({championChoice, playerChampion}) => {
                     defaultChecked={false}
                     onChange={() => setCheck(!check)}
                 />
-                <button>Submit</button>
+                <button className="submit">Submit</button>
             </form>
+
+            <div className="champion-card">
+                <ChampionPortrait championName={championChoice}/>    
+                <h3>{championChoice}</h3>
+            </div>
+
         </div>
      );
 }

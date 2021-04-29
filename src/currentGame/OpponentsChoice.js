@@ -12,8 +12,8 @@ const OpponentsChoice = ({opponents, setIsChoosing, setChampionChoice}) => {
                     setChampionChoice(opponents[player_name])    
                 }}
                 >
-                    <h3>{opponents[player_name]}</h3>
                     <ChampionPortrait championName={opponents[player_name]}/>
+                    <h3>{opponents[player_name]}</h3>
                 </div>
             ))}
         </div>
