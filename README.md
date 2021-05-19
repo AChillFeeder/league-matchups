@@ -7,6 +7,8 @@ League matchups finds your current game and asks you to pick the champion you're
 <br />
 <br />
 
+!! GET THE SCREENSHOTS !!
+
 ## Next features 
 
 ### Tags 
