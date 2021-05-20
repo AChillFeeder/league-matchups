@@ -30,6 +30,9 @@ const ChampionThumbnail = ({championName}) => {
         case 'rell':
             additive = '_0.darksupport'
             break
+        case 'blitzcrank':
+            additive = '_6'
+            break
     }
 
     return ( 
