@@ -109,13 +109,16 @@ def connect():
 def stats(summoner_name):
     database = open_database()
     all_games = database[summoner_name]["games"]
+
+    class PlayerData:
+        def __init__(self, all_games) -> None:
+            # General player Stats
+            self.total_games = len(all_games)
+            self.total_wins = sum(value['win'] for value in all_games.values())
+            self.player_winrate = self.total_wins / self.total_games * 100
+
+    player_data = PlayerData(all_games)
     
-    player_data = {
-        "player-winrate": 0,
-        "champion-winrate": {
-            "champion": 0
-        },
-    }
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 8000, True)
