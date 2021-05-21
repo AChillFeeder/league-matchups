@@ -31,7 +31,7 @@ League matchups finds your current game and asks you to pick the champion you're
 
 ### Stats 
 Calculate and show stats in clear numbers and pretty graphs
-- [ ] general winrate
+- [x] general winrate
 - [ ] winrate on champion
 - [ ] worst general matchup
 - [ ] best general matchup
