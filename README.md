@@ -1,5 +1,5 @@
 # LEAGUE MATCHUPS
-A simple react app that allows you to type notes about your matchup, the goal is to improve by slowly and surely building a vast knowledge about how to adapt to your opposing champions and how to avoid redundant mistakes and wasted opportunities. 
+A simple flask/react app that allows you to type notes about your matchup, the goal is to improve by slowly and surely building a vast knowledge about how to adapt to your opposing champions and how to avoid redundant mistakes and wasted opportunities. 
 <br />
 <br />
 League matchups finds your current game and asks you to pick the champion you're laning against, you could then add notes through your games and review them once it's over, all your previous games will be visible in yout home screen.
