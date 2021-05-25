@@ -12,11 +12,11 @@ League matchups finds your current game and asks you to pick the champion you're
 ![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/login_screen.png)
 ## Home screen
 ![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/home_screen.png)
-## Champion choice at the start of the game:
+## Champion choice at the start of the game
 ![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/champion_choice.png)
-## Taking notes in-game:
+## Taking notes in-game
 ![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/notes_form.png)
-## Home screen after the changes:
+## Home screen after the changes
 ![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/home_screen2.png)
 
 ## Next features 
