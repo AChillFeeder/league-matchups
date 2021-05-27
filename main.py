@@ -86,7 +86,7 @@ def register():
             return json.dumps({'registered': False, 'message': 'duplicate username'})
 
     if summoner_name not in database: # check if summoner name is duplicate
-        database[summoner_name] = {"games": [], "settings": {'username': username, 'password': password}}
+        database[summoner_name] = {"games": [], "settings": {'username': username, 'password': hash(password)}}
         save_to_database(database)
         return json.dumps({'registered': True, 'message': 'success'})
 
@@ -99,7 +99,11 @@ def connect():
     password = data['password']
     database = open_database()
     for player in database:
-        if database[player]["settings"]["username"] == username and database[player]["settings"]["password"] == password:
+        if (
+            database[player]["settings"]["username"] == username 
+            and 
+            database[player]["settings"]["password"] == hash(password)
+        ):
             return json.dumps({'connected': True, 'summoner-name': player})
     
     return json.dumps({'connected': False, 'summoner-name': ''})
