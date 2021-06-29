@@ -25,13 +25,14 @@ class Summoner:
         self.champion_id_to_name = self.get_champion_name_from_id()
 
         # Current game information
+        # maybe add this in a method
         self.current_players = self.get_all_players_current_game()
         self.team1 = dict(list(self.current_players.items())[:5])
         self.team2 = dict(list(self.current_players.items())[5:])
-        self.opponents = self.team2 if self.summoner_name in list(self.team1.keys()) else self.team1
+        self.opponents = self.team2 if self.summoner_name in list(self.team1.keys()) else self.team1 # requires clearer variable name
         self.player_champion = self.current_players[self.summoner_name]
         
-    def useful_data(self) -> str:
+    def useful_data(self) -> str: # more to INIT
         if self.in_game:
             return json.dumps({
                 'summoner_name': self.summoner_name,
@@ -62,8 +63,7 @@ class Summoner:
         return data['id'], data['accountId'], data['puuid']
         
 
-
-    def get_champion_name_from_id(self):
+    def get_champion_name_from_id(self): # move to INIT or somthing else
         # ddragon imposes strict request limits, so I tap on them once and save relevant data
         try:
             with open(f'champion_{self.patch}.json', 'r') as file:

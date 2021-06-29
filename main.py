@@ -117,9 +117,16 @@ def stats(summoner_name):
     class PlayerData:
         def __init__(self, all_games) -> None:
             # General player Stats
+            self.games = all_games
             self.total_games = len(all_games)
             self.total_wins = sum(value['win'] for value in all_games.values())
             self.player_winrate = self.total_wins / self.total_games * 100
+
+        def champions_winrates(self):
+            champion_winrates_dict = {}
+            for game in self.games:
+                    pass
+
 
     player_data = PlayerData(all_games)
     
