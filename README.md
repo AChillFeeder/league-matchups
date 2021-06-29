@@ -47,6 +47,17 @@ Search bar in home screen to filter through previous games, filter by:
 - [ ] tag
 <br />
 
+- [ ] Remove interactions with Community Dragon Api from React and into Flask
+- [ ] Use CD Api instead of raw data
+- [ ] Build tests
+- [ ] Spread classes into multiple files
+- [ ] Extensive use of Exceptions
+
+- [ ] patch should be updated automatically
+- [ ] move champion_{patch}.json file to data
+
+- [ ] Email sign up and account comfirmation
+<br />
 
 ## Next direction:
 A bit ambitious but try to turn it into a sort of social experience, notes can be public and other users can vote on the ones they like.
