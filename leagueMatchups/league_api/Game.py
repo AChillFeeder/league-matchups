@@ -1,15 +1,14 @@
 import requests
 import json
 
-from . import Interface
+from . import Main
 
 # correct patches: https://ddragon.leagueoflegends.com/api/versions.json
 # champion information: http://ddragon.leagueoflegends.com/cdn/11.8.1/data/en_US/champion.json
 # community dragon: https://www.communitydragon.org/docs
 
 
-class Game(Interface):
-
+class Game(Main):
 
     def __init__(self):
         super().__init__(self)

@@ -9,4 +9,4 @@
 - move champion_{patch}.json file and api_key to data
 
 - Email sign up and account comfirmation
-
+- pepper and salt the password hash
