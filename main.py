@@ -1,43 +1,16 @@
-from flask import Flask, request
-from flask_cors import CORS
-import json
-import league_api
+from leagueMatchups import Player
 
 
-app = Flask(__name__)
-CORS(app)
+summoner = Player()
+current_match = summoner.getCurrentGame()
+
+# region = current_match.region
+# platform = current_match.platform
+# blue_team = current_match.blue_team
+
+# print(region, blue_team.participants)
+
+# for player in blue_team.participants:
+    # print(f"{player.summoner.name}: {player.champion.name}")
 
 
-
-
-@app.route('/connect', methods=["POST"])
-def connect():
-    data = request.json
-
-@app.route('/register', methods=['POST'])
-def register():
-    pass
-
-@app.route('/<summoner_name>/games', methods=['GET', 'POST'])
-def playerGamesHistory(summoner_name):
-    
-    if request.method == 'POST':
-        formValues = request.json
-
-
-        
-
-
-    try:
-        return league_api.usables.openDatabase()[summoner_name]
-    except KeyError:
-        return json.dumps({'status': False, 'message': 'user not registered'})
-    
-@app.route('/<summoner_name>/current-game', methods=["GET"])
-def currentGame(summoner_name):
-    pass
-
-
-
-if __name__ == '__main__':
-    app.run('0.0.0.0', 8000, True)
