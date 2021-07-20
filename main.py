@@ -1,16 +1,38 @@
-from leagueMatchups import Player
+from leagueMatchups import Player, User, Database
+from flask import Flask, request
+
+app = Flask()
 
 
-summoner = Player()
-current_match = summoner.getCurrentGame()
+# @userSession check if user is connected
 
-# region = current_match.region
-# platform = current_match.platform
-# blue_team = current_match.blue_team
+@app.route('/<summoner_name>/games-history', methods=['GET', 'POST'])
+def gamesHistory(summoner_name): # shows previous games and allows to add new ones
+    if request.method == 'POST':
+        # add game to database
+        pass
+    
+    elif request.method == 'GET':
+        # get all games from database [number of games]
+        pass
 
-# print(region, blue_team.participants)
-
-# for player in blue_team.participants:
-    # print(f"{player.summoner.name}: {player.champion.name}")
 
 
+@app.route('/<summoner_name>/current-game', methods=["GET"])
+def currentGame(summoner_name):
+    # current game information
+    pass
+
+
+@app.route('/register', methods=['POST'])
+def register():
+    pass
+
+@app.route('/connect', methods=["POST"])
+def connect():
+    pass
+
+
+
+if __name__ == '__main__':
+    app.run('0.0.0.0', 8000, True)
