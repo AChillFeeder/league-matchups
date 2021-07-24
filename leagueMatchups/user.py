@@ -1,13 +1,21 @@
 
-from leagueMatchups import LeagueMatchups
+from leagueMatchups.database import UsersDatabase
 
-class User(LeagueMatchups):
+class User():
     def __init__(self) -> None:
-        self.summonerName: str = None
-        self.region: str = "na1"
+        self.summonerName: str
+        self.region: str
 
     def register(self, data):
-        username, password = data
+        # data handling here
+
+        # save user
+        # sqlalchemy.exc.IntegrityError | duplicate exception
+        UsersDatabase.saveUser({
+            "username": data["username"],
+            "password": data["password"],
+            "summonerName": data["summonerName"],
+        })
 
     def connect(self, data):
         pass

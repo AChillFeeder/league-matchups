@@ -1,8 +1,10 @@
-from leagueMatchups import Player, User, Database
+from leagueMatchups import LeagueMatchups
 from flask import Flask, request
 
-app = Flask()
+from leagueMatchups import LeagueMatchups as LM
 
+app = Flask(__name__)
+LeagueMatchups = LM()
 
 # @userSession check if user is connected
 
@@ -26,7 +28,8 @@ def currentGame(summoner_name):
 
 @app.route('/register', methods=['POST'])
 def register():
-    pass
+    data = request.json
+    LeagueMatchups.register(data)
 
 @app.route('/connect', methods=["POST"])
 def connect():
@@ -35,4 +38,4 @@ def connect():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 8000, True)
+    app.run('0.0.0.0', 80, True)

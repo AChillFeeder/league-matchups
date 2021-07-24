@@ -1,8 +1,7 @@
 
-from leagueMatchups.database import Game
-from player import Player
-from user import User
-from database import GamesDatabase, UsersDatabase
+from leagueMatchups.player import Player
+from leagueMatchups.user import User
+from leagueMatchups.database import GamesDatabase, UsersDatabase
 
 
 
@@ -10,7 +9,6 @@ from database import GamesDatabase, UsersDatabase
 class LeagueMatchups:
 
     def __init__(self) -> None:
-        self.gamesDatabase = GamesDatabase()
         self.usersDatabase = UsersDatabase()
         self.user = User()
 
@@ -22,6 +20,8 @@ class LeagueMatchups:
 
         if connected:
             self.player = Player(userData["summonerName"]) # connected
+            self.gamesDatabase = GamesDatabase(userData["summonerName"])
+
         else:
             pass # not connected
 
