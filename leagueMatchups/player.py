@@ -34,5 +34,6 @@ class Player():
     def getUserGames(self, numberOfGames):
         pass
 
-    def addUserGame(self):
+    def addUserGame(self, params):
+        # params: GAMES[summoner played, opponent champion, notes, tags, *popularity]
         pass
