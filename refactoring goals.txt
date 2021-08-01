@@ -1,9 +1,9 @@
 
 - Remove interactions with Community Dragon Api from React and into Flask
 - Use DDC Api instead of raw data
-- Build tests
 - Spread classes into multiple files
 - Extensive use of Exceptions
+- API key in different file
 
 - patch should be updated automatically
 - decorator for login and session purposes

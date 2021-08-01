@@ -1,4 +1,4 @@
-from leagueMatchups import LeagueMatchups
+from leagueMatchups import LeagueMatchups, user
 from flask import Flask, request
 
 from leagueMatchups import LeagueMatchups as LM
@@ -19,22 +19,24 @@ def gamesHistory(summoner_name): # shows previous games and allows to add new on
         pass
 
 
-
-@app.route('/<summoner_name>/current-game', methods=["GET"])
-def currentGame(summoner_name):
-    # current game information
-    pass
-
-
 @app.route('/register', methods=['POST'])
 def register():
-    data = request.json
+    data = request.json # username, password, summonerName
     LeagueMatchups.register(data)
+    
 
 @app.route('/connect', methods=["POST"])
 def connect():
-    pass
+    data = request.json # username, password
+    connected, userData = LeagueMatchups.connect(data)
+    return str(userData.id)
 
+
+@app.route('/current-game', methods=["POST", "GET"])
+def currentGame():
+    if request.method == "GET":
+        currentGame = LeagueMatchups.getCurrentGame()
+        return "nothing"
 
 
 if __name__ == '__main__':

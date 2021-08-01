@@ -18,5 +18,10 @@ class User():
         })
 
     def connect(self, data):
-        pass
+        query = UsersDatabase.getUserData(data["username"])
+        
+        if query and data["password"] == query.password:
+            return 1, query
+
+        return 0, query
 

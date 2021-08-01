@@ -4,7 +4,9 @@ from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy import create_engine
 from sqlalchemy.sql.schema import ForeignKey
 
-engine = create_engine('sqlite:///E:\\Projects\\league-matchups\\leagueMatchups\\data\\database.db', echo=True)
+import flask_sqlalchemy
+
+engine = create_engine('sqlite:///E:\\Projects\\league-matchups\\leagueMatchups\\data\\database.db', echo=False, connect_args={'check_same_thread': False})
 Session = sessionmaker(bind=engine)
 session = Session()
 
@@ -36,7 +38,8 @@ class UsersDatabase:
 
     @staticmethod
     def getUserData(username):
-        pass
+        query = session.query(User).filter_by(username=username).first()
+        return query
 
     @staticmethod
     def saveUser(data):
