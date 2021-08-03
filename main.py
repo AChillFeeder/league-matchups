@@ -1,22 +1,17 @@
 from leagueMatchups import LeagueMatchups, user
-from flask import Flask, request
+from flask import Flask, request, jsonify
+from flask_cors import CORS
+import json
 
 from leagueMatchups import LeagueMatchups as LM
 
 app = Flask(__name__)
+CORS(app)
 LeagueMatchups = LM()
 
 # @userSession check if user is connected
 
-@app.route('/games-history', methods=['GET', 'POST'])
-def gamesHistory(summoner_name): # shows previous games and allows to add new ones
-    if request.method == 'POST':
-        # add game to database
-        pass
-    
-    elif request.method == 'GET':
-        # get all games from database [number of games]
-        pass
+
 
 
 @app.route('/register', methods=['POST'])
@@ -29,14 +24,38 @@ def register():
 def connect():
     data = request.json # username, password
     connected, userData = LeagueMatchups.connect(data)
-    return str(userData.id)
+    return json.dumps({
+        "connected": connected,
+        "userData": userData.id,
+    })
 
 
-@app.route('/current-game', methods=["POST", "GET"])
+
+@app.route('/getSession')
+def getSession():
+    pass
+
+@app.route('/gamesHistory', methods=['GET', 'POST'])
+def gamesHistory(): # shows previous games and allows to add new ones
+    if request.method == 'POST':
+        # add game to database
+        pass
+    
+    elif request.method == 'GET':
+        # get all games from database [number of games]
+        pass
+
+
+
+
+
+@app.route('/currentGame', methods=["POST", "GET"])
 def currentGame():
     if request.method == "GET":
         currentGame = LeagueMatchups.getCurrentGame()
-        return currentGame # currentMatch, opponents, teammates, summonerInGame
+        return currentGame["currentMatch"] #  opponents, teammates, summonerInGame
+
+
 
 
 if __name__ == '__main__':

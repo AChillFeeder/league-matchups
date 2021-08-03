@@ -4,7 +4,7 @@ class Player():
 
     def __init__(self, summonerName, region) -> None:
 
-        self.apiKey = "RGAPI-d8180de0-d58f-4ea3-9e1f-0e6e7bf93aff" # put it in file after
+        self.apiKey = "RGAPI-32449df4-8989-47db-a52d-d087bcc3f108" # put it in file after
         self.summonerName = summonerName
         self.region = region # ALL CAPS
 
@@ -18,21 +18,18 @@ class Player():
 
     def getCurrentGame(self):
         self.currentMatch = cassiopeia.core.spectator.CurrentMatch(summoner=self.summonerName, region=self.region)
+        print(self.currentMatch.to_json())
 
         self.opponents, self.teammates = (self.currentMatch.blue_team, self.currentMatch.red_team) if self.summoner in self.currentMatch.red_team.participants else (self.currentMatch.red_team, self.currentMatch.blue_team)
         self.summonerInGame = self.teammates.participants[self.summoner]
 
         return {
-            "currentMatch": self.currentMatch,
-            "opponents": self.opponents,
-            "teammates": self.teammates,
-            "summonerInGame": self.summonerInGame
+            "currentMatch": self.currentMatch.to_json()
+            ,
+            # "opponents": self.opponents,
+            # "teammates": self.teammates,
+            # "summonerInGame": self.summonerInGame
             }
-
-        # print("Summoner champion: ", self.summonerInGame.champion.name)
-        # print("\nOpponents:")
-        # for opponent in self.opponents.participants:
-        #     print(f"{opponent.summoner.name} playing as {opponent.champion.name}")
 
 
 

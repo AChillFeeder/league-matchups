@@ -14,7 +14,7 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch(`http://192.168.1.150:8000/connect`, {
+        fetch(`http://localhost/connect`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({"username": username, "password": password})

@@ -6,16 +6,8 @@ import { ReactSession } from 'react-client-session';
 import { useHistory } from 'react-router';
 
 const NewGame = () => {
-    
-    var summonerName = ReactSession.get("summonerName");
-    const history = useHistory()
-    if(!summonerName){
-        history.push('/');
-    }
-    
-    console.log('current game summoner name: ' + summonerName);
 
-    const {data: current_game, isLoading, fetch_error} = useFetch(`http://192.168.1.150:8000/${summonerName}/current-game`)
+    const {data: current_game, isLoading, fetch_error} = useFetch(`http://localhost/currentGame`)
 
     const [isChoosing, setIsChoosing] = useState(true);
     const [championChoice, setChampionChoice] = useState(null);
@@ -36,7 +28,7 @@ const NewGame = () => {
                         // if isChoosing is false => Notes taking
                         <NotesForm 
                             championChoice={championChoice}
-                            playerChampion={current_game["player_champion"]}
+                            summonerInGame={current_game["summonerInGame"]}
                         />
                 )
             }

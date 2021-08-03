@@ -10,3 +10,5 @@
 
 - Email sign up and account comfirmation
 - pepper and salt the password hash
+
+- base link in react

@@ -21,14 +21,14 @@ class LeagueMatchups:
         
         if connected:
             # self.user.summonerName = userData.summonnerName
-            self.user.summonerName = ""
+            self.user.summonerName = "max0"
             self.player = Player(self.user.summonerName, "NA") # connected
             self.gamesDatabase = GamesDatabase(self.user.summonerName)
 
-            return 1, userData
+            return True, userData
 
         else:
-            return 0, ""
+            return False, ""
 
 
     def register(self, data):

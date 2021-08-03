@@ -1,0 +1,327 @@
+{
+    "observerEncryptionKey": "A2g2E8PZdP6T1xL9mp1yHiiKhWqrZRDX",
+    "creation": 1628004188984,
+    "duration": 1422,
+    "participants": [
+        {
+            "teamId": 100,
+            "spell1Id": 4,
+            "spell2Id": 11,
+            "championId": 876,
+            "profileIconId": 843,
+            "summonerName": "just mental gap",
+            "bot": false,
+            "summonerId": "id_YfgEtue-9dPjd3-NkJhFZEwGymcPN_kutYMj3t231tdA",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8124,
+                    8126,
+                    8138,
+                    8135,
+                    8275,
+                    8232,
+                    5005,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8100,
+                "perkSubStyle": 8200
+            }
+        },
+        {
+            "teamId": 100,
+            "spell1Id": 14,
+            "spell2Id": 4,
+            "championId": 18,
+            "profileIconId": 4991,
+            "summonerName": "zhongjuzhizhan",
+            "bot": false,
+            "summonerId": "d4vS0c7SOTg4cxeVpdweZykN5KHXl8MsV53S7Q7ECzxCjGD5",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    9923,
+                    8139,
+                    8138,
+                    8135,
+                    9111,
+                    9104,
+                    5005,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8100,
+                "perkSubStyle": 8000
+            }
+        },
+        {
+            "teamId": 100,
+            "spell1Id": 7,
+            "spell2Id": 4,
+            "championId": 43,
+            "profileIconId": 1114,
+            "summonerName": "hopefully i quit",
+            "bot": false,
+            "summonerId": "PSl_3oCQIrCdMTAeabCi4dfGcmV8vaniRv7zRYOwxsI3RzbvR4k2rCxEIQ",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8229,
+                    8226,
+                    8210,
+                    8236,
+                    8304,
+                    8345,
+                    5008,
+                    5008,
+                    5003
+                ],
+                "perkStyle": 8200,
+                "perkSubStyle": 8300
+            }
+        },
+        {
+            "teamId": 100,
+            "spell1Id": 4,
+            "spell2Id": 3,
+            "championId": 30,
+            "profileIconId": 4227,
+            "summonerName": "Max0",
+            "bot": false,
+            "summonerId": "grizxMUc6tBEGhusYb6VfxM2kXpSbcZKVGJ5Iw3SgEOiFg4",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8128,
+                    8139,
+                    8138,
+                    8106,
+                    8009,
+                    8299,
+                    5008,
+                    5008,
+                    5003
+                ],
+                "perkStyle": 8100,
+                "perkSubStyle": 8000
+            }
+        },
+        {
+            "teamId": 100,
+            "spell1Id": 4,
+            "spell2Id": 12,
+            "championId": 266,
+            "profileIconId": 3227,
+            "summonerName": "wong diff",
+            "bot": false,
+            "summonerId": "368zSyHv2MZ1f285T8VT7iK_PNGNGOd-1B6G7uwSvDrtVyY",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8010,
+                    9111,
+                    9104,
+                    8299,
+                    8444,
+                    8242,
+                    5008,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8000,
+                "perkSubStyle": 8400
+            }
+        },
+        {
+            "teamId": 200,
+            "spell1Id": 4,
+            "spell2Id": 6,
+            "championId": 122,
+            "profileIconId": 3505,
+            "summonerName": "Contrarian WW",
+            "bot": false,
+            "summonerId": "FxnkEpTLaDH-_meXJGggfEKYt6NVFvlA5C7Lawuiu65fkkY",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8010,
+                    9111,
+                    9104,
+                    8299,
+                    8473,
+                    8242,
+                    5005,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8000,
+                "perkSubStyle": 8400
+            }
+        },
+        {
+            "teamId": 200,
+            "spell1Id": 11,
+            "spell2Id": 4,
+            "championId": 427,
+            "profileIconId": 4895,
+            "summonerName": "Jungle Pacifist",
+            "bot": false,
+            "summonerId": "PurmneZob5UziYq3vJ7E0NH9cFDitPlh77HENpm6TZ36Ky8",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8214,
+                    8275,
+                    8210,
+                    8232,
+                    8321,
+                    8347,
+                    5007,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8200,
+                "perkSubStyle": 8300
+            }
+        },
+        {
+            "teamId": 200,
+            "spell1Id": 12,
+            "spell2Id": 4,
+            "championId": 126,
+            "profileIconId": 1116,
+            "summonerName": "Cyanosis",
+            "bot": false,
+            "summonerId": "cvF-q71_oANjtPNCIr4ZN-M3cesWYyjyj7uDbU7JIhMc1qk",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8230,
+                    8226,
+                    8210,
+                    8237,
+                    8304,
+                    8345,
+                    5008,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8200,
+                "perkSubStyle": 8300
+            }
+        },
+        {
+            "teamId": 200,
+            "spell1Id": 7,
+            "spell2Id": 3,
+            "championId": 350,
+            "profileIconId": 4535,
+            "summonerName": "glass heart",
+            "bot": false,
+            "summonerId": "K_MRpOyK64g7Z5TlqZ9L0nJxjvI04rI4hcSuyPhr7eh0pe-G",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8214,
+                    8226,
+                    8210,
+                    8236,
+                    8009,
+                    8017,
+                    5007,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8200,
+                "perkSubStyle": 8000
+            }
+        },
+        {
+            "teamId": 200,
+            "spell1Id": 4,
+            "spell2Id": 21,
+            "championId": 81,
+            "profileIconId": 3790,
+            "summonerName": "POTATOOOOOOOOO",
+            "bot": false,
+            "summonerId": "JNL1EvGDHDlP47iyFgtd6mJbxgYJy55M5T2zGwU5-4TmPEg",
+            "gameCustomizationObjects": [],
+            "perks": {
+                "perkIds": [
+                    8010,
+                    8009,
+                    9103,
+                    8014,
+                    8304,
+                    8345,
+                    5005,
+                    5008,
+                    5002
+                ],
+                "perkStyle": 8000,
+                "perkSubStyle": 8300
+            }
+        }
+    ],
+    "platform": "NA1",
+    "summonerId": "grizxMUc6tBEGhusYb6VfxM2kXpSbcZKVGJ5Iw3SgEOiFg4",
+    "bannedChampions": [
+        {
+            "championId": 39,
+            "teamId": 100,
+            "pickTurn": 1
+        },
+        {
+            "championId": 268,
+            "teamId": 100,
+            "pickTurn": 2
+        },
+        {
+            "championId": 28,
+            "teamId": 100,
+            "pickTurn": 3
+        },
+        {
+            "championId": 166,
+            "teamId": 100,
+            "pickTurn": 4
+        },
+        {
+            "championId": 234,
+            "teamId": 100,
+            "pickTurn": 5
+        },
+        {
+            "championId": 41,
+            "teamId": 200,
+            "pickTurn": 6
+        },
+        {
+            "championId": 412,
+            "teamId": 200,
+            "pickTurn": 7
+        },
+        {
+            "championId": 104,
+            "teamId": 200,
+            "pickTurn": 8
+        },
+        {
+            "championId": 223,
+            "teamId": 200,
+            "pickTurn": 9
+        },
+        {
+            "championId": 268,
+            "teamId": 200,
+            "pickTurn": 10
+        }
+    ],
+    "region": "NA",
+    "queue": 420,
+    "mode": "CLASSIC",
+    "map": 11,
+    "id": 3999119759,
+    "type": "MATCHED_GAME"
+}
