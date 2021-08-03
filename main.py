@@ -8,7 +8,7 @@ LeagueMatchups = LM()
 
 # @userSession check if user is connected
 
-@app.route('/<summoner_name>/games-history', methods=['GET', 'POST'])
+@app.route('/games-history', methods=['GET', 'POST'])
 def gamesHistory(summoner_name): # shows previous games and allows to add new ones
     if request.method == 'POST':
         # add game to database
@@ -36,7 +36,7 @@ def connect():
 def currentGame():
     if request.method == "GET":
         currentGame = LeagueMatchups.getCurrentGame()
-        return "nothing"
+        return currentGame # currentMatch, opponents, teammates, summonerInGame
 
 
 if __name__ == '__main__':
