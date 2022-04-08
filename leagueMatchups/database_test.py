@@ -24,7 +24,7 @@ class TestUsersDatabase(unittest.TestCase):
             "username": "test_username",
             "password": "test_password",
             "summonerName": "test_summonerName",
-            "popularity": 0, 
+            "popularity": 5, 
         })
 
     def test_saveUser(self):
@@ -40,16 +40,43 @@ class TestUsersDatabase(unittest.TestCase):
 
         self.assertEqual(result[2], "test_saveUser_password")
 
+    def test_changePopularity(self):
+        userDatabase.changePopularity(1, 5)
+
 
 class TestGamesDatabase(unittest.TestCase):
     def test_addSummonerGame(self):
         data = {
-            "player-champion-test",
-            "lane-opponent-test",
-            "win"
+            "playerChampion": "test_summoner_champion",
+            "laneOpponent": "test_opponent_champion",
+            "win": 1
         }
-        GamesDatabase.addSummonerGame(data)
+        gameDatabase.addSummonerGame(data)
 
+        database.cursor.execute("SELECT laneOpponent FROM GAMES where playerChampion='test_summoner_champion'")
+        result = database.cursor.fetchall()
+        self.assertEqual(result[0][0], "test_opponent_champion")
+
+
+    def test_getAllSummonerGames(self):
+        allSummonerGames = gameDatabase.getAllSummonerGames()
+        self.assertTrue((2, 'test_summoner_champion', 'test_opponent_champion', 1, 1) in allSummonerGames)
+        
+    def test_getAllGamesByChampion(self):
+        allGamesbyChampion = gameDatabase.getAllGamesByChampion("test_summoner_champion")
+        self.assertTrue(len(allGamesbyChampion)>0)
+
+    def test_getAllSummonerGamesByOpponentChampion(self):
+        allSummonerGamesByOpponentChampion = gameDatabase.getAllSummonerGamesByOpponentChampion("test_opponent_champion")
+        self.assertTrue(len(allSummonerGamesByOpponentChampion)>0)
+
+    def test_getAllSummonerGamesByMatchup(self):
+        allSummonerGamesByMatchup = gameDatabase.getAllSummonerGamesByMatchup("test_summoner_champion" , "test_opponent_champion")
+        self.assertTrue(len(allSummonerGamesByMatchup)>0)
+
+    def test_getAllGamesByChampion(self):
+        allGamesByChampion = gameDatabase.getAllGamesByChampion("test_summoner_champion")
+        self.assertTrue(len(allGamesByChampion)>0)
 
 if __name__ == '__main__':
     unittest.main()

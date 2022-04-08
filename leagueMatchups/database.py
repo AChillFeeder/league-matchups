@@ -17,21 +17,41 @@ class GamesDatabase:
         self.id = id
 
     def addSummonerGame(self, data):
-        cursor.execute("""INSERT INTO games (player-champion, lane-opponent, win) 
-            VALUES ('{}','{}','{}','{}')""".format(
-                data["player-champion"], data["lane-opponent"], data["win"], id
+        cursor.execute("""INSERT INTO games (playerChampion, laneOpponent, win, userID) VALUES ('{}','{}','{}','{}')""".format(
+                data["playerChampion"], data["laneOpponent"], data["win"], self.id
             ))
 
     def getAllSummonerGames(self):
-        pass
-    def getSummonerGamesByChampion(self):
-        pass
-    def getSummonerGamesByTag(self):
+        cursor.execute("SELECT * FROM games WHERE userID='{}'".format(self.id))
+        result = cursor.fetchall()
+        return result
+
+    def getAllSummonerGamesByChampion(self, playerChampion):
+        cursor.execute("SELECT * FROM games WHERE userID='{}' AND playerChampion='{}'".format(self.id, playerChampion))
+        result = cursor.fetchall()
+        return result
+
+    def getAllSummonerGamesByOpponentChampion(self, laneOpponentChampion):
+        cursor.execute("SELECT * FROM games WHERE userID='{}' AND laneOpponent='{}'".format(self.id, laneOpponentChampion))
+        result = cursor.fetchall()
+        return result
+
+    def getAllSummonerGamesByMatchup(self, playerChampion, laneOpponentChampion):
+        cursor.execute("SELECT * FROM games WHERE userID='{}' AND playerChampion='{}' AND laneOpponent='{}'".format(self.id, playerChampion, laneOpponentChampion))
+        result = cursor.fetchall()
+        return result
+
+    @staticmethod
+    def getAllGamesByChampion(champion):
+        cursor.execute("SELECT * FROM games WHERE laneOpponent='{0}' OR playerChampion='{0}'".format(champion))
+        result = cursor.fetchall()
+        return result
+    
+    def getAllSummonerGamesByTag(self):
         pass
 
-    def getAllGamesByChampion(self):
-        pass
-    def getAllGamesByTag(self):
+    @staticmethod
+    def getAllGamesByTag(tag):
         pass
 
 
@@ -70,11 +90,31 @@ class UsersDatabase:
             data["username"], data["password"], data["summonerName"], data["popularity"]
         ))
         database.commit()
-        print(cursor.rowcount, "record inserted.")
+
+    @staticmethod
+    def changePopularity(id, popularity):
+        cursor.execute("UPDATE users SET popularity={} WHERE id={}".format(popularity, id))
+        database.commit()
+        print(cursor.rowcount, "record(s) affected.")
+
+class NotesDatabase:
+
+    def addNote(noteContent, userID, gameID):
+        cursor.execute("INSERT INTO notes (noteContent, gameID, userID) VALUES ('{}', '{}', '{}')".format(noteContent, userID, gameID))
+        database.commit()
+            
+    def getNotesByUser(userID):
+        cursor.execute("SELECT * FROM notes WHERE userID='{}'".format(userID))
+        result = cursor.fetchall()
+        return result
+
+    def getNotesByGame(gameID):
+        cursor.execute("SELECT * FROM notes WHERE gameID='{}'".format(gameID))
+        result = cursor.fetchall()
+        return result
 
 
-
-
-
+class tags:
+    pass
 
 

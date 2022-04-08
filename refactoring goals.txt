@@ -1,6 +1,6 @@
 
 - Remove interactions with Community Dragon Api from React and into Flask
-- Use DDC Api instead of raw data
+- Use DataDragonCommunity Api instead of raw data
 - Spread classes into multiple files
 - Extensive use of Exceptions
 - API key in different file
