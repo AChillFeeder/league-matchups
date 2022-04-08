@@ -1,25 +1,28 @@
-from sqlalchemy import Column, Integer, String, ARRAY
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, sessionmaker
-from sqlalchemy import create_engine
-from sqlalchemy.sql.schema import ForeignKey
 
-import flask_sqlalchemy
+import mysql.connector
+from sqlalchemy import null
 
-engine = create_engine('sqlite:///E:\\Projects\\league-matchups\\leagueMatchups\\data\\database.db', echo=False, connect_args={'check_same_thread': False})
-Session = sessionmaker(bind=engine)
-session = Session()
+database = mysql.connector.connect(
+    host="localhost",
+    user="root",
+    password="",
+    database="league_matchups"
+)
 
-Base = declarative_base()
-
+global cursor
+cursor = database.cursor()
 
 class GamesDatabase:
-    def __init__(self, summonerName) -> None:
-        self.summonerName = summonerName
+    def __init__(self, id) -> None:
+        self.id = id
 
-    def addSummonerGame(self):
-        pass
-    def getAllSummonnerGames(self):
+    def addSummonerGame(self, data):
+        cursor.execute("""INSERT INTO games (player-champion, lane-opponent, win) 
+            VALUES ('{}','{}','{}','{}')""".format(
+                data["player-champion"], data["lane-opponent"], data["win"], id
+            ))
+
+    def getAllSummonerGames(self):
         pass
     def getSummonerGamesByChampion(self):
         pass
@@ -33,52 +36,45 @@ class GamesDatabase:
 
 
 class UsersDatabase:
-    def checkCreditentials(self):
-        pass
 
     @staticmethod
-    def getUserData(username):
-        query = session.query(User).filter_by(username=username).first()
-        return query
+    def checkCreditentials(username, password): # tested
+        cursor.execute("SELECT password, id FROM users WHERE username='{}'".format(username))
+        result = cursor.fetchone()
+
+        if result:
+            id = result[1] if result[0] == password else null
+        else:
+            id = null
+
+        return id
+
+    @staticmethod
+    def getUserData(id):
+        cursor.execute("SELECT * FROM users WHERE id='{}'".format(id))
+        result = cursor.fetchone()
+
+        organized_result = {
+            "id": result[0],
+            "username": result[1],
+            "password": result[2],
+            "summonerName": result[3],
+            "popularity": result[4]
+        } if result else None
+
+        return organized_result
 
     @staticmethod
     def saveUser(data):
-        user = User(
-            username = data["username"],
-            password = data["password"],
-            summonerName = data["summonerName"],
-            popularity = 0
-        )
-        session.add(user)
-        session.commit()
+        cursor.execute("INSERT INTO users (username, password, summonerName, popularity) VALUES ('{}', '{}', '{}', '{}')".format(
+            data["username"], data["password"], data["summonerName"], data["popularity"]
+        ))
+        database.commit()
+        print(cursor.rowcount, "record inserted.")
 
 
 
-class Game(Base):
-    __tablename__ = 'game'
-
-    id = Column(Integer, primary_key=True)
-    summoner_champion = Column(String)
-    opponent_champion = Column(String)
-    # noteContent = Column(ARRAY(String))
-    # noteCategory = Column(ARRAY(String))
-    popularity = Column(Integer)
-
-    user_id = Column(Integer, ForeignKey('user.id'))
-    user = relationship('User')
 
 
-class User(Base):
-    __tablename__ = 'user'
-
-    id = Column(Integer, primary_key=True)
-    username = Column(String, unique=True)
-    password = Column(String) # hash pepper yada yada
-    summonerName = Column(String)
-    popularity = Column(Integer)
-
-    games = relationship(Game, backref="users")
-
-Base.metadata.create_all(engine)
 
 
