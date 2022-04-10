@@ -54,11 +54,14 @@ class GamesDatabase:
     def getAllGamesByTag(tag):
         pass
 
-
 class UsersDatabase:
 
     @staticmethod
-    def checkCreditentials(username, password): # tested
+    def checkCreditentials(username: str, password: str):
+        """Checks the validity of user creditentials
+        => userID if correct
+        => Null if incorrect
+        """ 
         cursor.execute("SELECT password, id FROM users WHERE username='{}'".format(username))
         result = cursor.fetchone()
 
@@ -70,14 +73,23 @@ class UsersDatabase:
         return id
 
     @staticmethod
-    def getUserData(id):
+    def getUserData(id: int):
+        """
+            Get user's data from the database
+            => {
+                id: int,
+                username: str,
+                summonerName: str,
+                popularity: int
+            }
+        """
         cursor.execute("SELECT * FROM users WHERE id='{}'".format(id))
         result = cursor.fetchone()
 
         organized_result = {
             "id": result[0],
             "username": result[1],
-            "password": result[2],
+            # "password": result[2],
             "summonerName": result[3],
             "popularity": result[4]
         } if result else None
@@ -85,14 +97,21 @@ class UsersDatabase:
         return organized_result
 
     @staticmethod
-    def saveUser(data):
+    def saveUser(data: dict):
+        """
+            Saves the user in the database
+            {username:str, password:str, summonerName:str} =>
+        """
         cursor.execute("INSERT INTO users (username, password, summonerName, popularity) VALUES ('{}', '{}', '{}', '{}')".format(
             data["username"], data["password"], data["summonerName"], data["popularity"]
         ))
         database.commit()
 
     @staticmethod
-    def changePopularity(id, popularity):
+    def changePopularity(id: int, popularity: int):
+        """
+            Change the user popularity
+        """
         cursor.execute("UPDATE users SET popularity={} WHERE id={}".format(popularity, id))
         database.commit()
         print(cursor.rowcount, "record(s) affected.")
@@ -112,7 +131,6 @@ class NotesDatabase:
         cursor.execute("SELECT * FROM notes WHERE gameID='{}'".format(gameID))
         result = cursor.fetchall()
         return result
-
 
 class tags:
     pass

@@ -1,42 +1,56 @@
 import cassiopeia
+import cassiopeia_championgg
+import os
 
 class Player():
 
-    def __init__(self, summonerName, region) -> None:
+    def __init__(self, summonerName: str, region: str = "EUW1") -> None:
 
-        self.apiKey = "RGAPI-32449df4-8989-47db-a52d-d087bcc3f108" # put it in file after
-        self.summonerName = summonerName
-        self.region = region # ALL CAPS
+        try:
+            with open(os.path.join('leagueMatchups' ,'data', 'api_key.txt'), "r") as file:
+                self.apiKey = file.read()
+        except FileNotFoundError:
+            raise Exception("Create an api_key.txt that holds your api key")
 
-        cassiopeia.set_riot_api_key(self.apiKey) #
-        cassiopeia.set_default_region(self.region) #
+        self.summonerName = summonerName.lower()
+        self.region = region.upper()
+
+        cassiopeia.set_riot_api_key(self.apiKey) 
+        cassiopeia.set_default_region(self.region) 
 
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
-        print("summoner's name: ",self.summoner.name)
+        print("summoner's name: ", self.summoner.name)
 
     
-
     def getCurrentGame(self):
-        self.currentMatch = cassiopeia.core.spectator.CurrentMatch(summoner=self.summonerName, region=self.region)
-        print(self.currentMatch.to_json())
+        self.currentMatch = self.summoner.current_match.to_dict()
+        summoner_champion, enemy_team_champions = self.sanitizeCurrentMatchData()
+        return summoner_champion, enemy_team_champions
 
-        self.opponents, self.teammates = (self.currentMatch.blue_team, self.currentMatch.red_team) if self.summoner in self.currentMatch.red_team.participants else (self.currentMatch.red_team, self.currentMatch.blue_team)
-        self.summonerInGame = self.teammates.participants[self.summoner]
+    def sanitizeCurrentMatchData(self):
+        all_participants = self.currentMatch['participants']
+        summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower() == self.summonerName][0]
 
-        return {
-            "currentMatch": self.currentMatch.to_json()
-            ,
-            # "opponents": self.opponents,
-            # "teammates": self.teammates,
-            # "summonerInGame": self.summonerInGame
-            }
+        # usable later
+        game_creation_time = self.currentMatch['creation']
+        game_map_id = self.currentMatch['map']
+        game_map_mode = self.currentMatch['mode']
+
+        # splitting the teams => team array has champion ID only, no other data
+        team_one, team_two = self.teamsFromCurrentGame(all_participants)
+
+        # defining the enemy team
+        enemy_team = team_one if summoner_participant['teamId'] == 200 else team_two
+
+        return cassiopeia.Champion(id=summoner_participant['championId']), enemy_team
+        
+
+    @staticmethod
+    def teamsFromCurrentGame(all_participants):
+        team_one = [cassiopeia.Champion(id=participant['championId']) for participant in all_participants if participant['teamId']==100]
+        team_two = [cassiopeia.Champion(id=participant['championId']) for participant in all_participants if participant['teamId']==200]
+
+        return team_one, team_two
 
 
 
-
-    def getUserGames(self, numberOfGames):
-        pass
-
-    def addUserGame(self, params):
-        # params: GAMES[summoner played, opponent champion, notes, tags, *popularity]
-        pass

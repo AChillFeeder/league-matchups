@@ -2,26 +2,21 @@
 from leagueMatchups.database import UsersDatabase
 
 class User():
+
     def __init__(self) -> None:
-        self.summonerName: str
-        self.region: str
+        self.usersDatabase = UsersDatabase()   
+        self.defaultPopularity = 0
+    
+    def register(self, username, password, summonerName):
+        self.usersDatabase.saveUser(
+            {
+                "username": username,
+                "password": password,
+                "summonerName": summonerName,
+                "popularity": self.defaultPopularity
+            }
+        )
 
-    def register(self, data):
-        # data handling here
-
-        # save user
-        # sqlalchemy.exc.IntegrityError | duplicate exception
-        UsersDatabase.saveUser({
-            "username": data["username"],
-            "password": data["password"],
-            "summonerName": data["summonerName"],
-        })
-
-    def connect(self, data):
-        query = UsersDatabase.getUserData(data["username"])
-        
-        if query and data["password"] == query.password:
-            return 1, query
-
-        return 0, query
+    def connect(self, username, password):
+        user_id = self.usersDatabase.checkCreditentials(username, password)
 

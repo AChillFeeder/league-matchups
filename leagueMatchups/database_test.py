@@ -43,7 +43,6 @@ class TestUsersDatabase(unittest.TestCase):
     def test_changePopularity(self):
         userDatabase.changePopularity(1, 5)
 
-
 class TestGamesDatabase(unittest.TestCase):
     def test_addSummonerGame(self):
         data = {
