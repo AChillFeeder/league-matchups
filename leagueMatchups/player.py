@@ -1,10 +1,13 @@
 import cassiopeia
 import cassiopeia_championgg
 import os
+from leagueMatchups.database import GamesDatabase
 
 class Player():
 
-    def __init__(self, summonerName: str, region: str = "EUW1") -> None:
+    def __init__(self, summonerName: str, region: str) -> None:
+
+        self.gamesDatabase = GamesDatabase()
 
         try:
             with open(os.path.join('leagueMatchups' ,'data', 'api_key.txt'), "r") as file:
@@ -21,7 +24,6 @@ class Player():
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
         print("summoner's name: ", self.summoner.name)
 
-    
     def getCurrentGame(self):
         self.currentMatch = self.summoner.current_match.to_dict()
         summoner_champion, enemy_team_champions = self.sanitizeCurrentMatchData()
@@ -44,7 +46,6 @@ class Player():
 
         return cassiopeia.Champion(id=summoner_participant['championId']), enemy_team
         
-
     @staticmethod
     def teamsFromCurrentGame(all_participants):
         team_one = [cassiopeia.Champion(id=participant['championId']) for participant in all_participants if participant['teamId']==100]
@@ -52,5 +53,8 @@ class Player():
 
         return team_one, team_two
 
+    def saveGame(self, playerChampion, laneOpponent, win, id):
+        self.gamesDatabase.addSummonerGame(playerChampion, laneOpponent, win, id)
 
-
+    def getAllSummonerGames(self, id):
+        self.gamesDatabase.getAllSummonerGames(id)

@@ -7,7 +7,7 @@ class User():
         self.usersDatabase = UsersDatabase()   
         self.defaultPopularity = 0
     
-    def register(self, username, password, summonerName):
+    def register(self, username: str, password: str, summonerName: str) -> None:
         self.usersDatabase.saveUser(
             {
                 "username": username,
@@ -17,6 +17,18 @@ class User():
             }
         )
 
-    def connect(self, username, password):
+    def connect(self, username: str, password: str) -> dict:
         user_id = self.usersDatabase.checkCreditentials(username, password)
+
+        if user_id:
+            player_data = self.usersDatabase.getUserData(user_id)
+
+        else:
+            return None
+
+        return player_data
+
+    def change_popularity(self, id: int, popularity: int):
+        self.usersDatabase.changePopularity(id, popularity)
+
 

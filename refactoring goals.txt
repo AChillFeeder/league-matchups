@@ -1,14 +1,14 @@
 
 - Remove interactions with Community Dragon Api from React and into Flask
 - Use DataDragonCommunity Api instead of raw data
-- Spread classes into multiple files
+x Spread classes into multiple files
 - Extensive use of Exceptions
-- API key in different file
+x API key in different file
 
-- patch should be updated automatically
+x patch should be updated automatically
 - decorator for login and session purposes
 
-- Email sign up and account comfirmation
+- Email sign up and account confirmation
 - pepper and salt the password hash
 
 - base link in react

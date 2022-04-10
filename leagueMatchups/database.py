@@ -16,28 +16,29 @@ class GamesDatabase:
     def __init__(self, id) -> None:
         self.id = id
 
-    def addSummonerGame(self, data):
+    def addSummonerGame(self, playerChampion: str, laneOpponent: str, win: int, id: int): # update test
+        """Win takes 1 or 0"""
         cursor.execute("""INSERT INTO games (playerChampion, laneOpponent, win, userID) VALUES ('{}','{}','{}','{}')""".format(
-                data["playerChampion"], data["laneOpponent"], data["win"], self.id
+                playerChampion, laneOpponent, win, id
             ))
 
-    def getAllSummonerGames(self):
-        cursor.execute("SELECT * FROM games WHERE userID='{}'".format(self.id))
+    def getAllSummonerGames(self, id: int):
+        cursor.execute("SELECT * FROM games WHERE userID='{}'".format(id))
         result = cursor.fetchall()
         return result
 
-    def getAllSummonerGamesByChampion(self, playerChampion):
-        cursor.execute("SELECT * FROM games WHERE userID='{}' AND playerChampion='{}'".format(self.id, playerChampion))
+    def getAllSummonerGamesByChampion(self, playerChampion: str, id: int):
+        cursor.execute("SELECT * FROM games WHERE userID='{}' AND playerChampion='{}'".format(id, playerChampion))
         result = cursor.fetchall()
         return result
 
-    def getAllSummonerGamesByOpponentChampion(self, laneOpponentChampion):
-        cursor.execute("SELECT * FROM games WHERE userID='{}' AND laneOpponent='{}'".format(self.id, laneOpponentChampion))
+    def getAllSummonerGamesByOpponentChampion(self, laneOpponentChampion: str, id: int):
+        cursor.execute("SELECT * FROM games WHERE userID='{}' AND laneOpponent='{}'".format(id, laneOpponentChampion))
         result = cursor.fetchall()
         return result
 
-    def getAllSummonerGamesByMatchup(self, playerChampion, laneOpponentChampion):
-        cursor.execute("SELECT * FROM games WHERE userID='{}' AND playerChampion='{}' AND laneOpponent='{}'".format(self.id, playerChampion, laneOpponentChampion))
+    def getAllSummonerGamesByMatchup(self, playerChampion: str, laneOpponentChampion: str, id: int):
+        cursor.execute("SELECT * FROM games WHERE userID='{}' AND playerChampion='{}' AND laneOpponent='{}'".format(id, playerChampion, laneOpponentChampion))
         result = cursor.fetchall()
         return result
 

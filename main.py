@@ -12,39 +12,35 @@ LeagueMatchups = LM()
 # @userSession check if user is connected
 
 
-
-
 @app.route('/register', methods=['POST'])
 def register():
-    data = request.json # username, password, summonerName
-    LeagueMatchups.register(data)
+    form_data = request.json # username, password, summonerName
+    LeagueMatchups.user.register(form_data['username'], form_data['password'], form_data['summonerName'])
     
-
 @app.route('/connect', methods=["POST"])
 def connect():
-    data = request.json # username, password
-    connected, userData = LeagueMatchups.connect(data)
-    return json.dumps({
-        "connected": connected,
-        "userData": userData.id,
-    })
-
-
+    form_data = request.json # username, password
+    userData = LeagueMatchups.user.connect(form_data['username'], form_data['password'])
+    return json.dumps(userData)
 
 @app.route('/getSession')
 def getSession():
-    pass
+    """Returns the ID of the currect User"""
+    return 1 # temporary
 
 @app.route('/gamesHistory', methods=['GET', 'POST'])
 def gamesHistory(): # shows previous games and allows to add new ones
     if request.method == 'POST':
         # add game to database
-        pass
+        form_data = request.json #playerChampion, laneOpponent, win
+        id = getSession()
+        LeagueMatchups.player.saveGame(form_data["playerChampion"], form_data["laneOpponent"], form_data["win"], id)
     
     elif request.method == 'GET':
         # get all games from database [number of games]
-        pass
-
+        id = getSession()
+        allSummonerGames = LeagueMatchups.player.getAllSummonerGames(id)
+        return json.dumps(allSummonerGames)
 
 
 
