@@ -21,7 +21,7 @@ class User():
         user_id = self.usersDatabase.checkCreditentials(username, password)
 
         if user_id:
-            player_data = self.usersDatabase.getUserData(user_id)
+            player_data = self.usersDatabase.getUserData(user_id) # {}: id, username, password, summoner, popularity
 
         else:
             return None

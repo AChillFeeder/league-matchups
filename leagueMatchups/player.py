@@ -16,7 +16,7 @@ class Player():
             raise Exception("Create an api_key.txt that holds your api key")
 
         self.summonerName = summonerName.lower()
-        self.region = region.upper()
+        self.region = region
 
         cassiopeia.set_riot_api_key(self.apiKey) 
         cassiopeia.set_default_region(self.region) 

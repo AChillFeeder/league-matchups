@@ -13,8 +13,8 @@ global cursor
 cursor = database.cursor()
 
 class GamesDatabase:
-    def __init__(self, id) -> None:
-        self.id = id
+    def __init__(self) -> None:
+        pass
 
     def addSummonerGame(self, playerChampion: str, laneOpponent: str, win: int, id: int): # update test
         """Win takes 1 or 0"""

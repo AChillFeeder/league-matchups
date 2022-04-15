@@ -12,7 +12,7 @@ class LeagueMatchups:
     def __init__(self) -> None:
         self.user = User()
 
-    def initializePlayer(self, summonerName, region="NA1"):
+    def initializePlayer(self, summonerName, region="NA"):
         self.player = Player(summonerName, region)
 
 
