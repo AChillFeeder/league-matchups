@@ -65,8 +65,8 @@ def gamesHistory(): # shows previous games and allows to add new ones
 @app.route('/currentGame', methods=["POST", "GET"])
 def currentGame():
     if request.method == "GET":
-        summoner_champion, enemy_team_champions = LeagueMatchups.player.getCurrentGame()
-        return (summoner_champion.name, summoner_champion.image, summoner_champion.spells)
+        result = LeagueMatchups.player.getCurrentGame()
+        return result
 
 @app.route('/set_riot_api_key', methods=["POST"])
 def set_riot_api_key():

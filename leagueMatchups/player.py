@@ -18,7 +18,7 @@ class Player():
         self.summonerName = summonerName.lower()
 
         ##### TESTING ######
-        self.summonerName = "CrabAppleBoy".lower()
+        self.summonerName = "Allorim".lower()
         self.region = region
 
         cassiopeia.set_riot_api_key(self.apiKey) 
@@ -30,24 +30,37 @@ class Player():
     def getCurrentGame(self):
         self.currentMatch = self.summoner.current_match.to_dict()
         summoner_champion, enemy_team_champions = self.sanitizeCurrentMatchData()
-        return summoner_champion, enemy_team_champions
+
+        result = {
+            "summoner_champion": {
+                "name": summoner_champion.name,
+                "image": summoner_champion.image.url
+            },
+            "enemy_team_champions": []
+        }
+
+        for champion in enemy_team_champions:
+            result['enemy_team_champions'].append(
+                {
+                    "name": champion.name,
+                    "image": champion.image.url
+                }
+            )
+
+        return result
 
     def sanitizeCurrentMatchData(self):
         all_participants = self.currentMatch['participants']
         summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower() == self.summonerName][0]
-
-        # usable later
-        game_creation_time = self.currentMatch['creation']
-        game_map_id = self.currentMatch['map']
-        game_map_mode = self.currentMatch['mode']
+        summoner_champion = cassiopeia.Champion(id=summoner_participant['championId'])
 
         # splitting the teams => team array has champion ID only, no other data
         team_one, team_two = self.teamsFromCurrentGame(all_participants)
 
         # defining the enemy team
-        enemy_team = team_one if summoner_participant['teamId'] == 200 else team_two
+        enemy_team_champions = team_one if summoner_participant['teamId'] == 200 else team_two
 
-        return cassiopeia.Champion(id=summoner_participant['championId']), enemy_team
+        return summoner_champion, enemy_team_champions
         
     @staticmethod
     def teamsFromCurrentGame(all_participants):
