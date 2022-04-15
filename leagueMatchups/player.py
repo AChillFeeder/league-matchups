@@ -16,6 +16,9 @@ class Player():
             raise Exception("Create an api_key.txt that holds your api key")
 
         self.summonerName = summonerName.lower()
+
+        ##### TESTING ######
+        self.summonerName = "CrabAppleBoy".lower()
         self.region = region
 
         cassiopeia.set_riot_api_key(self.apiKey) 
@@ -57,4 +60,4 @@ class Player():
         self.gamesDatabase.addSummonerGame(playerChampion, laneOpponent, win, id)
 
     def getAllSummonerGames(self, id):
-        self.gamesDatabase.getAllSummonerGames(id)
+        return self.gamesDatabase.getAllSummonerGames(id)

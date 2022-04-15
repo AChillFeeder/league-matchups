@@ -21,6 +21,7 @@ class GamesDatabase:
         cursor.execute("""INSERT INTO games (playerChampion, laneOpponent, win, userID) VALUES ('{}','{}','{}','{}')""".format(
                 playerChampion, laneOpponent, win, id
             ))
+        database.commit()
 
     def getAllSummonerGames(self, id: int):
         cursor.execute("SELECT * FROM games WHERE userID='{}'".format(id))
