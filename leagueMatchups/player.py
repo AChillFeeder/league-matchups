@@ -18,7 +18,7 @@ class Player():
         self.summonerName = summonerName.lower()
 
         ##### TESTING ######
-        self.summonerName = "Allorim".lower()
+        self.summonerName = "ItMightBeYaBoy".lower()
         self.region = region
 
         cassiopeia.set_riot_api_key(self.apiKey) 
@@ -34,7 +34,8 @@ class Player():
         result = {
             "summoner_champion": {
                 "name": summoner_champion.name,
-                "image": summoner_champion.image.url
+                "image": summoner_champion.image.url,
+                "id": summoner_champion.id
             },
             "enemy_team_champions": []
         }
@@ -43,7 +44,8 @@ class Player():
             result['enemy_team_champions'].append(
                 {
                     "name": champion.name,
-                    "image": champion.image.url
+                    "image": champion.image.url,
+                    "id": champion.id
                 }
             )
 
@@ -73,4 +75,26 @@ class Player():
         self.gamesDatabase.addSummonerGame(playerChampion, laneOpponent, win, id)
 
     def getAllSummonerGames(self, id):
-        return self.gamesDatabase.getAllSummonerGames(id)
+        result = {}
+
+        # ID playerChampion laneOpponent win userID
+
+        all_games = self.gamesDatabase.getAllSummonerGames(id)
+        for game in all_games:
+            summoner_champion = cassiopeia.Champion(id=game[1])
+            opponent_champion = cassiopeia.Champion(id=game[2])
+            result[game[0]] = {
+                "playerChampion": {
+                    "name": summoner_champion.name,
+                    "image": summoner_champion.image.url,
+                    "id": summoner_champion.id
+                },
+                "opponentChampion": {
+                    "name": opponent_champion.name,
+                    "image": opponent_champion.image.url,
+                    "id": opponent_champion.id
+                },
+                "victory": game[3]
+            }
+
+        return result
