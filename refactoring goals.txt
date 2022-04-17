@@ -12,3 +12,5 @@ x patch should be updated automatically
 - pepper and salt the password hash
 
 - base link in react
+
+- dropped SQL foreign key restraint, try to bring it back

@@ -22,6 +22,7 @@ class GamesDatabase:
                 playerChampion, laneOpponent, win, id
             ))
         database.commit()
+        return cursor.lastrowid
 
     def getAllSummonerGames(self, id: int):
         cursor.execute("SELECT * FROM games WHERE userID='{}'".format(id))
@@ -118,8 +119,10 @@ class UsersDatabase:
         database.commit()
         print(cursor.rowcount, "record(s) affected.")
 
+
 class NotesDatabase:
 
+    @staticmethod
     def addNote(noteContent, userID, gameID):
         cursor.execute("INSERT INTO notes (noteContent, gameID, userID) VALUES ('{}', '{}', '{}')".format(noteContent, userID, gameID))
         database.commit()

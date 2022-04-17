@@ -1,13 +1,14 @@
 import cassiopeia
 import cassiopeia_championgg
 import os
-from leagueMatchups.database import GamesDatabase
+from leagueMatchups.database import GamesDatabase, NotesDatabase
 
 class Player():
 
     def __init__(self, summonerName: str, region: str) -> None:
 
         self.gamesDatabase = GamesDatabase()
+        self.notesDatabase = NotesDatabase()
 
         try:
             with open(os.path.join('leagueMatchups' ,'data', 'api_key.txt'), "r") as file:
@@ -19,6 +20,7 @@ class Player():
 
         ##### TESTING ######
         self.summonerName = "ItMightBeYaBoy".lower()
+        
         self.region = region
 
         cassiopeia.set_riot_api_key(self.apiKey) 
@@ -71,8 +73,10 @@ class Player():
 
         return team_one, team_two
 
-    def saveGame(self, playerChampion, laneOpponent, win, id):
-        self.gamesDatabase.addSummonerGame(playerChampion, laneOpponent, win, id)
+    def saveGame(self, playerChampion, laneOpponent, win, id) -> int:
+        """Saves the game and returns it's ID"""
+        gameID = self.gamesDatabase.addSummonerGame(playerChampion, laneOpponent, win, id)
+        return gameID
 
     def getAllSummonerGames(self, id):
         result = {}
@@ -98,3 +102,13 @@ class Player():
             }
 
         return result
+
+    def saveNotes(self, notes, userID, gameID):
+        # test blank table
+        for note in notes:
+            print("note: " + note)
+            self.notesDatabase.addNote(note, userID, gameID)
+            
+
+
+

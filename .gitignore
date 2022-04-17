@@ -26,8 +26,6 @@ yarn-error.log*
 api_key.txt
 
 # Python things
-/__pycache__
-/leagueMatchups/__pycache__
+__pycache__
+leagueMatchups/__pycache__
 
-# Screenshots
-/screenshots

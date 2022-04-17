@@ -5,6 +5,7 @@ import json
 import secrets
 
 from leagueMatchups import LeagueMatchups as LM
+import leagueMatchups
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -34,7 +35,7 @@ def getSession() -> str: #
     if 'userID' in session:
         return str(session['userID'])
     else:
-        return "No user session is currently on"
+        return 0
 
 @app.route('/logout', methods=["GET"])
 def logout(): #
@@ -49,10 +50,13 @@ def gamesHistory(): #
     # shows previous games and allows to add new ones
     if request.method == 'POST': #
         # add game to database
-        form_data = request.json #playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1]
+        form_data = request.json #playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1], notes
         id = getSession()
-        LeagueMatchups.player.saveGame(form_data["playerChampion"], form_data["laneOpponent"], form_data["win"], id)
-        return "done"
+        gameID = LeagueMatchups.player.saveGame(form_data["playerChampion"], form_data["laneOpponent"], form_data["win"], id)
+        print("gameID: " + str(gameID))
+        print("userID: " + str(getSession()))
+        LeagueMatchups.player.saveNotes(form_data["notes"], int(getSession()), gameID)
+        return 0
     
     elif request.method == 'GET': #
         # get all games from database [number of games]
