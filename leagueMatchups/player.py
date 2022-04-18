@@ -29,7 +29,19 @@ class Player():
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
         print("summoner's name: ", self.summoner.name)
 
-    def getCurrentGame(self):
+
+
+
+
+    def getCurrentGame(self) -> dict:
+        """
+            Get current game information
+            returns => {
+                "summoner_champion": {name, image, id}
+                "enemy_team_champion": [{name, image, id}, ...]
+            }
+        """
+
         self.currentMatch = self.summoner.current_match.to_dict()
         summoner_champion, enemy_team_champions = self.sanitizeCurrentMatchData()
 
@@ -54,7 +66,10 @@ class Player():
         return result
 
     def sanitizeCurrentMatchData(self):
+
         all_participants = self.currentMatch['participants']
+
+        # Find summoner participant and turn him to a Champion object
         summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower() == self.summonerName][0]
         summoner_champion = cassiopeia.Champion(id=summoner_participant['championId'])
 
@@ -65,6 +80,8 @@ class Player():
         enemy_team_champions = team_one if summoner_participant['teamId'] == 200 else team_two
 
         return summoner_champion, enemy_team_champions
+        
+
         
     @staticmethod
     def teamsFromCurrentGame(all_participants):
@@ -109,6 +126,14 @@ class Player():
             print("note: " + note)
             self.notesDatabase.addNote(note, userID, gameID)
             
+    def getNotesByGameID(self, gameID) -> list:
+        result = self.notesDatabase.getNotesByGame(gameID)
+        return result
 
+    def getNotesByUserID(self, userID) -> list:
+        result = self.notesDatabase.getNotesByUser(userID)
+        return result
 
+    def deleteNoteByNoteID(self, noteID):
+        pass
 

@@ -124,14 +124,16 @@ class NotesDatabase:
 
     @staticmethod
     def addNote(noteContent, userID, gameID):
-        cursor.execute("INSERT INTO notes (noteContent, gameID, userID) VALUES ('{}', '{}', '{}')".format(noteContent, userID, gameID))
+        cursor.execute("INSERT INTO notes (noteContent, gameID, userID) VALUES ('{}', '{}', '{}')".format(noteContent, gameID, userID))
         database.commit()
             
-    def getNotesByUser(userID):
+    @staticmethod
+    def getNotesByUser(userID) -> list:
         cursor.execute("SELECT * FROM notes WHERE userID='{}'".format(userID))
         result = cursor.fetchall()
         return result
 
+    @staticmethod
     def getNotesByGame(gameID):
         cursor.execute("SELECT * FROM notes WHERE gameID='{}'".format(gameID))
         result = cursor.fetchall()

@@ -1,19 +1,19 @@
-from leagueMatchups import LeagueMatchups, user
 from flask import Flask, request, session
 from flask_cors import CORS
 import json
 import secrets
 
+from leagueMatchups import LeagueMatchups
 from leagueMatchups import LeagueMatchups as LM
-import leagueMatchups
+
+
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 CORS(app)
 LeagueMatchups = LM()
 
-# @userSession check if user is connected
-
+# USER AND SESSION MANAGEMENT
 
 @app.route('/register', methods=['POST'])
 def register(): #
@@ -45,24 +45,29 @@ def logout(): #
     except KeyError:
         return "No user is connected"
 
+# # # # # # # # # # # # # # # # # # # #
+
+
+
+
 @app.route('/gamesHistory', methods=['GET', 'POST'])
 def gamesHistory(): # 
-    # shows previous games and allows to add new ones
+    """shows previous games and allows to add new ones"""
+
+    # ADD GAME TO DATABASE
     if request.method == 'POST': #
-        # add game to database
         form_data = request.json #playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1], notes
         id = getSession()
         gameID = LeagueMatchups.player.saveGame(form_data["playerChampion"], form_data["laneOpponent"], form_data["win"], id)
-        print("gameID: " + str(gameID))
-        print("userID: " + str(getSession()))
         LeagueMatchups.player.saveNotes(form_data["notes"], int(getSession()), gameID)
-        return 0
+        return "Done"
     
+    # GET ALL GAMES FROM DATABASE - add number of games fetched option
     elif request.method == 'GET': #
-        # get all games from database [number of games]
         id = getSession()
         allSummonerGames = LeagueMatchups.player.getAllSummonerGames(id)
-        return json.dumps(allSummonerGames)
+        allUserNotes = LeagueMatchups.player.getNotesByUserID(id)
+        return json.dumps([allSummonerGames, allUserNotes])
 
 @app.route('/currentGame', methods=["POST", "GET"])
 def currentGame(): #
@@ -70,9 +75,30 @@ def currentGame(): #
         result = LeagueMatchups.player.getCurrentGame()
         return result
 
+@app.route('/getNotesByGame/<gameID>')
+def getNotesByGameId(gameID) -> json:
+    result = LeagueMatchups.player.getNotesByGameID(int(gameID))
+    return json.dumps(result)
+
+@app.route('/deleteNote/<noteID>')
+def deleteNote():
+    pass #noteID
+
+@app.route('/getChampionAbilities')
+def getChampionAbilities():
+    pass
+
 @app.route('/set_riot_api_key', methods=["POST"])
 def set_riot_api_key():
     pass
+
+
+
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run('0.0.0.0', 80, True)

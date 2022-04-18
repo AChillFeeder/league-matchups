@@ -1,6 +1,6 @@
 
 - Remove interactions with Community Dragon Api from React and into Flask
-- Use DataDragonCommunity Api instead of raw data
+x Use DataDragonCommunity Api instead of raw data
 x Spread classes into multiple files
 - Extensive use of Exceptions
 x API key in different file
@@ -13,4 +13,4 @@ x patch should be updated automatically
 
 - base link in react
 
-- dropped SQL foreign key restraint, try to bring it back
+x dropped SQL foreign key restraint, try to bring it back
