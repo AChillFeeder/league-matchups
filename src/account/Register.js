@@ -14,10 +14,10 @@ const Register = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch(`http://192.168.1.150:8000/register`, {
+        fetch(`/register`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({"username": username, "password": password, "summoner-name": summoner})
+            body: JSON.stringify({"username": username, "password": password, "summonerName": summoner})
         }).then(response => response.json())
         .then((data) => {
             if(data.registered){

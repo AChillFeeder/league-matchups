@@ -101,4 +101,4 @@ def set_riot_api_key():
 
 
 if __name__ == '__main__':
-    app.run('0.0.0.0', 80, True)
+    app.run('0.0.0.0', 3000, True)

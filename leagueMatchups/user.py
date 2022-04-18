@@ -18,6 +18,12 @@ class User():
         )
 
     def connect(self, username: str, password: str) -> dict:
+        """
+            "id": 26,
+            "username": "nagakabouros",
+            "summonerName": "a chill feeder",
+            "popularity": 0
+        """
         user_id = self.usersDatabase.checkCreditentials(username, password)
 
         if user_id:

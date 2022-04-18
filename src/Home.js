@@ -5,7 +5,7 @@ import {ReactSession} from 'react-client-session';
 
 const Home = () => {
 
-    const {data: profile, isLoading, error} = useFetch(`http://localhost/gamesHistory`);
+    const {data: profile, isLoading, error} = useFetch(`/gamesHistory`);
 
 
     return ( 

@@ -14,19 +14,17 @@ const Login = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        fetch(`http://localhost/connect`, {
+        fetch(`/connect`, {
             method: 'POST',
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({"username": username, "password": password})
         }).then(response => response.json())
         .then((data) => {
             if(data.connected){
-                ReactSession.set("summonerName", data["summoner-name"]);
                 history.push('/home')
             }else{
                 setError("unable to login")
             }
-            console.log('Login | summoner name: ' + window.summonerName);
         })
 
         event.target.reset();
