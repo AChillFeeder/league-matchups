@@ -1,5 +1,5 @@
 
-- Remove interactions with Community Dragon Api from React and into Flask
+x Remove interactions with Community Dragon Api from React and into Flask
 x Use DataDragonCommunity Api instead of raw data
 x Spread classes into multiple files
 - Extensive use of Exceptions

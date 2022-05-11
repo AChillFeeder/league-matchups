@@ -13,6 +13,8 @@ app.secret_key = secrets.token_hex(16)
 CORS(app)
 LeagueMatchups = LM()
 
+
+
 # USER AND SESSION MANAGEMENT
 
 @app.route('/register', methods=['POST'])
