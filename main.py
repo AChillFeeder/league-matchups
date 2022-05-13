@@ -9,26 +9,51 @@ from leagueMatchups import LeagueMatchups as LM
 
 
 app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)
 CORS(app)
+app.config['CORS_HEADERS'] = 'Content-Type'
+app.secret_key = secrets.token_hex(16)
 LeagueMatchups = LM()
 
-
+def flash_message(success=True, message=""):
+    return json.dumps({
+        "success": success,
+        "message": message
+        })
 
 # USER AND SESSION MANAGEMENT
 
 @app.route('/register', methods=['POST'])
 def register(): #
     form_data = request.json # username, password, summonerName
-    LeagueMatchups.user.register(form_data['username'], form_data['password'], form_data['summonerName'])
-    
+    success = LeagueMatchups.user.register(form_data['username'], form_data['password'], form_data['summonerName'])
+    if success:
+        return flash_message(
+            success = True,
+            message = "Account created successfully"
+        )
+    else:
+        return flash_message(
+            success = False,
+            message = "Username already exists"
+        )
+
 @app.route('/connect', methods=["POST"])
 def connect(): #
     form_data = request.json # username, password
+
     userData = LeagueMatchups.user.connect(form_data['username'], form_data['password'])
-    LeagueMatchups.initializePlayer(userData["summonerName"])
-    session['userID'] = userData["id"]
-    return json.dumps(userData)
+    if userData:
+        LeagueMatchups.initializePlayer(userData["summonerName"])
+        session['userID'] = userData["id"]
+        return json.dumps(userData)
+
+    return flash_message(
+        success = False,
+        message = "Bad username or password"
+    )
+
+
+
 
 @app.route('/getSession', methods=["GET"])
 def getSession() -> str: # 
@@ -37,7 +62,7 @@ def getSession() -> str: #
     if 'userID' in session:
         return str(session['userID'])
     else:
-        return 0
+        return ""
 
 @app.route('/logout', methods=["GET"])
 def logout(): #
@@ -98,9 +123,5 @@ def set_riot_api_key():
 
 
 
-
-
-
-
 if __name__ == '__main__':
-    app.run('0.0.0.0', 3000, True)
+    app.run('0.0.0.0', 80, True)

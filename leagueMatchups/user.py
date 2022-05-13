@@ -1,5 +1,7 @@
 
+from django.db import IntegrityError
 from leagueMatchups.database import UsersDatabase
+import mysql
 
 class User():
 
@@ -8,14 +10,22 @@ class User():
         self.defaultPopularity = 0
     
     def register(self, username: str, password: str, summonerName: str) -> None:
-        self.usersDatabase.saveUser(
-            {
-                "username": username,
-                "password": password,
-                "summonerName": summonerName,
-                "popularity": self.defaultPopularity
-            }
-        )
+
+        if not username or not password: # in case of empty username and password
+            return 0
+             
+        try:
+            self.usersDatabase.saveUser(
+                {
+                    "username": username,
+                    "password": password,
+                    "summonerName": summonerName,
+                    "popularity": self.defaultPopularity
+                }
+            )
+            return 1
+        except mysql.connector.errors.IntegrityError:
+            return 0
 
     def connect(self, username: str, password: str) -> dict:
         """
@@ -30,7 +40,7 @@ class User():
             player_data = self.usersDatabase.getUserData(user_id) # {}: id, username, password, summoner, popularity
 
         else:
-            return None
+            return 0
 
         return player_data
 
