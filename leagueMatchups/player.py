@@ -17,6 +17,7 @@ class Player():
             raise Exception("Create an api_key.txt that holds your api key")
 
         self.summonerName = summonerName.lower()
+        self.id: int = 0
 
         ##### TESTING ######
         self.summonerName = "ItMightBeYaBoy".lower()
@@ -131,7 +132,15 @@ class Player():
         return result
 
     def getNotesByUserID(self, userID) -> list:
-        result = self.notesDatabase.getNotesByUser(userID)
+        all_notes = self.notesDatabase.getNotesByUser(userID)
+        result = {}
+        for note in all_notes:
+            result[note[0]] = {
+                "id": note[0],
+                "noteContent": note[1], 
+                "gameID": note[2],
+                "userID": note[3]
+            }
         return result
 
     def deleteNoteByNoteID(self, noteID):

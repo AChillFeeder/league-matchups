@@ -11,6 +11,6 @@ x patch should be updated automatically
 - Email sign up and account confirmation
 - pepper and salt the password hash
 
-- base link in react
+x base link in react
 
 x dropped SQL foreign key restraint, try to bring it back

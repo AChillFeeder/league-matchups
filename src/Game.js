@@ -2,8 +2,12 @@ import React from 'react';
 
 // Takes props
 
-const Game = () => {
-    return (  );
+const Game = (props) => {
+    return ( 
+        <li className='game'>
+            {console.log(props.game)}
+        </li>
+     );
 }
  
 export default Game;

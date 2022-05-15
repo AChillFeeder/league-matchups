@@ -1,6 +1,6 @@
 import React from 'react';
 import ENVIRONMENT_VARIABLES from "./ENVIRONMENT_VARIABLES.json";
-import {HTTPpost} from "./EasyHTTP";
+import {HTTPget, HTTPpost} from "./EasyHTTP";
 
 
 // send post request with user data

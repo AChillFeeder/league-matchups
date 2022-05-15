@@ -1,10 +1,11 @@
-from flask import Flask, request, session
+from flask import Flask, request
 from flask_cors import CORS
 import json
 import secrets
 
 from leagueMatchups import LeagueMatchups
 from leagueMatchups import LeagueMatchups as LM
+import leagueMatchups
 
 
 
@@ -13,6 +14,8 @@ CORS(app)
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.secret_key = secrets.token_hex(16)
 LeagueMatchups = LM()
+
+
 
 def flash_message(success=True, message=""):
     return json.dumps({
@@ -44,8 +47,12 @@ def connect(): #
     userData = LeagueMatchups.user.connect(form_data['username'], form_data['password'])
     if userData:
         LeagueMatchups.initializePlayer(userData["summonerName"])
-        session['userID'] = userData["id"]
-        return json.dumps(userData)
+        LeagueMatchups.player.id = userData["id"]
+        return flash_message(
+            success= True,
+            message= userData
+        )
+        # return json.dumps(userData)
 
     return flash_message(
         success = False,
@@ -56,21 +63,19 @@ def connect(): #
 
 
 @app.route('/getSession', methods=["GET"])
-def getSession() -> str: # 
+def getSession() -> dict: # 
     # maybe return summoner_name too
     """Returns the ID of the currect User"""
-    if 'userID' in session:
-        return str(session['userID'])
-    else:
-        return ""
+    id = LeagueMatchups.player.id
+    if id:
+        return flash_message(success=True, message=id)
+    else: # attribute error
+        return flash_message(success=False, message="No session")
 
 @app.route('/logout', methods=["GET"])
 def logout(): #
-    try:
-        session.pop('userID')
-        return "Logged out"
-    except KeyError:
-        return "No user is connected"
+    LeagueMatchups.player.id = 0
+    return flash_message(success=True, message="user logged out")
 
 # # # # # # # # # # # # # # # # # # # #
 
@@ -84,14 +89,14 @@ def gamesHistory(): #
     # ADD GAME TO DATABASE
     if request.method == 'POST': #
         form_data = request.json #playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1], notes
-        id = getSession()
+        id = int(json.loads(getSession())["message"])
         gameID = LeagueMatchups.player.saveGame(form_data["playerChampion"], form_data["laneOpponent"], form_data["win"], id)
-        LeagueMatchups.player.saveNotes(form_data["notes"], int(getSession()), gameID)
+        LeagueMatchups.player.saveNotes(form_data["notes"], int(id), gameID)
         return "Done"
     
     # GET ALL GAMES FROM DATABASE - add number of games fetched option
     elif request.method == 'GET': #
-        id = getSession()
+        id = int(json.loads(getSession())["message"])
         allSummonerGames = LeagueMatchups.player.getAllSummonerGames(id)
         allUserNotes = LeagueMatchups.player.getNotesByUserID(id)
         return json.dumps([allSummonerGames, allUserNotes])
