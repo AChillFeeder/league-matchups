@@ -8,14 +8,14 @@ const ListOfGames = ({games, notes}) => {
                 filtered_array.push(note);
             }
         })
-        // console.log(filtered_array)
         return filtered_array
     }
+
 
     return ( 
         <div className='listOfGames'>
             { games.map((game) => (
-                <Game key={game.id} game={game} notes={getNotesByID(game.id)}/>
+                <Game key={game.id} game={games} notes={getNotesByID(game.id)}/>
             ))}
         </div>
      );

@@ -6,19 +6,26 @@ import ListOfGames from './ListOfGames';
 
 const Home = () => {
 
-    const [games, setGames] = React.useState({});
-    const [notes, setNotes] = React.useState({});
+    const [games, setGames] = React.useState([]);
+    const [notes, setNotes] = React.useState([]);
     const [isLoading, setIsLoading] = React.useState(true);
     const [searchTerm, setSearchTerm] = React.useState("");
 
     const getAllGames = () => {
-        // setIsLoading(true)
+        setIsLoading(true)
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/gamesHistory`)
         .then( data => {
                 setGames(data[0])
                 setNotes(data[1])
                 setIsLoading(false);
             }
+        )
+
+        .then( () => {
+            console.log(games);
+            console.log(notes)
+        }
+
         )
     }
 
@@ -31,12 +38,6 @@ const Home = () => {
         getAllGames();
     }, [])
 
-    React.useEffect(() => {
-        console.log(games);
-        // games.filter(game =>
-        //     game.id.toLowerCase().includes(searchTerm.toLowerCase())
-        // );
-    }, [searchTerm])
 
     return ( 
         <div className="home">
