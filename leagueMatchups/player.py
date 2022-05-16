@@ -97,7 +97,7 @@ class Player():
         return gameID
 
     def getAllSummonerGames(self, id):
-        result = []
+        result = {}
 
         # ID playerChampion laneOpponent win userID
 
@@ -105,7 +105,7 @@ class Player():
         for game in all_games:
             summoner_champion = cassiopeia.Champion(id=game[1])
             opponent_champion = cassiopeia.Champion(id=game[2])
-            result.append( {
+            result[game[0]] = {
                 "playerChampion": {
                     "name": summoner_champion.name,
                     "image": summoner_champion.image.url,
@@ -116,9 +116,8 @@ class Player():
                     "image": opponent_champion.image.url,
                     "id": opponent_champion.id
                 },
-                "victory": game[3],
-                "id": game[0]
-            } )
+                "victory": game[3]
+            }
 
         return result
 

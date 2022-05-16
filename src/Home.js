@@ -32,8 +32,9 @@ const Home = () => {
 
     return ( 
         <div className="home">
+            {/* add search bar */}
             <button onClick={getAllGames}>Fetch</button>
-            {isLoading ? <p>Loading...</p> : <ListOfGames games={games} notes={notes} />}
+            <ListOfGames games={games} notes={notes}/>
         </div>
      );
 }
