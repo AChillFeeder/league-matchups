@@ -11,7 +11,6 @@ const Login = () => {
 
     const [usernameValue, setUsernameValue] = React.useState("")
     const [passwordValue, setPasswordValue] = React.useState("")
-    const [message, setMessage] = React.useState("")
 
     const handleUsernameInput = (event) => {
         setUsernameValue(event.target.value);
@@ -23,11 +22,8 @@ const Login = () => {
     const handleLoginSubmit = (event) => {
         HTTPpost(`${ENVIRONMENT_VARIABLES.url}/connect`, {"username": usernameValue, "password": passwordValue})
         .then( data => {
-            console.log(data);
-            if(data.success) history.push("/home");
-            else setMessage("Incorrect username or password");
-        }
-        )
+            if(data.success)  history.push("/home")
+        })
 
         event.preventDefault();
     }

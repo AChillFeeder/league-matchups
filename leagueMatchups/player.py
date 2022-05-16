@@ -134,14 +134,14 @@ class Player():
 
     def getNotesByUserID(self, userID) -> list:
         all_notes = self.notesDatabase.getNotesByUser(userID)
-        result = []
+        result = {}
         for note in all_notes:
-            result.append( {
+            result[note[0]] = {
                 "id": note[0],
                 "noteContent": note[1], 
                 "gameID": note[2],
                 "userID": note[3]
-            } )
+            }
         return result
 
     def deleteNoteByNoteID(self, noteID):
