@@ -1,10 +1,13 @@
 import React from 'react';
 import ENVIRONMENT_VARIABLES from "./ENVIRONMENT_VARIABLES.json";
 import {HTTPget, HTTPpost} from "./EasyHTTP";
+import { useHistory } from 'react-router-dom';
 
 
 // send post request with user data
 const Login = () => {
+
+    let history = useHistory();
 
     const [usernameValue, setUsernameValue] = React.useState("")
     const [passwordValue, setPasswordValue] = React.useState("")
@@ -18,15 +21,9 @@ const Login = () => {
 
     const handleLoginSubmit = (event) => {
         HTTPpost(`${ENVIRONMENT_VARIABLES.url}/connect`, {"username": usernameValue, "password": passwordValue})
-<<<<<<< HEAD
         .then( data => {
             if(data.success)  history.push("/home")
         })
-=======
-        .then( data =>
-            console.log(data)
-        )
->>>>>>> parent of 85a8f3a... Data properly retrieved in Home, ListOfGames and Games work, starting on Search function
 
         event.preventDefault();
     }

@@ -1,5 +1,4 @@
 import Game from "./Game";
-<<<<<<< HEAD
 const ListOfGames = ({games, notes}) => {
 
     const getNotesByID = (id) => {
@@ -9,24 +8,15 @@ const ListOfGames = ({games, notes}) => {
                 filtered_array.push(note);
             }
         })
+        // console.log(filtered_array)
         return filtered_array
     }
-
 
     return ( 
         <div className='listOfGames'>
             { games.map((game) => (
-                <Game key={game.id} game={games} notes={getNotesByID(game.id)}/>
+                <Game key={game.id} game={game} notes={getNotesByID(game.id)}/>
             ))}
-=======
-const ListOfGames = (props) => {
-    return ( 
-        <div class='listOfGames'>
-            {props.games.map( (object, i) => {
-                <Game game={object}/>     
-            } )
-            }
->>>>>>> parent of 85a8f3a... Data properly retrieved in Home, ListOfGames and Games work, starting on Search function
         </div>
      );
 }
