@@ -7,26 +7,44 @@ import ListOfGames from './ListOfGames';
 const Home = () => {
 
     const [games, setGames] = React.useState({});
-    const [notes, setNotes] = React.useState([])
+    const [notes, setNotes] = React.useState({});
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [searchTerm, setSearchTerm] = React.useState("");
 
     const getAllGames = () => {
-        console.log("fetching");
+        // setIsLoading(true)
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/gamesHistory`)
         .then( data => {
-                console.log(data);
-                // setGames(games_)
-                // setNotes(notes_)
+                setGames(data[0])
+                setNotes(data[1])
+                setIsLoading(false);
             }
         )
     }
 
+    const handleSearch = event => {
+        setSearchTerm(event.target.value);
+    }
+
+
+    React.useEffect(() => {
+        getAllGames();
+    }, [])
+
+    React.useEffect(() => {
+        console.log(games);
+        // games.filter(game =>
+        //     game.id.toLowerCase().includes(searchTerm.toLowerCase())
+        // );
+    }, [searchTerm])
+
     return ( 
         <div className="home">
-            {/* add search bar */}
             <button onClick={getAllGames}>Fetch</button>
-            {/* <ListOfGames searchTerm="" games={games} notes={notes}/> */}
+            <input type="text" id="search_bar" placeholder='search...' onChange={handleSearch} value={searchTerm}/>
+            {isLoading ? <p>Loading...</p> : <ListOfGames games={games} notes={notes} />}
         </div>
-     );
+    );
 }
  
 export default Home;

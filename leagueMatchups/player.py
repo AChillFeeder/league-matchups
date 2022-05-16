@@ -97,7 +97,7 @@ class Player():
         return gameID
 
     def getAllSummonerGames(self, id):
-        result = {}
+        result = []
 
         # ID playerChampion laneOpponent win userID
 
@@ -105,7 +105,7 @@ class Player():
         for game in all_games:
             summoner_champion = cassiopeia.Champion(id=game[1])
             opponent_champion = cassiopeia.Champion(id=game[2])
-            result[game[0]] = {
+            result.append( {
                 "playerChampion": {
                     "name": summoner_champion.name,
                     "image": summoner_champion.image.url,
@@ -116,8 +116,9 @@ class Player():
                     "image": opponent_champion.image.url,
                     "id": opponent_champion.id
                 },
-                "victory": game[3]
-            }
+                "victory": game[3],
+                "id": game[0]
+            } )
 
         return result
 
@@ -133,14 +134,14 @@ class Player():
 
     def getNotesByUserID(self, userID) -> list:
         all_notes = self.notesDatabase.getNotesByUser(userID)
-        result = {}
+        result = []
         for note in all_notes:
-            result[note[0]] = {
+            result.append( {
                 "id": note[0],
                 "noteContent": note[1], 
                 "gameID": note[2],
                 "userID": note[3]
-            }
+            } )
         return result
 
     def deleteNoteByNoteID(self, noteID):
