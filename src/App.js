@@ -1,11 +1,12 @@
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Register from './Register';
-import Login from './Login';
+import Register from './user_management/Register';
+import Login from './user_management/Login';
 
 import Navbar from './Navbar';
-import Home from './Home';
+import Home from './home_components/Home';
+import CurrentGame from './CurrentGame';
 
 const App = () => {
   return (
@@ -24,7 +25,9 @@ const App = () => {
                     <Navbar />
                     <Home />
                 </Route>
-                <Route path="/blogs/:id">
+                <Route path="/currentGame">
+                    <Navbar />
+                    <CurrentGame />
                 </Route>
                 <Route path="*">
                     {/* <NotFound /> */}

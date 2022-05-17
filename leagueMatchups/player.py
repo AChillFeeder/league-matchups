@@ -1,6 +1,8 @@
 import cassiopeia
 import cassiopeia_championgg
 import os
+
+from datapipelines import NotFoundError
 from leagueMatchups.database import GamesDatabase, NotesDatabase
 
 class Player():
@@ -20,7 +22,7 @@ class Player():
         self.id: int = 0
 
         ##### TESTING ######
-        self.summonerName = "ItMightBeYaBoy".lower()
+        self.summonerName = "LifeIsChocolate".lower()
         
         self.region = region
 
@@ -42,14 +44,19 @@ class Player():
                 "enemy_team_champion": [{name, image, id}, ...]
             }
         """
+        try:
+            self.currentMatch = self.summoner.current_match.to_dict()
+        except NotFoundError:
+            return {"success": False}
 
-        self.currentMatch = self.summoner.current_match.to_dict()
         summoner_champion, enemy_team_champions = self.sanitizeCurrentMatchData()
 
         result = {
+            "success": True,
             "summoner_champion": {
                 "name": summoner_champion.name,
                 "image": summoner_champion.image.url,
+                "full_image": summoner_champion.skins[0].loading_image_url,
                 "id": summoner_champion.id
             },
             "enemy_team_champions": []
@@ -60,7 +67,35 @@ class Player():
                 {
                     "name": champion.name,
                     "image": champion.image.url,
-                    "id": champion.id
+                    "full_image": champion.skins[0].loading_image_url,
+                    "id": champion.id,
+                    "spells": [
+                        {
+                        "cooldowns": champion.spells[0].cooldowns,
+                        "costs": champion.spells[0].costs,
+                        "description": champion.spells[0].description,
+                        "image_info": champion.spells[0].image_info.url,
+                        },
+                        {
+                        "cooldowns": champion.spells[1].cooldowns,
+                        "costs": champion.spells[1].costs,
+                        "description": champion.spells[1].description,
+                        "image_info": champion.spells[1].image_info.url,
+                        },
+                        {
+                        "cooldowns": champion.spells[2].cooldowns,
+                        "costs": champion.spells[2].costs,
+                        "description": champion.spells[2].description,
+                        "image_info": champion.spells[2].image_info.url,
+                        },
+                        {
+                        "cooldowns": champion.spells[3].cooldowns,
+                        "costs": champion.spells[3].costs,
+                        "description": champion.spells[3].description,
+                        "image_info": champion.spells[3].image_info.url,
+                        },
+                    ],
+                    "enemy_tips": champion.enemy_tips
                 }
             )
 
@@ -109,12 +144,14 @@ class Player():
                 "playerChampion": {
                     "name": summoner_champion.name,
                     "image": summoner_champion.image.url,
-                    "id": summoner_champion.id
+                    "id": summoner_champion.id,
+                    "full_image": summoner_champion.skins[0].loading_image_url,
                 },
                 "opponentChampion": {
                     "name": opponent_champion.name,
                     "image": opponent_champion.image.url,
-                    "id": opponent_champion.id
+                    "id": opponent_champion.id,
+                    "full_image": opponent_champion.skins[0].loading_image_url,
                 },
                 "victory": game[3],
                 "id": game[0]
