@@ -1,6 +1,6 @@
 import React from 'react';
 import ENVIRONMENT_VARIABLES from "./ENVIRONMENT_VARIABLES.json";
-import {HTTPget, HTTPpost} from "./EasyHTTP";
+import {HTTPpost} from "./EasyHTTP";
 import { useHistory } from 'react-router-dom';
 
 
