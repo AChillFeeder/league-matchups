@@ -22,7 +22,7 @@ class Player():
         self.id: int = 0
 
         ##### TESTING ######
-        self.summonerName = "LifeIsChocolate".lower()
+        self.summonerName = "enemy2good".lower()
         
         self.region = region
 
