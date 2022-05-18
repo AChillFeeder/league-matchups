@@ -6,7 +6,7 @@ import Login from './user_management/Login';
 
 import Navbar from './Navbar';
 import Home from './home_components/Home';
-import CurrentGame from './CurrentGame';
+import CurrentGame from './current_game/CurrentGame';
 
 const App = () => {
   return (

@@ -13,7 +13,6 @@ const Home = () => {
 
     const getAllGames = () => {
         setIsLoading(true);
-        console.log("fetching");
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/gamesHistory`)
         .then( data => {
                 console.log(data);

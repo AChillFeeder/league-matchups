@@ -1,6 +1,6 @@
 import React from 'react';
-import ENVIRONMENT_VARIABLES from "./usables/ENVIRONMENT_VARIABLES.json";
-import {HTTPget} from "./usables/EasyHTTP";
+import ENVIRONMENT_VARIABLES from "../usables/ENVIRONMENT_VARIABLES.json";
+import {HTTPget} from "../usables/EasyHTTP";
 import OpponentChoice from './OpponentChoice';
 import LiveGameInterface from './LiveGameInterface';
 
@@ -12,10 +12,9 @@ const CurrentGame = () => {
 
     const getCurrentGame = () => {
         setIsLoading(true);
-        console.log("fetching");
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/currentGame`)
         .then( data => {
-                console.log(data);
+                // console.log(data);
                 if(data.success){
                     setCurrentGameData(data);
                 } else {
@@ -31,8 +30,8 @@ const CurrentGame = () => {
     }, [])
 
     React.useEffect(() => {
-        console.log("selected Opponent => ");
-        console.log(selectedOpponent);
+        // console.log("selected Opponent => ");
+        // console.log(selectedOpponent);
     }, [selectedOpponent])
     
     return ( 
