@@ -88,9 +88,18 @@ def gamesHistory(): #
 
     # ADD GAME TO DATABASE
     if request.method == 'POST': #
-        form_data = request.json #playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1], notes
+        form_data = request.json #playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1], gameCreation and gameID, notes
+        print(form_data)
         id = int(json.loads(getSession())["message"])
-        gameID = LeagueMatchups.player.saveGame(form_data["playerChampion"], form_data["laneOpponent"], form_data["win"], id)
+        gameID = LeagueMatchups.player.saveGame(
+            form_data["playerChampion"], 
+            form_data["laneOpponent"], 
+            form_data["win"], 
+            id, 
+            form_data["gameCreation"], 
+            form_data["gameID"]
+        )
+
         LeagueMatchups.player.saveNotes(form_data["notes"], int(id), gameID)
         return "Done"
     
@@ -124,7 +133,9 @@ def getChampionAbilities():
 def set_riot_api_key():
     pass
 
-
+@app.route('/gameInformation/<gameID>')
+def gameInformation(gameID):
+    return LeagueMatchups.player.getMatchInformation(gameID)
 
 
 

@@ -14,7 +14,7 @@ const CurrentGame = () => {
         setIsLoading(true);
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/currentGame`)
         .then( data => {
-                // console.log(data);
+                console.log(data);
                 if(data.success){
                     setCurrentGameData(data);
                 } else {
@@ -42,7 +42,7 @@ const CurrentGame = () => {
                 !currentGameData ? 
                     <p>Summoner isn't in game</p> :
                     selectedOpponent ?
-                        <LiveGameInterface playerChampion={currentGameData.summoner_champion} opponentChampion={selectedOpponent} setOpponent={setSelectedOpponent}/> :
+                        <LiveGameInterface data={currentGameData} opponentChampion={selectedOpponent} setOpponent={setSelectedOpponent}/> :
                         <OpponentChoice data={currentGameData} setOpponent={setSelectedOpponent}/> 
             }
         </div>
