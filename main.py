@@ -93,7 +93,9 @@ def gamesHistory(): #
         id = int(json.loads(getSession())["message"])
         gameID = LeagueMatchups.player.saveGame(
             form_data["playerChampion"], 
-            form_data["laneOpponent"], 
+            form_data["laneOpponentChampion"], 
+            form_data["laneOpponentSummonerID"], 
+            form_data["laneOpponentSummonerName"], 
             form_data["win"], 
             id, 
             form_data["gameCreation"], 

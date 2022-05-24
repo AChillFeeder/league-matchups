@@ -24,7 +24,7 @@ class Player():
         self.id: int = 0
 
         ##### TESTING ######
-        self.summonerName = "sertuss".lower()
+        self.summonerName = "amicusp".lower()
         
         self.region = region
 
@@ -135,7 +135,8 @@ class Player():
         all_participants = self.currentMatch['participants']
 
         # Find summoner participant and turn him to a Champion object
-        summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower() == self.summonerName][0]
+        print(all_participants)
+        summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower().replace(" ", "") == self.summonerName][0]
         summoner_data = self.serializeParticipant(summoner_participant)
 
         # splitting the teams => team array has summoner and champion data
@@ -163,13 +164,13 @@ class Player():
             for participant in all_participants if participant['teamId']==100]
         team_two = [
             self.serializeParticipant(participant)
-            for participant in all_participants if participant['teamId']==100]
+            for participant in all_participants if participant['teamId']==200]
 
         return team_one, team_two
 
-    def saveGame(self, playerChampion, laneOpponent, win, id, gameCreation, gameID) -> int:
+    def saveGame(self, playerChampion, laneOpponentChampion, laneOpponentSummonerID, laneOpponentSummonerName, win, id, gameCreation, gameID) -> int:
         """Saves the game and returns it's ID"""
-        gameID = self.gamesDatabase.addSummonerGame(playerChampion, laneOpponent, win, id, gameCreation, gameID)
+        gameID = self.gamesDatabase.addSummonerGame(playerChampion, laneOpponentChampion, laneOpponentSummonerID, laneOpponentSummonerName, win, id, gameCreation, gameID)
         return gameID
 
     def getAllSummonerGames(self, id):
@@ -179,7 +180,7 @@ class Player():
 
         all_games = self.gamesDatabase.getAllSummonerGames(id)
         for game in all_games:
-            id_, playerChampion_ID, opponent_champion_ID, victory, user_ID, gameCreation, gameID = game 
+            id_, playerChampion_ID, opponent_champion_ID, victory, user_ID, gameCreation, gameID, opponentSummonerName, opponentSummonerID = game 
             summoner_champion = cassiopeia.Champion(id=playerChampion_ID)
             opponent_champion = cassiopeia.Champion(id=opponent_champion_ID)
             result.append( {
@@ -201,6 +202,8 @@ class Player():
                     "image": opponent_champion.image.url,
                     "id": opponent_champion.id,
                     "full_image": opponent_champion.skins[0].loading_image_url,
+                    "summonerName": opponentSummonerName,
+                    "summonerID": opponentSummonerID
                 }
             } )
 

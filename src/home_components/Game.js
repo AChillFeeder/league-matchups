@@ -28,10 +28,13 @@ const Game = ({game, notes}) => {
                 <ul id='generalInformation'>
                     <h4><strong>General Information: </strong></h4>
                     <li>Victory: {game.gameInformation.victory}</li>
-                    <li>Game ID: {game.gameInformation.id}</li>
+                    <li>Game ID (database): {game.gameInformation.id}</li>
                     <li>userID: {game.gameInformation.userID}</li>
                     <li>Game Creation: {game.gameInformation.gameCreation}</li>
-                    <li>Game ID: {game.gameInformation.gameID}</li>
+                    <li>Game ID (RiotAPI): {game.gameInformation.gameID}</li>
+                    <br />
+                    <li>Opponent Summoner Name: {game.opponentChampion.summonerName}</li>
+                    <li>Opponent Summoner ID: {game.opponentChampion.summonerID}</li>
                 </ul>
 
                 <ul id='playerChampion'>

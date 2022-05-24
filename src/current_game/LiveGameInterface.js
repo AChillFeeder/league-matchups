@@ -6,8 +6,10 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
     const saveGame = () => {
         HTTPpost(`${ENVIRONMENT_VARIABLES.url}/gamesHistory`, {
             //playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1], gameCreation and gameID
-            "playerChampion": data.summoner_champion.id,
-            "laneOpponent": opponentSummoner.id,
+            "playerChampion": data.summoner.champion.id,
+            "laneOpponentChampion": opponentSummoner.champion.id,
+            "laneOpponentSummonerID": opponentSummoner.summonerId,
+            "laneOpponentSummonerName": opponentSummoner.summonerName,
             "win": 1,
             "gameCreation": data.game_creation,
             "gameID": data.gameID,
@@ -27,7 +29,7 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
             <ul>
                 <h5>General Information</h5>
                 <li>Summoner Name: {data.summoner.summonerName}</li>
-                <li>Summoner ID: {data.summoner.summonerID}</li>
+                <li>Summoner ID: {data.summoner.summonerId}</li>
                 <li>Spell1Id: {data.summoner.spell1Id}</li>
                 <li>Spell2Id: {data.summoner.spell2Id}</li>
 
@@ -45,7 +47,7 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
             <ul>
                 <h5>General Information</h5>
                 <li>Summoner Name: {opponentSummoner.summonerName}</li>
-                <li>Summoner ID: {opponentSummoner.summonerID}</li>
+                <li>Summoner ID: {opponentSummoner.summonerId}</li>
                 <li>Spell1Id: {opponentSummoner.spell1Id}</li>
                 <li>Spell2Id: {opponentSummoner.spell2Id}</li>
 
