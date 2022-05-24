@@ -3,7 +3,7 @@ from flask_cors import CORS
 import json
 import secrets
 
-from leagueMatchups import LeagueMatchups
+from leagueMatchups import LeagueMatchups, player
 from leagueMatchups import LeagueMatchups as LM
 import leagueMatchups
 
@@ -135,7 +135,8 @@ def set_riot_api_key():
 
 @app.route('/gameInformation/<gameID>')
 def gameInformation(gameID):
-    return LeagueMatchups.player.getMatchInformation(gameID)
+    # playerChampion, opponentChampion = champions.split(";")
+    return LeagueMatchups.player.getMatchInformation(gameID) #, playerChampion, opponentChampion)
 
 
 

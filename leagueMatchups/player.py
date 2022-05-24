@@ -24,7 +24,7 @@ class Player():
         self.id: int = 0
 
         ##### TESTING ######
-        self.summonerName = "doxyy".lower()
+        self.summonerName = "odoamne".lower()
         
         self.region = region
 
@@ -203,7 +203,7 @@ class Player():
     def deleteNoteByNoteID(self, noteID):
         pass
 
-    def getMatchInformation(self, matchID: int):
+    def getMatchInformation(self, matchID: int): #, playerChampion: str, opponentChampion: str):
         url = "https://{continent}.api.riotgames.com/lol/match/v5/matches/{region}1_{match_id}?api_key={api_key}".format(
             continent = "europe", # AMERICAS, ASIA
             region = self.region,
@@ -211,6 +211,11 @@ class Player():
             api_key = self.apiKey
         )
         response = requests.get(url, headers=self.headers)
+
+        # all_participants = response["participants"]
+        # for participant in all_participants:
+        #     if participant["championName"].lower() == playerChampion:
+
         return response.json()
 
     def getMatchHistory(self, start:int=0, count:int=1, gameType:str="ranked"):
@@ -223,6 +228,8 @@ class Player():
             api_key=self.apiKey
         )
         
-        response = requests.get(url, headers=self.headers)
-        return response.json()
+        advanced_game_data = requests.get(url, headers=self.headers)
+
+
+        return advanced_game_data.json()
 

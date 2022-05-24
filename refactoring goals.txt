@@ -20,4 +20,4 @@ x dropped SQL foreign key restraint, try to bring it back
 - add note taking menu
 - add data about gold difference and stuff (after the game)
 - limit number of games in home page (maybe max 100, RIOT API allows 120 every 2 minutes)
-
+- get whole data from current game, not just champion name

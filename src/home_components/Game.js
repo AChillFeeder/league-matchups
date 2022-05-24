@@ -23,39 +23,55 @@ const Game = ({game, notes}) => {
     , [])
 
     return ( 
-        <div className='game' style={{border: "2px solid black"}}>
-            <h4>Games Information</h4>
-            <ul key={game.gameInformation.id}>
-                <li><strong>Other Information: </strong></li>
-                <li>Victory: {game.gameInformation.victory}</li>
-                <li>Game ID: {game.gameInformation.id}</li>
-                <li>userID: {game.gameInformation.userID}</li>
-                <li>Game Creation: {game.gameInformation.gameCreation}</li>
-                <li>Game ID: {game.gameInformation.gameID}</li>
+        <div className='match-container' style={{border: "2px solid black"}}>
+            <div key={game.gameInformation.id} className='match-data-container'>
+                <ul id='generalInformation'>
+                    <h4><strong>General Information: </strong></h4>
+                    <li>Victory: {game.gameInformation.victory}</li>
+                    <li>Game ID: {game.gameInformation.id}</li>
+                    <li>userID: {game.gameInformation.userID}</li>
+                    <li>Game Creation: {game.gameInformation.gameCreation}</li>
+                    <li>Game ID: {game.gameInformation.gameID}</li>
+                </ul>
 
-                <li><strong>Player Champion: </strong></li>
-                <li>Champion Name: {game.playerChampion.name}</li>
-                <img src={game.playerChampion.image} alt={`${game.playerChampion.name}`} />
-                <img src={game.playerChampion.full_image} alt={`${game.playerChampion.name} full`} />
-                <li>Champion Id: {game.playerChampion.id}</li>
+                <ul id='playerChampion'>
+                    <h4><strong>Player Champion: </strong></h4>
+                    <li>Champion Name: {game.playerChampion.name}</li>
+                    <img src={game.playerChampion.image} alt={`${game.playerChampion.name}`} />
+                    <li>Champion Id: {game.playerChampion.id}</li>
 
-                <li><strong>Opponent Champion: </strong></li>
-                <li>Champion Name: {game.opponentChampion.name}</li>
-                <img src={game.opponentChampion.image} alt={`${game.opponentChampion.name}`} />
-                <img src={game.opponentChampion.full_image} alt={`${game.playerChampion.name} full`} />
-                <li>Champion ID: {game.opponentChampion.id}</li>
-            </ul>
-            <h4>Notes</h4>
-            {notes.map(note => {
-                return(
-                    <ul key={note.id} style={{border: "1px solid black"}}>
-                        <li>game ID: {note.gameID}</li>
-                        <li>Note ID: {note.id}</li>
-                        <li>Note Content: {note.noteContent}</li>
-                    </ul> 
-                ) 
-            })}
+                    {/* <img src={game.playerChampion.full_image} alt={`${game.playerChampion.name} full`} /> */}
+                </ul>
 
+                <ul id='opponentChampion'>
+                    <h4><strong>Opponent Champion: </strong></h4>
+                    <li>Champion Name: {game.opponentChampion.name}</li>
+                    <img src={game.opponentChampion.image} alt={`${game.opponentChampion.name}`} />
+                    <li>Champion ID: {game.opponentChampion.id}</li>
+
+                    {/* <img src={game.opponentChampion.full_image} alt={`${game.playerChampion.name} full`} /> */}
+                </ul>
+            </div>
+
+        <div className='toggle-game-information'>
+            <div className='match-notes-container'>
+                <h4>Notes</h4>  
+                {notes.map(note => {
+                    return(
+                        <ul key={note.id}  style={{border: "1px solid black"}}>
+                            <li>game ID: {note.gameID}</li>
+                            <li>Note ID: {note.id}</li>
+                            <li>Note Content: {note.noteContent}</li>
+                        </ul> 
+                    ) 
+                })}
+            </div>
+
+            <div className='match-advanced-information'>
+
+            </div>
+        </div>
+        
         </div>    
     );
 }
