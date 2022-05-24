@@ -24,7 +24,7 @@ class Player():
         self.id: int = 0
 
         ##### TESTING ######
-        self.summonerName = "odoamne".lower()
+        self.summonerName = "sertuss".lower()
         
         self.region = region
 
@@ -60,55 +60,71 @@ class Player():
         except NotFoundError:
             return {"success": False}
 
-        summoner_champion, enemy_team_champions = self.sanitizeCurrentMatchData()
+        summoner_data, enemy_team_data = self.sanitizeCurrentMatchData()
+        summoner_champion = summoner_data["champion"]
 
         result = {
             "success": True,
             "gameID": self.currentMatch["id"],
             "game_creation": self.currentMatch["creation"],
-            "summoner_champion": {
-                "name": summoner_champion.name,
-                "image": summoner_champion.image.url,
-                "full_image": summoner_champion.skins[0].loading_image_url,
-                "id": summoner_champion.id
+            "summoner": {
+                "champion": {
+                    "name": summoner_champion.name,
+                    "image": summoner_champion.image.url,
+                    "full_image": summoner_champion.skins[0].loading_image_url,
+                    "id": summoner_champion.id
+                    },
+                "summonerName": summoner_data['summonerName'],
+                "summonerID": summoner_data['summonerId'],
+                "perks": summoner_data['perks'],
+                "spell1Id": summoner_data['spell1Id'],
+                "spell2Id": summoner_data['spell2Id'] 
             },
-            "enemy_team_champions": []
+            "enemy_summoners": []
         }
 
-        for champion in enemy_team_champions:
-            result['enemy_team_champions'].append(
-                {
-                    "name": champion.name,
-                    "image": champion.image.url,
-                    "full_image": champion.skins[0].loading_image_url,
-                    "id": champion.id,
-                    "spells": [
-                        {
-                        "cooldowns": champion.spells[0].cooldowns,
-                        "costs": champion.spells[0].costs,
-                        "description": champion.spells[0].description,
-                        "image_info": champion.spells[0].image_info.url,
-                        },
-                        {
-                        "cooldowns": champion.spells[1].cooldowns,
-                        "costs": champion.spells[1].costs,
-                        "description": champion.spells[1].description,
-                        "image_info": champion.spells[1].image_info.url,
-                        },
-                        {
-                        "cooldowns": champion.spells[2].cooldowns,
-                        "costs": champion.spells[2].costs,
-                        "description": champion.spells[2].description,
-                        "image_info": champion.spells[2].image_info.url,
-                        },
-                        {
-                        "cooldowns": champion.spells[3].cooldowns,
-                        "costs": champion.spells[3].costs,
-                        "description": champion.spells[3].description,
-                        "image_info": champion.spells[3].image_info.url,
-                        },
-                    ],
-                    "enemy_tips": champion.enemy_tips
+        for summoner in enemy_team_data:
+            champion = summoner["champion"]
+            result['enemy_summoners'].append(
+                {   
+                    "summonerName": summoner['summonerName'],
+                    "summonerId": summoner['summonerId'],
+                    "perks": summoner['perks'],
+                    "spell1Id": summoner['spell1Id'],
+                    "spell2Id": summoner['spell2Id'],
+                    "champion": {
+                        "name": champion.name,
+                        "image": champion.image.url,
+                        "full_image": champion.skins[0].loading_image_url,
+                        "id": champion.id,
+                        "spells": [
+                            {
+                            "cooldowns": champion.spells[0].cooldowns,
+                            "costs": champion.spells[0].costs,
+                            "description": champion.spells[0].description,
+                            "image_info": champion.spells[0].image_info.url,
+                            },
+                            {
+                            "cooldowns": champion.spells[1].cooldowns,
+                            "costs": champion.spells[1].costs,
+                            "description": champion.spells[1].description,
+                            "image_info": champion.spells[1].image_info.url,
+                            },
+                            {
+                            "cooldowns": champion.spells[2].cooldowns,
+                            "costs": champion.spells[2].costs,
+                            "description": champion.spells[2].description,
+                            "image_info": champion.spells[2].image_info.url,
+                            },
+                            {
+                            "cooldowns": champion.spells[3].cooldowns,
+                            "costs": champion.spells[3].costs,
+                            "description": champion.spells[3].description,
+                            "image_info": champion.spells[3].image_info.url,
+                            },
+                        ],
+                        "enemy_tips": champion.enemy_tips
+                    }
                 }
             )
 
@@ -120,22 +136,34 @@ class Player():
 
         # Find summoner participant and turn him to a Champion object
         summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower() == self.summonerName][0]
-        summoner_champion = cassiopeia.Champion(id=summoner_participant['championId'])
+        summoner_data = self.serializeParticipant(summoner_participant)
 
-        # splitting the teams => team array has champion ID only, no other data
+        # splitting the teams => team array has summoner and champion data
         team_one, team_two = self.teamsFromCurrentGame(all_participants)
 
         # defining the enemy team
-        enemy_team_champions = team_one if summoner_participant['teamId'] == 200 else team_two
+        enemy_team_data = team_one if summoner_participant['teamId'] == 200 else team_two
 
-        return summoner_champion, enemy_team_champions
-        
-
+        return summoner_data, enemy_team_data
         
     @staticmethod
-    def teamsFromCurrentGame(all_participants):
-        team_one = [cassiopeia.Champion(id=participant['championId']) for participant in all_participants if participant['teamId']==100]
-        team_two = [cassiopeia.Champion(id=participant['championId']) for participant in all_participants if participant['teamId']==200]
+    def serializeParticipant(participant):
+        return {
+            "champion": cassiopeia.Champion(id=participant['championId']),
+            "summonerName": participant['summonerName'],
+            "summonerId": participant['summonerId'],
+            "perks": participant['perks'],
+            "spell1Id": participant['spell1Id'],
+            "spell2Id": participant['spell2Id'] 
+        }
+
+    def teamsFromCurrentGame(self, all_participants):
+        team_one = [
+            self.serializeParticipant(participant)
+            for participant in all_participants if participant['teamId']==100]
+        team_two = [
+            self.serializeParticipant(participant)
+            for participant in all_participants if participant['teamId']==100]
 
         return team_one, team_two
 
