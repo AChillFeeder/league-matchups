@@ -2,23 +2,18 @@
 x Remove interactions with Community Dragon Api from React and into Flask
 x Use DataDragonCommunity Api instead of raw data
 x Spread classes into multiple files
-- Extensive use of Exceptions
 x API key in different file
-
 x patch should be updated automatically
-- decorator for login and session purposes
+x base link in react
+x dropped SQL foreign key restraint, try to bring it back
+x add data about gold difference and stuff (after the game)
+x get whole data from current game, not just champion name
+x add "keywords" in games in History, containing searcheable words
 
+- Extensive use of Exceptions
+- decorator for login and session purposes
 - Email sign up and account confirmation
 - pepper and salt the password hash
-
-x base link in react
-
-x dropped SQL foreign key restraint, try to bring it back
-
-
-
 - add note taking menu
-x add data about gold difference and stuff (after the game)
 - limit number of games in home page (maybe max 100, RIOT API allows 120 every 2 minutes)
-x get whole data from current game, not just champion name
-- add "keywords" in games in History, containing searcheable words
+- advanced search, specify keywords (search by opponent Champion...) searcheable_keywords = {"all":..., "champions":...}
