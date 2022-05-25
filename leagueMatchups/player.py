@@ -168,9 +168,9 @@ class Player():
 
         return team_one, team_two
 
-    def saveGame(self, playerChampion, laneOpponentChampion, laneOpponentSummonerID, laneOpponentSummonerName, win, id, gameCreation, gameID) -> int:
+    def saveGame(self, playerChampion, laneOpponentChampion, laneOpponentSummonerID, laneOpponentSummonerName, win, id, gameCreation, gameID, summonerName, summonerID) -> int:
         """Saves the game and returns it's ID"""
-        gameID = self.gamesDatabase.addSummonerGame(playerChampion, laneOpponentChampion, laneOpponentSummonerID, laneOpponentSummonerName, win, id, gameCreation, gameID)
+        gameID = self.gamesDatabase.addSummonerGame(playerChampion, laneOpponentChampion, laneOpponentSummonerID, laneOpponentSummonerName, win, id, gameCreation, gameID, summonerName, summonerID)
         return gameID
 
     def getAllSummonerGames(self, id):
@@ -180,7 +180,7 @@ class Player():
 
         all_games = self.gamesDatabase.getAllSummonerGames(id)
         for game in all_games:
-            id_, playerChampion_ID, opponent_champion_ID, victory, user_ID, gameCreation, gameID, opponentSummonerName, opponentSummonerID = game 
+            id_, playerChampion_ID, opponent_champion_ID, victory, user_ID, gameCreation, gameID, opponentSummonerName, opponentSummonerID, summonerName, summonerID = game 
             summoner_champion = cassiopeia.Champion(id=playerChampion_ID)
             opponent_champion = cassiopeia.Champion(id=opponent_champion_ID)
             result.append( {
@@ -196,6 +196,8 @@ class Player():
                     "image": summoner_champion.image.url,
                     "id": summoner_champion.id,
                     "full_image": summoner_champion.skins[0].loading_image_url,
+                    "summonerName": summonerName,
+                    "summonerID": summonerID
                 },
                 "opponentChampion": {
                     "name": opponent_champion.name,

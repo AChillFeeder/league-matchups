@@ -99,7 +99,9 @@ def gamesHistory(): #
             form_data["win"], 
             id, 
             form_data["gameCreation"], 
-            form_data["gameID"]
+            form_data["gameID"],
+            form_data["summonerName"],
+            form_data["summonerID"],
         )
 
         LeagueMatchups.player.saveNotes(form_data["notes"], int(id), gameID)

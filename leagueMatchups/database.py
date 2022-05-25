@@ -15,10 +15,10 @@ class GamesDatabase:
     def __init__(self) -> None:
         self.cursor = database.cursor(buffered=True)
 
-    def addSummonerGame(self, playerChampion: str, laneOpponentChampion: str, laneOpponentSummonerID:int, laneOpponentSummonerName:str, win: int, id: int, gameCreation: int, gameID: int): # update test
+    def addSummonerGame(self, playerChampion: str, laneOpponentChampion: str, laneOpponentSummonerID:str, laneOpponentSummonerName:str, win: int, id: int, gameCreation: int, gameID: int, summonerName:str, summonerID:str): # update test
         """Win takes 1 or 0"""
-        self.cursor.execute("""INSERT INTO games (playerChampion, laneOpponent, win, userID, gameCreation, gameID, opponentSummonerName, opponentSummonerID) VALUES ('{}','{}',{},{},{},{},'{}','{}')""".format(
-                playerChampion, laneOpponentChampion, win, id, gameCreation, gameID, laneOpponentSummonerName, laneOpponentSummonerID
+        self.cursor.execute("""INSERT INTO games (playerChampion, laneOpponent, win, userID, gameCreation, gameID, opponentSummonerName, opponentSummonerID, summonerName, summonerID) VALUES ('{}','{}',{},{},{},{},'{}','{}','{}','{}')""".format(
+                playerChampion, laneOpponentChampion, win, id, gameCreation, gameID, laneOpponentSummonerName, laneOpponentSummonerID,summonerName,summonerID
             ))
         database.commit()
         return self.cursor.lastrowid
