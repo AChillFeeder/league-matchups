@@ -206,7 +206,8 @@ class Player():
                     "full_image": opponent_champion.skins[0].loading_image_url,
                     "summonerName": opponentSummonerName,
                     "summonerID": opponentSummonerID
-                }
+                },
+                "searchable_keywords": [summoner_champion.name, summonerName, opponent_champion.name, opponentSummonerName]
             } )
 
         return result

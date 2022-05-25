@@ -12,14 +12,10 @@ const ListOfGames = ({games, notes, searchTerm}) => {
     }
 
     function filteredGames(term) { // filter games based on search term
-        let filtered_games = [];
-        games.map((game) => {
-            if( // If the search term is in the player's champion name or the opponent's
-                game.playerChampion.name.toLowerCase().includes(term) ||
-                game.opponentChampion.name.toLowerCase().includes(term)
-                ){
-                filtered_games.push(game);
-            }
+        let filtered_games = games.filter((game) => {
+            for (let keyword of game.searchable_keywords){
+                if(keyword.toLowerCase().includes(term.toLowerCase())) return true
+            } return false 
         })
         return filtered_games
     }
