@@ -11,7 +11,7 @@ const Game = ({game, notes}) => {
         setIsLoading(true);
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/gameInformation/${game.gameInformation.gameID}`)
         .then( data => {
-                console.log(data);
+                // console.log(data);
                 setAdvancedData(data);
                 setIsLoading(false);
             }
@@ -19,7 +19,9 @@ const Game = ({game, notes}) => {
     }
 
     React.useEffect(
-        () => advancedGameInformation()
+        () => {
+            advancedGameInformation()
+        } 
     , [])
 
     return ( 
@@ -70,9 +72,24 @@ const Game = ({game, notes}) => {
                 })}
             </div>
 
-            <div className='match-advanced-information'>
-
-            </div>
+            {
+                !isLoading ?
+                <div className='match-advanced-information'>
+                    {advancedData.info.participants.map((participant)=>{
+                        // console.log(`${participant.summonerName} <-> ${game.opponentChampion.summonerName}`)
+                        if(participant.summonerName == game.opponentChampion.summonerName){
+                            {console.log(participant)}
+                            return (<div>
+                                <h4>Opponent Advanced Data:</h4>
+                                <ul>
+                                    <li>Gold Earned: {participant.goldEarned}</li>
+                                </ul>
+                            </div>)
+                        }
+                    })}
+                </div> :
+                <p>No data yet</p>
+            }
         </div>
         
         </div>    

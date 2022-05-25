@@ -127,10 +127,6 @@ def getNotesByGameId(gameID) -> json:
 def deleteNote():
     pass #noteID
 
-@app.route('/getChampionAbilities')
-def getChampionAbilities():
-    pass
-
 @app.route('/set_riot_api_key', methods=["POST"])
 def set_riot_api_key():
     pass
