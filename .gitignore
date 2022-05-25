@@ -27,5 +27,5 @@ api_key.txt
 
 # Python things
 __pycache__/
-*.py[cod]
+ *.pyc
 
