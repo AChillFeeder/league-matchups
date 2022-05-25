@@ -6,6 +6,8 @@ const Game = ({game, notes}) => {
 
     const [isLoading, setIsLoading] = React.useState(true)
     const [advancedData, setAdvancedData] = React.useState({})
+    const [summonerAdvancedData, setSummonerAdvancedData] = React.useState({})
+    const [opponentAdvancedData, setOpponentAdvancedData] = React.useState({})
     
     const advancedGameInformation = () => {
         setIsLoading(true);
@@ -19,8 +21,27 @@ const Game = ({game, notes}) => {
     }
 
     React.useEffect(
-        () => advancedGameInformation()
+        () => {
+            advancedGameInformation()
+        } 
     , [])
+
+    React.useEffect(
+        () => {
+            if(advancedData.info){
+                advancedData.info.participants.map((participant) => {
+                    if(participant.summonerName == game.playerChampion.summonerName){
+                        console.log("Found summoner")
+                        setSummonerAdvancedData(participant)
+                    }
+                    if(participant.summonerName == game.opponentChampion.summonerName){
+                        console.log("Found opponent")
+                        setOpponentAdvancedData(participant)
+                    }
+                })
+            }
+        }, [advancedData]
+    )
 
     return ( 
         <div className='match-container' style={{border: "2px solid black"}}>
@@ -28,10 +49,16 @@ const Game = ({game, notes}) => {
                 <ul id='generalInformation'>
                     <h4><strong>General Information: </strong></h4>
                     <li>Victory: {game.gameInformation.victory}</li>
-                    <li>Game ID: {game.gameInformation.id}</li>
+                    <li>Game ID (database): {game.gameInformation.id}</li>
                     <li>userID: {game.gameInformation.userID}</li>
                     <li>Game Creation: {game.gameInformation.gameCreation}</li>
-                    <li>Game ID: {game.gameInformation.gameID}</li>
+                    <li>Game ID (RiotAPI): {game.gameInformation.gameID}</li>
+                    <br />
+                    <li>Summoner Name: {game.playerChampion.summonerName}</li>
+                    <li>Summoner ID: {game.playerChampion.summonerID}</li>
+                    <br />
+                    <li>Opponent Summoner Name: {game.opponentChampion.summonerName}</li>
+                    <li>Opponent Summoner ID: {game.opponentChampion.summonerID}</li>
                 </ul>
 
                 <ul id='playerChampion'>
@@ -67,9 +94,48 @@ const Game = ({game, notes}) => {
                 })}
             </div>
 
-            <div className='match-advanced-information'>
-
-            </div>
+            {
+                !isLoading ?
+                <div className='match-advanced-information'>
+                    
+                <div>
+                    <table>
+                        <tr>
+                            <th>Stat</th>
+                            <th>Summoner</th>
+                            <th>Opponent</th>
+                        </tr>
+                        <tr>
+                            <td>Gold Earned: </td>
+                            <td> {summonerAdvancedData.goldEarned} </td>
+                            <td> {opponentAdvancedData.goldEarned} </td>
+                        </tr>
+                        <tr>
+                            <td>Kills: </td>
+                            <td> {summonerAdvancedData.kills} </td>
+                            <td> {opponentAdvancedData.kills} </td>
+                        </tr>
+                        <tr>
+                            <td>Deaths: </td>
+                            <td> {summonerAdvancedData.deaths} </td>
+                            <td> {opponentAdvancedData.deaths} </td>
+                        </tr>
+                        <tr>
+                            <td>Vision score: </td>
+                            <td> {summonerAdvancedData.visionScore} </td>
+                            <td> {opponentAdvancedData.visionScore} </td>
+                        </tr>
+                        <tr>
+                            <td>Turret takedowns: </td>
+                            <td> {summonerAdvancedData.turretTakedowns} </td>
+                            <td> {opponentAdvancedData.turretTakedowns} </td>
+                        </tr>
+                    </table>
+                </div>
+                    
+                </div> :
+                <p>No data yet</p>
+            }
         </div>
         
         </div>    

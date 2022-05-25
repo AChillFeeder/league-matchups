@@ -42,7 +42,7 @@ const CurrentGame = () => {
                 !currentGameData ? 
                     <p>Summoner isn't in game</p> :
                     selectedOpponent ?
-                        <LiveGameInterface data={currentGameData} opponentChampion={selectedOpponent} setOpponent={setSelectedOpponent}/> :
+                        <LiveGameInterface data={currentGameData} opponentSummoner={selectedOpponent} setOpponent={setSelectedOpponent}/> :
                         <OpponentChoice data={currentGameData} setOpponent={setSelectedOpponent}/> 
             }
         </div>

@@ -93,11 +93,15 @@ def gamesHistory(): #
         id = int(json.loads(getSession())["message"])
         gameID = LeagueMatchups.player.saveGame(
             form_data["playerChampion"], 
-            form_data["laneOpponent"], 
+            form_data["laneOpponentChampion"], 
+            form_data["laneOpponentSummonerID"], 
+            form_data["laneOpponentSummonerName"], 
             form_data["win"], 
             id, 
             form_data["gameCreation"], 
-            form_data["gameID"]
+            form_data["gameID"],
+            form_data["summonerName"],
+            form_data["summonerID"],
         )
 
         LeagueMatchups.player.saveNotes(form_data["notes"], int(id), gameID)
@@ -124,10 +128,6 @@ def getNotesByGameId(gameID) -> json:
 @app.route('/deleteNote/<noteID>')
 def deleteNote():
     pass #noteID
-
-@app.route('/getChampionAbilities')
-def getChampionAbilities():
-    pass
 
 @app.route('/set_riot_api_key', methods=["POST"])
 def set_riot_api_key():
