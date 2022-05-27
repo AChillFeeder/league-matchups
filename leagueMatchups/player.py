@@ -14,6 +14,8 @@ class Player():
         self.gamesDatabase = GamesDatabase()
         self.notesDatabase = NotesDatabase()
 
+        self.matchHistoryLength:int = 10
+
         try:
             with open(os.path.join('leagueMatchups' ,'data', 'api_key.txt'), "r") as file:
                 self.apiKey = file.read()
@@ -22,19 +24,18 @@ class Player():
 
         self.summonerName = summonerName.lower()
         self.id: int = 0
+        self.region = region
+        cassiopeia.set_riot_api_key(self.apiKey) 
+        cassiopeia.set_default_region(self.region) 
+
+
 
         ##### TESTING ######
         self.summonerName = "kasing1".lower()
         
-        self.region = region
-
-        cassiopeia.set_riot_api_key(self.apiKey) 
-        cassiopeia.set_default_region(self.region) 
-
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
         print("summoner's name: ", self.summoner.name)
 
-        # cassiopeia.get_match(id=5882712291, region="EUW")
 
         self.headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:98.0) Gecko/20100101 Firefox/98.0",
@@ -209,6 +210,8 @@ class Player():
                 },
                 "searchable_keywords": [summoner_champion.name, summonerName, opponent_champion.name, opponentSummonerName]
             } )
+
+        return result[-self.matchHistoryLength:]
 
         return result
 
