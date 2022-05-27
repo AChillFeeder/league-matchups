@@ -58,9 +58,6 @@ def connect(): #
         message = "Bad username or password"
     )
 
-
-
-
 @app.route('/getSession', methods=["GET"])
 def getSession() -> dict: # 
     # maybe return summoner_name too
@@ -77,9 +74,6 @@ def logout(): #
     return flash_message(success=True, message="user logged out")
 
 # # # # # # # # # # # # # # # # # # # #
-
-
-
 
 @app.route('/gamesHistory', methods=['GET', 'POST'])
 def gamesHistory(): # 
@@ -124,6 +118,16 @@ def getNotesByGameId(gameID) -> json:
     result = LeagueMatchups.player.getNotesByGameID(int(gameID))
     return json.dumps(result)
 
+@app.route('/gameInformation/<gameID>')
+def gameInformation(gameID):
+    # playerChampion, opponentChampion = champions.split(";")
+    return LeagueMatchups.player.getMatchInformation(gameID) #, playerChampion, opponentChampion)
+
+@app.route('/getNotesByMatchup/<summonerChampionID>/<opponentChampionID>')
+def getChampionNotes(summonerChampionID, opponentChampionID):
+    result = LeagueMatchups.player.getNotesByMatchup(summonerChampionID, opponentChampionID)
+    print(result)
+
 @app.route('/deleteNote/<noteID>')
 def deleteNote():
     pass #noteID
@@ -131,12 +135,6 @@ def deleteNote():
 @app.route('/set_riot_api_key', methods=["POST"])
 def set_riot_api_key():
     pass
-
-@app.route('/gameInformation/<gameID>')
-def gameInformation(gameID):
-    # playerChampion, opponentChampion = champions.split(";")
-    return LeagueMatchups.player.getMatchInformation(gameID) #, playerChampion, opponentChampion)
-
 
 
 if __name__ == '__main__':

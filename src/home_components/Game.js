@@ -8,6 +8,8 @@ const Game = ({game, notes}) => {
     const [advancedData, setAdvancedData] = React.useState({})
     const [summonerAdvancedData, setSummonerAdvancedData] = React.useState({})
     const [opponentAdvancedData, setOpponentAdvancedData] = React.useState({})
+
+    const [isVisible, setIsVisible] = React.useState(false);
     
     const advancedGameInformation = () => {
         setIsLoading(true);
@@ -44,9 +46,10 @@ const Game = ({game, notes}) => {
     )
 
     return ( 
-        <div className='match-container' style={{border: "2px solid black"}}>
+        <div className='match-container' style={{border: "2px solid black"}} onClick={() => setIsVisible(!isVisible)}>
+
             <div key={game.gameInformation.id} className='match-data-container'>
-                <ul id='generalInformation'>
+                <ul id='generalInformation' style={ isVisible ? {} : { display: 'none' }}>
                     <h4><strong>General Information: </strong></h4>
                     <li>Victory: {game.gameInformation.victory}</li>
                     <li>Game ID (database): {game.gameInformation.id}</li>
@@ -80,7 +83,7 @@ const Game = ({game, notes}) => {
                 </ul>
             </div>
 
-        <div className='toggle-game-information'>
+        <div className='toggle-game-information' style={ isVisible ? {} : { display: 'none' }}>
             <div className='match-notes-container'>
                 <h4>Notes</h4>  
                 {notes.map(note => {

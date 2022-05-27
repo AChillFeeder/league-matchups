@@ -31,7 +31,7 @@ class Player():
 
 
         ##### TESTING ######
-        self.summonerName = "kasing1".lower()
+        self.summonerName = "broeki".lower()
         
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
         print("summoner's name: ", self.summoner.name)
@@ -43,9 +43,6 @@ class Player():
             "Accept-Charset": "application/x-www-form-urlencoded; charset=UTF-8",
             "Origin": "https://developer.riotgames.com"
         }
-
-
-
 
     def getCurrentGame(self) -> dict:
         """
@@ -269,4 +266,8 @@ class Player():
 
 
         return advanced_game_data.json()
+
+    def getNotesByMatchup(self, summonerChampionID, opponentChampionID):
+        result = self.notesDatabase.getAllNotesByMatchup(summonerChampionID, opponentChampionID)
+        return result
 

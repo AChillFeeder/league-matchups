@@ -43,6 +43,8 @@ class GamesDatabase:
         result = self.cursor.fetchall()
         return result
 
+    
+
     # @staticmethod
     def getAllGamesByChampion(self, champion):
         self.cursor.execute("SELECT * FROM games WHERE laneOpponent='{0}' OR playerChampion='{0}'".format(champion))
@@ -138,13 +140,23 @@ class NotesDatabase:
         result = self.cursor.fetchall()
         return result
 
+    def getNotesById(self, noteID) -> list:
+        self.cursor.execute("SELECT * FROM notes WHERE id={}".format(noteID))
+        result = self.cursor.fetchall()
+        return result
+
     # @staticmethod
     def getNotesByGame(self, gameID):
         self.cursor.execute("SELECT * FROM notes WHERE gameID={}".format(gameID))
         result = self.cursor.fetchall()
         return result
 
-class tags:
-    pass
+    def getAllNotesByMatchup(self, playerChampion: str, laneOpponentChampion: str):
+        # self.cursor.execute("SELECT * FROM games WHERE playerChampion='{}' AND laneOpponent='{}'".format(playerChampion, laneOpponentChampion))
+        # gameID = self.cursor.fetchall()
+        # # result = self.getNotesById(gameID)
+        # return gameID
+        pass
+
 
 
