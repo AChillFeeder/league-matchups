@@ -4,6 +4,7 @@ const ListOfGames = ({games, notes, searchTerm}) => {
     const getNotesByID = (id) => { // filter notes by the game's id so that every game gets its' notes
         let filtered_array = [];
         notes.map((note) => {
+            console.log(id)
             if(note.gameID === id){
                 filtered_array.push(note);
             }
@@ -24,7 +25,7 @@ const ListOfGames = ({games, notes, searchTerm}) => {
         <div className='listOfGames'>
             {/* {typeof games} */}
             { filteredGames(searchTerm).map((game) => (
-                <Game key={game.id} game={game} notes={getNotesByID(game.id)}/>
+                <Game key={game.gameInformation.id} game={game} notes={getNotesByID(game.gameInformation.id)}/>
             ))}
         </div>
      );

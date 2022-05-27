@@ -13,7 +13,7 @@ const Game = ({game, notes}) => {
         setIsLoading(true);
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/gameInformation/${game.gameInformation.gameID}`)
         .then( data => {
-                console.log(data);
+                console.log(notes);
                 setAdvancedData(data);
                 setIsLoading(false);
             }
@@ -31,11 +31,11 @@ const Game = ({game, notes}) => {
             if(advancedData.info){
                 advancedData.info.participants.map((participant) => {
                     if(participant.summonerName == game.playerChampion.summonerName){
-                        console.log("Found summoner")
+                        // console.log("Found summoner")
                         setSummonerAdvancedData(participant)
                     }
                     if(participant.summonerName == game.opponentChampion.summonerName){
-                        console.log("Found opponent")
+                        // console.log("Found opponent")
                         setOpponentAdvancedData(participant)
                     }
                 })

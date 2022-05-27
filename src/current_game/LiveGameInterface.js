@@ -1,7 +1,11 @@
 import {HTTPpost} from "../usables/EasyHTTP";
 import ENVIRONMENT_VARIABLES from "../usables/ENVIRONMENT_VARIABLES.json";
+import NotesForm from "./NotesForm";
+import React from 'react';
 
 const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
+
+    const [notes, setNotes] = React.useState([]);
 
     const saveGame = () => {
         HTTPpost(`${ENVIRONMENT_VARIABLES.url}/gamesHistory`, {
@@ -15,7 +19,7 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
             "gameID": data.gameID,
             "summonerName":data.summoner.summonerID,
             "summonerID":data.summoner.summonerName,
-            "notes": []
+            "notes": notes
         })
         .then( () => console.log("success") ) // redirect to Home
     }
@@ -77,6 +81,7 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
                     )
                 })}
             </ul>
+            <NotesForm setNotes={setNotes}/>
             <button onClick={() => setOpponent(false)}>Return back</button>
             <button onClick={saveGame}>Save game</button>
         </div>
