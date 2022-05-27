@@ -22,6 +22,11 @@ body{
     background-color: var(--background-color);
     height: 100%;
 }
+table, th, td{
+    border: 1px solid #000000 ;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
 button:hover{
     cursor: pointer;
 }
@@ -126,40 +131,13 @@ button:hover{
 .new-game .notes-form{
     border: none;
 }
-.new-game h3{
-    margin-top: 10px;
-    font-size: 1.5em;
-    letter-spacing: 0.200em;
-}
+
 .new-game .notes-form h3::first-letter{
     color: var(--secondary-color);
     text-transform: capitalize;
 }
-.new-game .notes-form img{
-    height: 300px;
-    border-radius: 10% 0;
-    border: 1px solid var(--secondary-color);
-    padding: 5px;
-}
-.new-game .notes-form form{
-    align-self: flex-start;
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    /* justify-content: center; */
-}
-.new-game .notes-form form *{
-    margin-top: 20px;
-    align-self: center;
-}
-.new-game .notes-form form h2{
-    font-size: 1.7em;
-    letter-spacing: 0.1em;
-    color: var(--secondary-color);
-}
-.new-game .notes-form form .input{
-    width: 100%;
-}
+
+
 .new-game .notes-form form .add-note{
     border: 1px solid var(--main-color);
     background: none;
@@ -169,15 +147,13 @@ button:hover{
 .new-game .notes-form form label{
     font-size: 1.5em;
 }
-.new-game .notes-form form input[type=checkbox]{
-    margin-top: 5px;
-}
-.new-game .notes-form form .submit{
+
+button{
     background: var(--main-color);
     border: 1px solid var(--main-color);
     color: var(--background-color);
-    padding: 10px;
-    width: 200px;
+    padding: 5px;
+    width: 100px;
     transition: 0.5s;
     transition-property: background-color color;
 }
@@ -221,26 +197,20 @@ button:hover{
 .content .login form label, .content .register form label{
     font-size: 0.8em;
 }
-.content .login form input, .content .register form input{
+input{
     margin-top: 5px;
     margin-bottom: 3%;
     border: none;
-    border-bottom: 2px solid var(--main-color);
+    border-bottom: 1px solid var(--main-color);
     width: 18%;
     padding: 5px 10px;
     color: var(--main-color);
+    outline: none;
 }
-.content .login button, .content .register button{
-    background: transparent;
-    border: 2px solid var(--main-color);
-    padding: 10px;
-    width: 150px;
-    transition: 0.3s;
-    transition-property: background-color color;
-}
-.content .login button:hover, .content .register button:hover{
-    background-color: var(--main-color);
-    color: var(--background-color);
+
+button:hover{
+    background-color: var(--background-color);
+    color: var(--main-color);
 }
 
 
