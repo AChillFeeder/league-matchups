@@ -15,7 +15,7 @@ const Home = () => {
         setIsLoading(true);
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/gamesHistory`)
         .then( data => {
-                console.log(data);
+                // console.log(data);
                 setGames(data[0]);
                 setNotes(data[1]);
                 setIsLoading(false);
@@ -31,7 +31,7 @@ const Home = () => {
         setSearchTerm(event.target.value);
     }
 
-    React.useEffect(() => console.log(searchTerm), [searchTerm])
+    // React.useEffect(() => console.log(searchTerm), [searchTerm])
 
     return ( 
         <div className="home">

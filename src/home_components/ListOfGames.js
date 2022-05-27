@@ -4,7 +4,6 @@ const ListOfGames = ({games, notes, searchTerm}) => {
     const getNotesByID = (id) => { // filter notes by the game's id so that every game gets its' notes
         let filtered_array = [];
         notes.map((note) => {
-            console.log(id)
             if(note.gameID === id){
                 filtered_array.push(note);
             }

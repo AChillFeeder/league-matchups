@@ -12,6 +12,11 @@ x add "keywords" in games in History, containing searcheable words
 x add note taking menu
 x limit number of games in home page (maybe max 100, RIOT API allows 120 every 2 minutes)
 
+- show past notes of the matchup/champion on live game screen
+- get some basic stats going on the stats page
+- some basic settings on settings page
+- notes should also have a "summonerChampion", "opponentChampion" and "popularity" attributes
+
 - advanced search, specify keywords (search by opponent Champion...) searcheable_keywords = {"all":..., "champions":...}
 - decorator for login and session purposes
 - spread player.py methods into more files

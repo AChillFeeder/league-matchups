@@ -5,7 +5,6 @@ import secrets
 
 from leagueMatchups import LeagueMatchups, player
 from leagueMatchups import LeagueMatchups as LM
-import leagueMatchups
 
 
 

@@ -13,7 +13,7 @@ const Game = ({game, notes}) => {
         setIsLoading(true);
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/gameInformation/${game.gameInformation.gameID}`)
         .then( data => {
-                console.log(notes);
+                console.log(data);
                 setAdvancedData(data);
                 setIsLoading(false);
             }
@@ -31,7 +31,7 @@ const Game = ({game, notes}) => {
             if(advancedData.info){
                 advancedData.info.participants.map((participant) => {
                     if(participant.summonerName == game.playerChampion.summonerName){
-                        // console.log("Found summoner")
+                        console.log("Found summoner")
                         setSummonerAdvancedData(participant)
                     }
                     if(participant.summonerName == game.opponentChampion.summonerName){
@@ -100,11 +100,14 @@ const Game = ({game, notes}) => {
                     
                 <div>
                     <table>
-                        <tr>
-                            <th>Stat</th>
-                            <th>Summoner</th>
-                            <th>Opponent</th>
-                        </tr>
+                        <thead>
+                            <tr>
+                                <th>Stat</th>
+                                <th>Summoner</th>
+                                <th>Opponent</th>
+                            </tr>
+                        </thead>
+                        <tbody>
                         <tr>
                             <td>Gold Earned: </td>
                             <td> {summonerAdvancedData.goldEarned} </td>
@@ -130,6 +133,7 @@ const Game = ({game, notes}) => {
                             <td> {summonerAdvancedData.turretTakedowns} </td>
                             <td> {opponentAdvancedData.turretTakedowns} </td>
                         </tr>
+                        </tbody>
                     </table>
                 </div>
                     

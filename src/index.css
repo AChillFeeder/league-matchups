@@ -23,9 +23,16 @@ body{
     height: 100%;
 }
 table, th, td{
-    border: 1px solid #000000 ;
+    border: 1px solid var(--secondary-color) ;
     border-collapse: collapse;
     margin-top: 20px;
+}
+th{
+    padding: 5px;
+}
+td{
+    text-align: center;
+    padding: 5px;
 }
 button:hover{
     cursor: pointer;

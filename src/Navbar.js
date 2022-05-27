@@ -1,5 +1,4 @@
-import {Link, useHistory} from 'react-router-dom';
-import {ReactSession} from 'react-client-session';
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
     return ( 
@@ -9,6 +8,7 @@ const Navbar = () => {
                 <Link to='/home'>Home</Link>
                 <Link to='/currentGame'>Current game</Link>
                 <Link to='/home'>Stats</Link>
+                <Link to='/home'>Matchups</Link>
                 <Link to='/home'>Settings</Link>
                 <Link to='/'>log out</Link>
             </ul>

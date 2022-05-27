@@ -17,8 +17,8 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
             "win": 1,
             "gameCreation": data.game_creation,
             "gameID": data.gameID,
-            "summonerName":data.summoner.summonerID,
-            "summonerID":data.summoner.summonerName,
+            "summonerName":data.summoner.summonerName,
+            "summonerID":data.summoner.summonerID,
             "notes": notes
         })
         .then( () => console.log("success") ) // redirect to Home
