@@ -15,6 +15,7 @@ x add "keywords" in games in History, containing searcheable words
 - advanced search, specify keywords (search by opponent Champion...) searcheable_keywords = {"all":..., "champions":...}
 - decorator for login and session purposes
 - spread player.py methods into more files
+- audio notes
 
 - pepper and salt the password hash
 - Email sign up and account confirmation

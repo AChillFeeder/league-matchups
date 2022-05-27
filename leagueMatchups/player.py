@@ -24,7 +24,7 @@ class Player():
         self.id: int = 0
 
         ##### TESTING ######
-        self.summonerName = "LeChase".lower()
+        self.summonerName = "kasing1".lower()
         
         self.region = region
 
