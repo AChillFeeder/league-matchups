@@ -8,6 +8,7 @@ const Game = ({game, notes}) => {
     const [advancedData, setAdvancedData] = React.useState({})
     const [summonerAdvancedData, setSummonerAdvancedData] = React.useState({})
     const [opponentAdvancedData, setOpponentAdvancedData] = React.useState({})
+    const [isVictorious, setIsVictorious] = React.useState(null)
 
     const [isVisible, setIsVisible] = React.useState(false);
     
@@ -50,13 +51,24 @@ const Game = ({game, notes}) => {
         window.location.reload(false);
     }
 
+
+    React.useEffect(
+        () => {
+            if(advancedData.info){
+            let summonerTeam = advancedData.info.teams[0].teamId == summonerAdvancedData.teamID ? advancedData.info.teams[0] : advancedData.info.teams[1]
+            let victory = summonerTeam.win
+            console.log(victory)
+            setIsVictorious(victory)
+        }
+    }, [advancedData])
+
+
     return ( 
         <div className='match-container' style={{border: "2px solid black"}} onClick={() => setIsVisible(!isVisible)}>
 
             <div key={game.gameInformation.id} className='match-data-container'>
                 <ul id='generalInformation' style={ isVisible ? {} : { display: 'none' }}>
                     <h4><strong>General Information: </strong></h4>
-                    <li>Victory: {game.gameInformation.victory}</li>
                     <li>Game ID (database): {game.gameInformation.id}</li>
                     <li>userID: {game.gameInformation.userID}</li>
                     <li>Game Creation: {game.gameInformation.gameCreation}</li>
@@ -108,6 +120,8 @@ const Game = ({game, notes}) => {
                 <div className='match-advanced-information'>
                     
                 <div>
+                    
+                    <h3>Victory: {isVictorious ? 'victory' : 'defeat'}</h3>
                     <table>
                         <thead>
                             <tr>

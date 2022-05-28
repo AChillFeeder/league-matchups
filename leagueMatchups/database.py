@@ -124,16 +124,6 @@ class NotesDatabase:
     def __init__(self) -> None:
         self.cursor = database.cursor(buffered=True)
 
-    def sanitizeInputs(self, *args):
-        returnedValues = ()
-        for string in args:
-            sanitized_string = string.replace('\'', '\\\'')
-            _ = list(returnedValues)
-            _.append(sanitized_string)
-            returnedValues = tuple(_)
-        
-        return returnedValues
-
     # @staticmethod
     def addNote(self, noteContent, userID, gameID, popularity=0):
         # sanitizing inputs, turning ' to \'

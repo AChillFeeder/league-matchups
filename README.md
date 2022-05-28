@@ -58,6 +58,11 @@ Search bar in home screen to filter through previous games, filter by:
 - [ ] Email sign up and account confirmation
 <br />
 
+### Bugfixes
+- [ ] if you create a new empty note and delete it, previous note content gets emptied
+- [ ] database is prone to SQL injections, other methods should look like database.py AddNote() to avoid this problem. 
+<br />
+
 ## Next direction:
 A bit ambitious but try to turn it into a sort of social experience, notes can be public and other users can vote on the ones they like.
 This way you can find relevant information about matchups you're first-timing, or maybe correct wrong conclusions.
