@@ -31,7 +31,7 @@ class Player():
 
 
         ##### TESTING ######
-        self.summonerName = "MAD armut".lower()
+        self.summonerName = "mad armut".lower()
         
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
         print("summoner's name: ", self.summoner.name)
@@ -86,7 +86,7 @@ class Player():
             result['enemy_summoners'].append(
                 {   
                     "summonerName": summoner['summonerName'],
-                    "summonerId": summoner['summonerId'],
+                    "summonerID": summoner['summonerId'],
                     "perks": summoner['perks'],
                     "spell1Id": summoner['spell1Id'],
                     "spell2Id": summoner['spell2Id'],

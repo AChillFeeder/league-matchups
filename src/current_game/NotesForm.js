@@ -22,6 +22,12 @@ function NotesForm({setNotes}){
         setNotes(list);
     }
 
+    const handleKeyDown = (event) => {
+        if(event.key === 'Enter'){
+            addInputField();
+        }
+    }
+
     return(
     
         <div className="container">
@@ -32,7 +38,13 @@ function NotesForm({setNotes}){
                         return(
                             <div key={index}>
                                 <div>
-                                    <input type="text" onChange={(event)=>handleChange(index, event)} value={data} placeholder="Add a new note..." />
+                                    <input type="text"
+                                        value={data} 
+                                        onChange={(event)=>handleChange(index, event)} 
+                                        onKeyDown={(event) => handleKeyDown(event) } 
+                                        placeholder="Add a new note..." 
+                                        autoFocus
+                                    />
                                     {(inputFields.length!==1) ? <button onClick={removeInputFields}>x</button> : ''}
                                 </div>
                             </div>
@@ -42,7 +54,7 @@ function NotesForm({setNotes}){
      
                 <div className="row">
                     <div>
-                        <button className="" onClick={addInputField}>Add New</button>
+                        <button onClick={addInputField}>Add New</button>
                     </div>
                 </div>
                 </div>

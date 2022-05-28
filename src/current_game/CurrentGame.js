@@ -14,7 +14,6 @@ const CurrentGame = () => {
         setIsLoading(true);
         HTTPget(`${ENVIRONMENT_VARIABLES.url}/currentGame`)
         .then( data => {
-                console.log(data);
                 if(data.success){
                     setCurrentGameData(data);
                 } else {

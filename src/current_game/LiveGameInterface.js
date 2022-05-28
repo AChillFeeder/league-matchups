@@ -13,7 +13,7 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
             //playerChampion:int [ID], laneOpponent:int [ID], win:int [0/1], gameCreation and gameID
             "playerChampion": data.summoner.champion.id,
             "laneOpponentChampion": opponentSummoner.champion.id,
-            "laneOpponentSummonerID": opponentSummoner.summonerId,
+            "laneOpponentSummonerID": opponentSummoner.summonerID,
             "laneOpponentSummonerName": opponentSummoner.summonerName,
             "win": 1,
             "gameCreation": data.game_creation,
@@ -29,10 +29,13 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
         () => {
             HTTPget(`${ENVIRONMENT_VARIABLES.url}/getNotesByMatchup/${data.summoner.champion.id}/${opponentSummoner.champion.id}`)
                 .then( data => {
-                    console.log(data.message);
                     setPastNotes(data.message);
                 })
             }, []
+    )
+
+    React.useEffect(
+        () => console.log(data), []
     )
 
     return ( 
@@ -46,7 +49,7 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
             <ul>
                 <h5>General Information</h5>
                 <li>Summoner Name: {data.summoner.summonerName}</li>
-                <li>Summoner ID: {data.summoner.summonerId}</li>
+                <li>Summoner ID: {data.summoner.summonerID}</li>
                 <li>Spell1Id: {data.summoner.spell1Id}</li>
                 <li>Spell2Id: {data.summoner.spell2Id}</li>
 
@@ -64,7 +67,7 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
             <ul>
                 <h5>General Information</h5>
                 <li>Summoner Name: {opponentSummoner.summonerName}</li>
-                <li>Summoner ID: {opponentSummoner.summonerId}</li>
+                <li>Summoner ID: {opponentSummoner.summonerID}</li>
                 <li>Spell1Id: {opponentSummoner.spell1Id}</li>
                 <li>Spell2Id: {opponentSummoner.spell2Id}</li>
 

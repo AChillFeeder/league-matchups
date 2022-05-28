@@ -51,12 +51,7 @@ class GamesDatabase:
         result = self.cursor.fetchall()
         return result
     
-    def getAllSummonerGamesByTag(self):
-        pass
 
-    @staticmethod
-    def getAllGamesByTag(tag):
-        pass
 
 class UsersDatabase:
 
@@ -129,9 +124,21 @@ class NotesDatabase:
     def __init__(self) -> None:
         self.cursor = database.cursor(buffered=True)
 
+    def sanitizeInputs(self, *args):
+        returnedValues = ()
+        for string in args:
+            sanitized_string = string.replace('\'', '\\\'')
+            _ = list(returnedValues)
+            _.append(sanitized_string)
+            returnedValues = tuple(_)
+        
+        return returnedValues
+
     # @staticmethod
     def addNote(self, noteContent, userID, gameID, popularity=0):
-        self.cursor.execute("INSERT INTO notes (noteContent, gameID, userID, popularity) VALUES ('{}', {}, {}, {})".format(noteContent, gameID, userID, popularity))
+        # sanitizing inputs, turning ' to \'
+        sql = "INSERT INTO notes (noteContent, gameID, userID, popularity) VALUES (%s, %s, %s, %s)"
+        self.cursor.execute(sql, (noteContent, gameID, userID, popularity))
         database.commit() # might have to delete '' for integers
             
     # @staticmethod
