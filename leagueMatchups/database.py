@@ -152,11 +152,16 @@ class NotesDatabase:
         return result
 
     def getAllNotesByMatchup(self, playerChampion: str, laneOpponentChampion: str):
-        # self.cursor.execute("SELECT * FROM games WHERE playerChampion='{}' AND laneOpponent='{}'".format(playerChampion, laneOpponentChampion))
-        # gameID = self.cursor.fetchall()
-        # # result = self.getNotesById(gameID)
-        # return gameID
-        pass
+        self.cursor.execute("SELECT * FROM games WHERE playerChampion={} AND laneOpponent={}".format(playerChampion, laneOpponentChampion))
+        result = []
+        games = self.cursor.fetchall()
+        for game in games:
+            result.append(self.getNotesByGame(game[0]))
+        return result
+
+    def deleteNoteById(self, noteID: int):
+        self.cursor.execute("DELETE FROM notes WHERE id={}".format(noteID))
+        database.commit()
 
 
 

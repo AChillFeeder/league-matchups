@@ -235,7 +235,8 @@ class Player():
         return result
 
     def deleteNoteByNoteID(self, noteID):
-        pass
+        self.notesDatabase.deleteNoteById(noteID)
+        return 1
 
     def getMatchInformation(self, matchID: int): #, playerChampion: str, opponentChampion: str):
         url = "https://{continent}.api.riotgames.com/lol/match/v5/matches/{region}1_{match_id}?api_key={api_key}".format(
@@ -268,6 +269,16 @@ class Player():
         return advanced_game_data.json()
 
     def getNotesByMatchup(self, summonerChampionID, opponentChampionID):
-        result = self.notesDatabase.getAllNotesByMatchup(summonerChampionID, opponentChampionID)
+        notes = self.notesDatabase.getAllNotesByMatchup(summonerChampionID, opponentChampionID)[0]
+        result = []
+        for note in notes:
+            result.append(
+                {
+                    "id": note[0],
+                    "noteContent": note[1],
+                    "gameID": note[2],
+                    "userID": note[3]
+                }
+            )
         return result
 

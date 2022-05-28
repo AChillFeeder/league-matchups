@@ -45,6 +45,11 @@ const Game = ({game, notes}) => {
         }, [advancedData]
     )
 
+    const deleteNote = (noteID) => {
+        HTTPget(`${ENVIRONMENT_VARIABLES.url}/deleteNote/${noteID}`)
+        window.location.reload(false);
+    }
+
     return ( 
         <div className='match-container' style={{border: "2px solid black"}} onClick={() => setIsVisible(!isVisible)}>
 
@@ -92,6 +97,7 @@ const Game = ({game, notes}) => {
                             <li>game ID: {note.gameID}</li>
                             <li>Note ID: {note.id}</li>
                             <li>Note Content: {note.noteContent}</li>
+                            <button onClick={()=>deleteNote(note.id)}>Delete Note</button>
                         </ul> 
                     ) 
                 })}

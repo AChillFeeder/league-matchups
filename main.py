@@ -126,11 +126,12 @@ def gameInformation(gameID):
 @app.route('/getNotesByMatchup/<summonerChampionID>/<opponentChampionID>')
 def getChampionNotes(summonerChampionID, opponentChampionID):
     result = LeagueMatchups.player.getNotesByMatchup(summonerChampionID, opponentChampionID)
-    print(result)
+    return flash_message(True, result)
 
 @app.route('/deleteNote/<noteID>')
-def deleteNote():
-    pass #noteID
+def deleteNote(noteID):
+    LeagueMatchups.player.deleteNoteByNoteID(noteID)
+    return flash_message(True, "Note with ID of {} deleted successfully".format(noteID))
 
 @app.route('/set_riot_api_key', methods=["POST"])
 def set_riot_api_key():
