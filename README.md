@@ -19,44 +19,42 @@ League matchups finds your current game and asks you to pick the champion you're
 ## Home screen after the changes
 ![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/main/screenshots/home_screen2.png)
 
-## Next features 
 
-### Tags 
-- [x] Using @ or # (or settings), allow the user to dynamically add tags.
-- [ ] ~~(scraped) Users can choose tags for notes from a dropdown menu to save time.~~
+## Next features 
 
 ### Settings
 - [ ] Allow the user to set his theme in the settings
 
-
 ### Stats 
 Calculate and show stats in clear numbers and pretty graphs
-- [x] general winrate
+- [ ] general winrate
 - [ ] winrate on champion
 - [ ] worst general matchup
 - [ ] best general matchup
-- [ ] most used tags
-- [ ] least used tags
 - [ ] winrate improvement over time
 - [ ] matchup winrate improvement over time
 
 ### Search 
 Search bar in home screen to filter through previous games, filter by:
-- [ ] champion name
+- [x] champion name
 - [ ] note
-- [ ] tag
 <br />
 
-- [ ] Remove interactions with Community Dragon Api from React and into Flask
-- [ ] Use CD Api instead of raw data
-- [ ] Build tests
-- [ ] Spread classes into multiple files
-- [ ] Extensive use of Exceptions
-
-- [ ] patch should be updated automatically
-- [ ] move champion_{patch}.json file to data
-
-- [ ] Email sign up and account comfirmation
+- [x] Remove interactions with Community Dragon Api from React and into Flask
+- [x] Use CD Api instead of raw data
+- [x] Build tests
+- [x] Spread classes into multiple files
+- [x] patch should be updated automatically
+- [ ] show past notes of the matchup/champion on live game screen
+- [ ] get some basic stats going on the stats page
+- [ ] some basic settings on settings page
+- [ ] notes should a "popularity" attribute
+- [ ] advanced search, specify keywords (search by opponent Champion...) searcheable_keywords = {"all":..., "champions":...}
+- [ ] decorator for login and session purposes
+- [ ] spread player.py methods into more files
+- [ ] audio notes
+- [ ] pepper and salt the password hash
+- [ ] Email sign up and account confirmation
 <br />
 
 ## Next direction:
