@@ -9,15 +9,15 @@ League matchups finds your current game and asks you to pick the champion you're
 
 # Screenshots:
 ## Login screen
-![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/login_screen.png)
+![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/main/screenshots/login_screen.png)
 ## Home screen
-![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/home_screen.png)
+![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/main/screenshots/home_screen.png)
 ## Champion choice at the start of the game
-![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/champion_choice.png)
+![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/main/screenshots/champion_choice.png)
 ## Taking notes in-game
-![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/notes_form.png)
+![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/main/screenshots/notes_form.png)
 ## Home screen after the changes
-![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/master/screenshots/home_screen2.png)
+![Screenshot of the home screen](https://raw.githubusercontent.com/AChillFeeder/league-matchups/main/screenshots/home_screen2.png)
 
 ## Next features 
 
