@@ -31,7 +31,7 @@ class Player():
 
 
         ##### TESTING ######
-        self.summonerName = "broeki".lower()
+        self.summonerName = "MAD armut".lower()
         
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
         print("summoner's name: ", self.summoner.name)
@@ -134,7 +134,7 @@ class Player():
 
         # Find summoner participant and turn him to a Champion object
         print(all_participants)
-        summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower().replace(" ", "") == self.summonerName][0]
+        summoner_participant = [participant for participant in all_participants if participant["summonerName"].lower() == self.summonerName][0]
         summoner_data = self.serializeParticipant(summoner_participant)
 
         # splitting the teams => team array has summoner and champion data
@@ -269,7 +269,11 @@ class Player():
         return advanced_game_data.json()
 
     def getNotesByMatchup(self, summonerChampionID, opponentChampionID):
-        notes = self.notesDatabase.getAllNotesByMatchup(summonerChampionID, opponentChampionID)[0]
+        result = self.notesDatabase.getAllNotesByMatchup(summonerChampionID, opponentChampionID)
+        try:
+            notes = result[0]
+        except IndexError:
+            notes = []
         result = []
         for note in notes:
             result.append(
@@ -277,7 +281,8 @@ class Player():
                     "id": note[0],
                     "noteContent": note[1],
                     "gameID": note[2],
-                    "userID": note[3]
+                    "userID": note[3],
+                    "popularity": note[4]
                 }
             )
         return result

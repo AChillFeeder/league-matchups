@@ -1,4 +1,4 @@
-import {HTTPpost} from "../usables/EasyHTTP";
+import {HTTPget, HTTPpost} from "../usables/EasyHTTP";
 import ENVIRONMENT_VARIABLES from "../usables/ENVIRONMENT_VARIABLES.json";
 import NotesForm from "./NotesForm";
 import React from 'react';
@@ -6,6 +6,7 @@ import React from 'react';
 const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
 
     const [notes, setNotes] = React.useState([]);
+    const [pastNotes, setPastNotes] = React.useState([]);
 
     const saveGame = () => {
         HTTPpost(`${ENVIRONMENT_VARIABLES.url}/gamesHistory`, {
@@ -23,6 +24,16 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
         })
         .then( () => console.log("success") ) // redirect to Home
     }
+
+    React.useEffect(
+        () => {
+            HTTPget(`${ENVIRONMENT_VARIABLES.url}/getNotesByMatchup/${data.summoner.champion.id}/${opponentSummoner.champion.id}`)
+                .then( data => {
+                    console.log(data.message);
+                    setPastNotes(data.message);
+                })
+            }, []
+    )
 
     return ( 
         <div>
@@ -65,11 +76,23 @@ const LiveGameInterface = ({data, opponentSummoner, setOpponent}) => {
                 <li>Name: {opponentSummoner.champion.name}</li>
                 <img src={opponentSummoner.champion.full_image} alt={opponentSummoner.champion.name} />
                 <li>Champion ID: {opponentSummoner.champion.id}</li>
+                <h5>General Tips (death recap)</h5>
                 {opponentSummoner.champion.enemy_tips.map((tip) => {
                     return (
                         <li>{tip}</li>
                     )
                 })}
+                <h5>Tips (From LeagueMatchups)</h5>
+                {pastNotes.map((note) => {
+                    return (
+                        <ul>
+                            <li><strong>Content:</strong>{note.noteContent}</li>
+                            <li><strong>Popularity:</strong>{note.popularity}</li>
+                        </ul>
+                    )
+                })}
+
+                <h5>Abilities</h5>
                 {opponentSummoner.champion.spells.map((spell) => {
                     return (
                         <ul>

@@ -27,6 +27,7 @@ League matchups finds your current game and asks you to pick the champion you're
 
 ### Stats 
 Calculate and show stats in clear numbers and pretty graphs
+For recorded games:
 - [ ] general winrate
 - [ ] winrate on champion
 - [ ] worst general matchup
@@ -37,7 +38,6 @@ Calculate and show stats in clear numbers and pretty graphs
 ### Search 
 Search bar in home screen to filter through previous games, filter by:
 - [x] champion name
-- [ ] note
 <br />
 
 - [x] Remove interactions with Community Dragon Api from React and into Flask
@@ -45,10 +45,11 @@ Search bar in home screen to filter through previous games, filter by:
 - [x] Build tests
 - [x] Spread classes into multiple files
 - [x] patch should be updated automatically
-- [ ] show past notes of the matchup/champion on live game screen
+- [x] show past notes of the matchup/champion on live game screen
+- [x] notes should a "popularity" attribute
+- [ ] limit number of notes shown based on settings 
 - [ ] get some basic stats going on the stats page
 - [ ] some basic settings on settings page
-- [ ] notes should a "popularity" attribute
 - [ ] advanced search, specify keywords (search by opponent Champion...) searcheable_keywords = {"all":..., "champions":...}
 - [ ] decorator for login and session purposes
 - [ ] spread player.py methods into more files

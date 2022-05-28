@@ -130,8 +130,8 @@ class NotesDatabase:
         self.cursor = database.cursor(buffered=True)
 
     # @staticmethod
-    def addNote(self, noteContent, userID, gameID):
-        self.cursor.execute("INSERT INTO notes (noteContent, gameID, userID) VALUES ('{}', {}, {})".format(noteContent, gameID, userID))
+    def addNote(self, noteContent, userID, gameID, popularity=0):
+        self.cursor.execute("INSERT INTO notes (noteContent, gameID, userID, popularity) VALUES ('{}', {}, {}, {})".format(noteContent, gameID, userID, popularity))
         database.commit() # might have to delete '' for integers
             
     # @staticmethod
@@ -147,12 +147,12 @@ class NotesDatabase:
 
     # @staticmethod
     def getNotesByGame(self, gameID):
-        self.cursor.execute("SELECT * FROM notes WHERE gameID={}".format(gameID))
+        self.cursor.execute("SELECT * FROM notes WHERE gameID={} order by popularity DESC".format(gameID))
         result = self.cursor.fetchall()
         return result
 
     def getAllNotesByMatchup(self, playerChampion: str, laneOpponentChampion: str):
-        self.cursor.execute("SELECT * FROM games WHERE playerChampion={} AND laneOpponent={}".format(playerChampion, laneOpponentChampion))
+        self.cursor.execute("SELECT * FROM games WHERE playerChampion={} AND laneOpponent={}".format(int(playerChampion), int(laneOpponentChampion)))
         result = []
         games = self.cursor.fetchall()
         for game in games:
