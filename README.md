@@ -47,6 +47,8 @@ Search bar in home screen to filter through previous games, filter by:
 - [x] patch should be updated automatically
 - [x] show past notes of the matchup/champion on live game screen
 - [x] notes should a "popularity" attribute
+- [ ] find out how to prevent an account from voting for the same note twice
+- [ ] upvote-downvote-popularity for every note
 - [ ] limit number of notes shown based on settings 
 - [ ] get some basic stats going on the stats page
 - [ ] some basic settings on settings page

@@ -31,7 +31,7 @@ class Player():
 
 
         ##### TESTING ######
-        self.summonerName = "mad armut".lower()
+        self.summonerName = "a chill feeder".lower()
         
         self.summoner = cassiopeia.Summoner(name=self.summonerName)
         print("summoner's name: ", self.summoner.name)

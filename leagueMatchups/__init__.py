@@ -2,9 +2,6 @@
 from leagueMatchups.player import Player
 from leagueMatchups.user import User
 
-# from leagueMatchups.database import GamesDatabase, UsersDatabase
-
-
 
 # stays on __init__
 class LeagueMatchups:
