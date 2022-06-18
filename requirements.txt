@@ -1,5 +1,0 @@
-cassiopeia
-cassiopeia_championgg
-flask
-pycurl
-
